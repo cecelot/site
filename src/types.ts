@@ -8,6 +8,6 @@ export interface Frontmatter {
   description: string;
   author: string;
   tags: string[];
-  readingTime: number;
+  minutesRead: string;
   featured: boolean;
 }

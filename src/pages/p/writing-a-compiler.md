@@ -6,7 +6,6 @@ description: "A story of my introduction to compilers and subsequent journey in 
 author: "Alaina Newmark"
 tags: ["compilers", "reflections"]
 featured: true
-readingTime: 15
 ---
 
 **Eight months** of hard work and dedication on the **same project**! How crazy is that? As someone who can _never_ manage to finish her projects, this was quite the accomplishment for me.

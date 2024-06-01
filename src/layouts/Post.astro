@@ -12,7 +12,7 @@ const { frontmatter } = Astro.props;
   <span class="flex space-x-1 font-light">
     <p>{new Date(frontmatter.pubDate).toDateString()}</p>
     <p>•</p>
-    <p>{frontmatter.readingTime} minute read</p>
+    <p>{frontmatter.minutesRead}</p>
   </span>
   <article class="prose lg:prose-lg leading-6 mt-5">
     <slot />
