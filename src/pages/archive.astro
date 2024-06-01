@@ -8,7 +8,9 @@ const allPosts = await Astro.glob("../pages/p/*.md");
   <ul class="space-y-3">
     {
       allPosts
-        .sort()
+        .sort((a, b) =>
+          a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
+        )
         .reverse()
         .map((post) => (
           <li>
