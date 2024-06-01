@@ -1,5 +1,6 @@
 ---
 import PostCard from "../components/PostCard.astro";
+import Social from "../components/Social.astro";
 import Base from "../layouts/Base.astro";
 const allPosts = await Astro.glob("../pages/p/*.md");
 ---
@@ -22,6 +23,15 @@ const allPosts = await Astro.glob("../pages/p/*.md");
         languages and operating systems. In my corner of the internet, I write about
         my projects and experiences in tech and elsewhere.
       </p>
+      <div class="mt-2">
+        <p>
+          I'm also on GitHub! Check out my profile <Social
+            text="here"
+            url="github.com"
+            username="alythical"
+          />.
+        </p>
+      </div>
     </div>
   </div>
   <section>
