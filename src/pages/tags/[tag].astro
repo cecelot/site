@@ -1,0 +1,48 @@
+---
+import type { MarkdownInstance } from "astro";
+import Base from "../../layouts/Base.astro";
+import type { Frontmatter } from "../../types";
+import PostCard from "../../components/PostCard.astro";
+
+interface Path {
+  params: { tag: string };
+  props: { posts: MarkdownInstance<Frontmatter>[] };
+}
+
+export async function getStaticPaths(): Promise<Path[]> {
+  const allPosts: MarkdownInstance<Frontmatter>[] =
+    await Astro.glob("../p/*.md");
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+  ];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.frontmatter.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Base pageTitle={`#${tag}`}>
+  <ul class="space-y-3">
+    {
+      posts.map((post) => (
+        <li>
+          <PostCard
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            url={post.url}
+            featured={post.frontmatter.featured}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</Base>

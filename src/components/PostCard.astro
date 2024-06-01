@@ -1,0 +1,9 @@
+---
+const { title, description, url, featured } = Astro.props;
+---
+
+<div class="flex flex-col">
+  {featured && <span class="text-red">featured</span>}
+  <a href={url}>{title}</a>
+  <span>{description}</span>
+</div>

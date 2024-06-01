@@ -1,0 +1,63 @@
+<style is:global>
+  a:not(.navbar-link, .tag) {
+    @apply text-blue underline underline-offset-1 hover:text-sapphire;
+  }
+
+  article p {
+    @apply my-4;
+  }
+
+  article
+    :is(h1, h2, h3, h4, h5, h6):not(.post-title, .post-description)::before {
+    content: "#";
+    @apply text-subtext1 mr-3;
+  }
+
+  article h1 {
+    @apply my-6;
+  }
+
+  article h2 {
+    @apply my-5;
+  }
+
+  article h3 {
+    @apply my-4;
+  }
+
+  article h4 {
+    @apply my-3;
+  }
+
+  article h5 {
+    @apply my-2;
+  }
+
+  h1 {
+    @apply text-3xl font-medium;
+  }
+
+  h2 {
+    @apply text-xl font-medium;
+  }
+
+  h3 {
+    @apply text-lg font-medium;
+  }
+
+  h4 {
+    @apply font-medium;
+  }
+
+  h5 {
+    @apply text-sm font-medium;
+  }
+
+  ol {
+    @apply list-decimal list-inside space-y-2;
+  }
+
+  ol li::marker {
+    @apply text-subtext1;
+  }
+</style>

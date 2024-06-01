@@ -1,0 +1,25 @@
+---
+import PostCard from "../components/PostCard.astro";
+import Base from "../layouts/Base.astro";
+const allPosts = await Astro.glob("../pages/p/*.md");
+---
+
+<Base pageTitle="Archive">
+  <ul class="space-y-3">
+    {
+      allPosts
+        .sort()
+        .reverse()
+        .map((post) => (
+          <li>
+            <PostCard
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              url={post.url}
+              featured={post.frontmatter.featured}
+            />
+          </li>
+        ))
+    }
+  </ul>
+</Base>

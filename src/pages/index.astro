@@ -1,16 +1,48 @@
 ---
-
+import PostCard from "../components/PostCard.astro";
+import Base from "../layouts/Base.astro";
+const allPosts = await Astro.glob("../pages/p/*.md");
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>alainacn.dev</title>
-  </head>
-  <body>
-    <h1>alainacn.dev</h1>
-  </body>
-</html>
+<Base pageTitle="Home">
+  <div class="flex flex-col mt-10 mb-5">
+    <img
+      class="rounded-full h-24 w-24 mr-4 mb-4"
+      src="https://avatars.githubusercontent.com/u/68250402?v=4"
+      alt="Alaina Newmark profile photo."
+    />
+    <div>
+      <h3 class="text-xl font-semibold my-3">👋🏻 Hi, I'm Alaina!</h3>
+      <p>
+        I'm a first-year student at <a target="_blank" href="https://wpi.edu"
+          >Worcester Polytechnic Institute</a
+        > majoring in computer science, with a particular interest in programming
+        languages and operating systems. In my corner of the internet, I write about
+        my projects and experiences in tech and elsewhere.
+      </p>
+    </div>
+  </div>
+  <section>
+    <h3 class="text-xl font-semibold my-3">Recent Posts</h3>
+    <ul class="space-y-3">
+      {
+        allPosts
+          .sort((a, b) =>
+            a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
+          )
+          .reverse()
+          .slice(0, 2)
+          .map((post) => (
+            <li>
+              <PostCard
+                title={post.frontmatter.title}
+                description={post.frontmatter.description}
+                url={post.url}
+                featured={post.frontmatter.featured}
+              />
+            </li>
+          ))
+      }
+    </ul>
+  </section>
+</Base>
