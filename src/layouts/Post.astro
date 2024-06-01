@@ -4,7 +4,7 @@ import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
 let pathname = new URL(Astro.url).pathname;
 if (pathname.endsWith("/")) {
-  pathname = pathname.slice(0, -2);
+  pathname = pathname.slice(0, -1);
 }
 const editLink = `https://github.com/alythical/alainacn.dev/edit/main/src/pages${pathname}.md`;
 ---
