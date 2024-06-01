@@ -60,7 +60,7 @@ This was not very easy -- especially for someone who had never done anything lik
 
 After all this work, I still felt that LLVM was doing "too much." If I wanted to _really_ understand how a compiler can translate the program linked above into machine code, I would need to implement it on my own, a concept mildly foreign to me as someone who had written many small projects using the Node ecosystem where [everything](https://www.npmjs.com/package/left-pad) [under](https://www.npmjs.com/package/is-odd) [the](https://www.npmjs.com/package/is-even) [sun](https://www.npmjs.com/package/upper-case) [has](https://www.npmjs.com/package/is-number) [its](https://www.npmjs.com/package/split-string) [own](https://www.npmjs.com/package/array-includes) [package](https://www.npmjs.com/package/is-boolean-object).
 
-At this point in my journey, the fall semester was well underway, and I had these two projects I was working on at the same time that wanted to be the same thing, and eventually this side project in Rust limited how much time I could spend on the "official" version for my class.
+By now, the fall semester was well underway, and I had these two projects I was working on at the same time that wanted to be the same thing, and eventually this side project in Rust limited how much time I could spend on the "official" version for my class.
 
 ## Goodbye Kotlin
 
