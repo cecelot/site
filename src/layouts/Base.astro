@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import Styles from "../components/Styles.astro";
@@ -15,7 +14,6 @@ const { pageTitle, description, image } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle} · alainacn.dev</title>
-    <ViewTransitions />
     <OpenGraph
       siteName="alainacn.dev"
       title={pageTitle || "alainacn.dev"}
