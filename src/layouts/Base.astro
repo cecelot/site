@@ -3,19 +3,31 @@ import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import Styles from "../components/Styles.astro";
-const { pageTitle } = Astro.props;
+import OpenGraph from "../components/OpenGraph.astro";
+const { pageTitle, description, image } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#ea76cb" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle} · alainacn.dev</title>
     <ViewTransitions />
+    <OpenGraph
+      siteName="alainacn.dev"
+      title={pageTitle}
+      description={description}
+      type="article"
+      url={Astro.url.toString()}
+      image={image}
+    />
   </head>
-  <body class="latte max-w-2xl mt-8 mx-auto p-5 pl-6">
+  <body
+    class="latte dark:frappe bg-base text-text max-w-screen-md mt-8 mx-auto p-5 pl-6"
+  >
     <Navigation />
     <slot />
     <Footer />

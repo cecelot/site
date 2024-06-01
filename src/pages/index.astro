@@ -4,7 +4,10 @@ import Base from "../layouts/Base.astro";
 const allPosts = await Astro.glob("../pages/p/*.md");
 ---
 
-<Base pageTitle="Home">
+<Base
+  pageTitle="Home"
+  description="My personal corner of the internet, where I write about my projects and experiences in tech and elsewhere."
+>
   <div class="flex flex-col mt-10 mb-5">
     <img
       class="rounded-full h-24 w-24 mr-4 mb-4"

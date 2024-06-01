@@ -30,7 +30,8 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Base pageTitle={`#${tag}`}>
+<Base pageTitle={`#${tag}`} description={`Posts tagged with #${tag}`}>
+  <h3 class="text-xl font-semibold my-3">#{tag}</h3>
   <ul class="space-y-3">
     {
       posts.map((post) => (

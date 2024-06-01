@@ -15,6 +15,8 @@ Last week, I gave a presentation[^1] at the University of Texas at Austin's [Ode
 
 Now that I've finished the course, I figured I would take some time here to reflect more fully, by retracing and sharing my entire journey of how I got to this point today, including how I got into compiler design, the resources I used throughout this past year, the outcomes of my project, and the challenges I encountered along the way.
 
+# Contents
+
 # Origins
 
 It's hard to quite pin down when my journey started, because I've been interested in compilers for at least a few years now. Initially, I turned to Google, as I always did back then[^4].

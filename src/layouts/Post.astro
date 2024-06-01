@@ -4,24 +4,24 @@ import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
 ---
 
-<Base pageTitle={frontmatter.title}>
-  <h1 class="post-title">{frontmatter.title}</h1>
-  <h4 class="post-description mb-3 mt-1">
+<Base pageTitle={frontmatter.title} description={frontmatter.description}>
+  <h1 class="text-4xl lg:text-5xl font-black">{frontmatter.title}</h1>
+  <h4 class="text-md lg:text-xl font-semibold mb-3 mt-2">
     {frontmatter.description}
   </h4>
-  <span class="flex space-x-1 text-subtext1">
+  <span class="flex space-x-1 font-light">
     <p>{new Date(frontmatter.pubDate).toDateString()}</p>
     <p>•</p>
     <p>{frontmatter.readingTime} minute read</p>
   </span>
-  <article class="leading-6 mt-10">
+  <article class="prose lg:prose-lg leading-6 mt-5">
     <slot />
   </article>
   <div class="mt-5 space-x-3">
     {
       frontmatter.tags.map((tag) => (
         <a
-          class="tag-foot bg-base p-2 mx-auto rounded-lg hover:bg-crust"
+          class="tag-foot bg-mantle p-2 mx-auto rounded-lg hover:bg-crust transition-all"
           href={`/tags/${tag}`}
         >
           #{tag}
