@@ -2,6 +2,7 @@
 import type { Props } from "../types";
 import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
+const editLink = `https://github.com/alythical/alainacn.dev/edit/main/src/pages${new URL(Astro.url).pathname}.md`;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
@@ -17,7 +18,7 @@ const { frontmatter } = Astro.props;
   <article class="prose lg:prose-lg leading-6 mt-5">
     <slot />
   </article>
-  <div class="mt-5 space-x-3">
+  <div class="my-5 space-x-3">
     {
       frontmatter.tags.map((tag) => (
         <a
@@ -28,6 +29,13 @@ const { frontmatter } = Astro.props;
         </a>
       ))
     }
+  </div>
+  <div class="text-xs">
+    <a
+      class="suggest-edit text-subtext0 hover:text-subtext1 hover:underline"
+      href={editLink}
+      >✎ Edit on GitHub
+    </a>
   </div>
 </Base>
 <style>
