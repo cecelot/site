@@ -18,7 +18,7 @@ const { pageTitle, description, image } = Astro.props;
     <ViewTransitions />
     <OpenGraph
       siteName="alainacn.dev"
-      title={pageTitle}
+      title={pageTitle || "alainacn.dev"}
       description={description}
       type="article"
       url={Astro.url.toString()}
