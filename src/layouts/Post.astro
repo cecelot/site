@@ -2,7 +2,11 @@
 import type { Props } from "../types";
 import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
-const editLink = `https://github.com/alythical/alainacn.dev/edit/main/src/pages${new URL(Astro.url).pathname}.md`;
+let pathname = new URL(Astro.url).pathname;
+if (pathname.endsWith("/")) {
+  pathname = pathname.slice(0, -2);
+}
+const editLink = `https://github.com/alythical/alainacn.dev/edit/main/src/pages${pathname}.md`;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
