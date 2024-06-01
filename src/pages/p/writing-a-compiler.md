@@ -22,17 +22,15 @@ It's hard to quite pin down when my journey started, because I've been intereste
 
 I was doing some cursory searching to see if I could write a programming language of my own, and suffice it to say that 16-year-old Alaina had no idea what she was getting into. After looking around for a little while, I came across a few blog posts I no longer remember, which introduced me to the core ideas of lexical analysis, parsing, and abstract syntax trees (the practical ideas, discounting all the theory). After reading these posts, I felt prepared to write one myself, so I tried. I spent a couple days trying to write a simple lexical analyzer in C++, with the intention of transforming it into a full interpreter, but quickly realized I was in well over my head. While I vaguely understood what lexical analysis and parsing meant from reading those articles, I stil was clueless as to how I would implement them in a way that was both functional **and** not incredibly cumbersome to write and maintain.
 
-It wasn't until several months later (or perhaps a year -- the timeline is blurry to me now) that I discovered the free [Crafting Interpreters](https://craftinginterpreters.com) book[^5] by Robert Nystrom. I cannot overstate how useful this book was in my compiler journey. If you're looking to get started in writing an interpreter or compiler of your own, I would highly recommend it.
-
-_Crafting Interpreters_ was what really "got me into" compilers in a serious way, and propelled me through much of my compiler journey through summer of 2023, right up until the start of senior year. In typical Alaina fashion, I developed several half-finished projects based on the book, but first, let's rewind a few months.
+It wasn't until several months later that I discovered the free [Crafting Interpreters](https://craftinginterpreters.com) book[^5] by Robert Nystrom. I cannot overstate how useful this book was in my compiler journey. If you're looking to get started in writing an interpreter or compiler of your own, I would highly recommend it. It taught me enough to create several small projects, which all ended up half-finished, in typical Alaina fashion.
 
 ## Getting Serious
 
-It's spring of 2023, and I'm thinking about courses for my senior year of high school. In particular, I was trying to decide on a proposal for my Independent Study project in computer science. After some deliberation, I came to the realization that this would be the perfect opportunity to formalize my exploration in compiler design, make it official, and actually build something that wouldn't be so half-finished[^6].
+Rewinding a few months, it's spring of 2023, and I'm thinking about courses for my senior year of high school. In particular, I was trying to decide on a proposal for my Independent Study project in computer science. After some deliberation, I came to the realization that this would be the perfect opportunity to formalize my exploration in compiler design, make it official, and actually build something that wouldn't be so half-finished[^6].
 
 ## A Proposal
 
-Once I had decided to do my study in compiler design, it was time to decide on a project proposal. It seemed straightforward -- a compiler has a series of logical steps a programmer must take in order to build a working product, and each step depends on the previous step.
+Once I had decided to do my study in compiler design, I had to write my project proposal. It seemed straightforward -- a compiler has a series of logical steps a programmer must take in order to build a working product, and each step depends on the previous step.
 
 At this point, my knowledge of those steps for a compiler was the following:
 
@@ -62,7 +60,7 @@ This was not very easy -- especially for someone who had never done anything lik
 
 After all this work, I still felt that LLVM was doing "too much." If I wanted to _really_ understand how a compiler can translate the program linked above into machine code, I would need to implement it on my own, a concept mildly foreign to me as someone who had written many small projects using the Node ecosystem where [everything](https://www.npmjs.com/package/left-pad) [under](https://www.npmjs.com/package/is-odd) [the](https://www.npmjs.com/package/is-even) [sun](https://www.npmjs.com/package/upper-case) [has](https://www.npmjs.com/package/is-number) [its](https://www.npmjs.com/package/split-string) [own](https://www.npmjs.com/package/array-includes) [package](https://www.npmjs.com/package/is-boolean-object).
 
-At this point in my journey, the fall semester was well underway, and I had these two projects that wanted to be the same thing, and I was working on them at the same time, and eventually this side project in Rust limited how much time I could spend on the "official" version for my class.
+At this point in my journey, the fall semester was well underway, and I had these two projects I was working on at the same time that wanted to be the same thing, and eventually this side project in Rust limited how much time I could spend on the "official" version for my class.
 
 ## Goodbye Kotlin
 
