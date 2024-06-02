@@ -9,6 +9,13 @@ export default defineConfig({
   site: "https://alainacn.dev",
   integrations: [tailwind(), sitemap()],
   markdown: {
+    shikiConfig: {
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-frappe",
+      },
+    },
+    syntaxHighlight: "shiki",
     remarkRehype: {
       footnoteBackContent: "^",
     },
