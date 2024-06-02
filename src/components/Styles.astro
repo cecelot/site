@@ -2,4 +2,19 @@
   a:not(.ignored-link) {
     @apply text-blue underline underline-offset-1 hover:text-sapphire;
   }
+
+  .astro-code {
+    @apply border-2 border-crust rounded-xl;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
 </style>
