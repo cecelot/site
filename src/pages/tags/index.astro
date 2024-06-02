@@ -16,14 +16,16 @@ const pageTitle = "Tags";
 <Base pageTitle={pageTitle} description="Browse posts by topic.">
   <div class="space-y-5">
     {
-      tagNames.map((tag) => (
-        <div class="flex flex-col">
-          <a href={`/tags/${tag}`}>#{tag}</a>
-          <span class="text-subtext1">
-            {tags[tag]} post{tags[tag] > 1 ? "s" : ""}
-          </span>
-        </div>
-      ))
+      tagNames
+        .sort((a, b) => tags[b] - tags[a])
+        .map((tag) => (
+          <div class="flex flex-col">
+            <a href={`/tags/${tag}`}>#{tag}</a>
+            <span class="text-subtext1">
+              {tags[tag]} post{tags[tag] > 1 ? "s" : ""}
+            </span>
+          </div>
+        ))
     }
   </div>
 </Base>
