@@ -22,15 +22,17 @@ const editLink = `https://github.com/alythical/alainacn.dev/edit/drafts/src/page
   <article class="prose lg:prose-lg leading-6 mt-5">
     <slot />
   </article>
-  <div class="my-5 space-x-3">
+  <div class="my-5 space-x-3 flex flex-wrap gap-y-6">
     {
       frontmatter.tags.map((tag) => (
-        <a
-          class="ignored-link bg-mantle p-2 mx-auto rounded-lg hover:bg-crust transition-all"
-          href={`/tags/${tag}`}
-        >
-          #{tag}
-        </a>
+        <span>
+          <a
+            class="ignored-link bg-mantle p-2 mx-auto rounded-lg hover:bg-crust transition-all"
+            href={`/tags/${tag}`}
+          >
+            #{tag}
+          </a>
+        </span>
       ))
     }
   </div>
