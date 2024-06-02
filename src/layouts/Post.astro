@@ -26,7 +26,7 @@ const editLink = `https://github.com/alythical/alainacn.dev/edit/drafts/src/page
     {
       frontmatter.tags.map((tag) => (
         <a
-          class="tag-foot bg-mantle p-2 mx-auto rounded-lg hover:bg-crust transition-all"
+          class="ignored-link bg-mantle p-2 mx-auto rounded-lg hover:bg-crust transition-all"
           href={`/tags/${tag}`}
         >
           #{tag}
@@ -36,7 +36,7 @@ const editLink = `https://github.com/alythical/alainacn.dev/edit/drafts/src/page
   </div>
   <div class="text-xs">
     <a
-      class="suggest-edit text-subtext0 hover:text-subtext1 hover:underline"
+      class="ignored-link text-subtext0 hover:text-subtext1 hover:underline"
       href={editLink}
       >✎ Edit on GitHub
     </a>
