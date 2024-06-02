@@ -1,11 +1,17 @@
-/** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
+
 const accent = "text";
 const linkColor = "blue";
 
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inclusive Sans", ...defaultTheme.fontFamily.sans],
+        mono: ["Recursive Mono", ...defaultTheme.fontFamily.mono],
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
