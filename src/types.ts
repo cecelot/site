@@ -1,3 +1,12 @@
+export interface RobotsTxtRules {
+  [key: string]: Rule;
+}
+
+export interface Rule {
+  reasoning: string;
+  bots: string[];
+}
+
 export interface Props {
   frontmatter: Frontmatter;
 }
