@@ -150,5 +150,5 @@ I also have some preliminary (incomplete) documentation about it up [here](https
 [^3]: Independent Study is a class offered to students passionate about computer science at my high school who have completed the sequence through our data structures and algorithms course
 [^4]: I still do, but I have a much greater appreciation for books now
 [^5]: This was the first proper book I had read in my computer science journey, which I consider its own milestone worth noting
-[^6]: Yes, it is still half-finished -- somehow this feels different though.
+[^6]: Yes, it is still half-finished -- somehow this feels different though
 [^7]: Once the first semester of senior year started, I also borrowed the [dragon book](https://suif.stanford.edu/dragonbook/) from my computer science teacher, but didn't end up using it much
