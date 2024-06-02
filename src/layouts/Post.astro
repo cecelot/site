@@ -6,7 +6,7 @@ let pathname = new URL(Astro.url).pathname;
 if (pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
-const editLink = `https://github.com/alythical/alainacn.dev/edit/main/src/pages${pathname}.md`;
+const editLink = `https://github.com/alythical/alainacn.dev/edit/drafts/src/pages${pathname}.md`;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
