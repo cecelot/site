@@ -4,9 +4,9 @@ import type { RobotsTxtRules } from "../types";
 const rules: RobotsTxtRules = {
   largeLanguageModels: {
     reasoning:
-      `alainacn.dev does not permit usage incl. but not limited to: for large language
-      models (LLMs), machine learning and/or artificial intelligence-related purposes;
-      and/or with any of the aforementioned technologies.`.trim(),
+      `alainacn.dev does not permit, without express permission by me, usage incl. 
+      but not limited to: for large language models (LLMs), machine learning,
+      and/or artificial intelligence-related purposes.`.trim(),
     bots: [
       "GPTBot",
       "cohere-ai",
@@ -17,12 +17,6 @@ const rules: RobotsTxtRules = {
       "Bytespider",
       "CCBot",
     ],
-  },
-  turnitin: {
-    reasoning:
-      `Turnitin is plagirism detection software that works by indexing content
-      without my consent and without providing any value to me.`.trim(),
-    bots: ["TurnitinBot", "Turnitin"],
   },
 };
 
