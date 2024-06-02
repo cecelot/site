@@ -2,7 +2,7 @@
 
 My personal corner of the internet, written with [Astro](https://astro.build) and [Tailwind](https://tailwindcss.com).
 
-See it live --> [alainacn.dev](https://alainacn.dev)
+See it live at [alainacn.dev](https://alainacn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.alainacn.dev).
 
 ## Building
 
