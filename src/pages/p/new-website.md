@@ -2,9 +2,9 @@
 layout: ../../layouts/Post.astro
 title: "All About My Millionth Website Rewrite"
 pubDate: "2024-06-02"
-description: "The history of my website and how I arrived at the techologies I'm using today."
+description: "From early iterations to today's version: a retrospective on the development of my website, discussing the techologies and tools I've experimented with to effectively publish and share my writing."
 author: "Alaina Newmark"
-tags: ["meta", "astro", "tailwindcss"]
+tags: ["astro", "tailwindcss", "meta", "reflections"]
 featured: false
 ---
 
@@ -16,23 +16,29 @@ We have, of course, the big three: [React](https://react.dev), [Vue](https://vue
 
 # Choosing a JavaScript Framework
 
-I had the idea to write a personal blog/portfolio a bit under four years ago, and wrote my first iteration with [Next.js 10](https://nextjs.org/blog/next-10). Something so heavyweight definitely felt overkill, but my first few iterations were **all** _very_ much over the top for what a personal blog needed. I introduced a [CMS](https://en.wikipedia.org/wiki/Content_management_system), live previews with Next.js' now-outdated[^1] [Preview Mode](https://nextjs.org/docs/pages/building-your-application/configuring/preview-mode), and a comments system.
+I had the idea to write a personal blog/portfolio a bit under four years ago, and wrote my first iteration with [Next.js 10](https://nextjs.org/blog/next-10). Something so heavyweight definitely felt like overkill for a simple blog, and my first few iterations were **all** _very_ much over the top in comparison to what I really needed. I introduced a [CMS](https://en.wikipedia.org/wiki/Content_management_system), live previews with Next.js' now-outdated[^1] [Preview Mode](https://nextjs.org/docs/pages/building-your-application/configuring/preview-mode), and a comments system.
 
-With all of these extra features, I was distracted from actually _writing_ blog posts, and so I never actually did. With no content to publish to my corner of the internet, I eventually discarded it.
+In adding all of this extra complexity, I got distracted from actually _writing_ blog posts, and so I never actually did. With no content to publish to my corner of the internet, I eventually deleted it.
 
 And that was just my first iteration.
 
-My second and third major iterations used Nuxt and Svelte, respectively, and suffered from the same problem of not having any content to publish. They did not, however, suffer from overextending themselves by introducing unnecessary complexity, as was the case in my first iteration.
+My second and third major iterations used Nuxt and Svelte, respectively, and suffered from the same problems as the first one. Too much complexity and subsequently, nothing to publish. They met the same fate, too.
 
-Fast-forward a couple years to 2023, where I'm interested simply in writing content, and _not_ developing overcomplicated websites. It was here where I decided to strip all of the heavy JavaScript frameworks away and go _almost_ as simple as I could using Jekyll, hosted directly on [GitHub Pages](https://pages.github.com), a far cry from my [Vercel](https://vercel.com)-hosted Next.js site from a couple years before. That lasted for a little while, until late 2023, where I decided to go back to my roots and try out Next.js' relatively new [app router](https://nextjs.org/docs/app) introduced with [version 13](https://nextjs.org/blog/next-13). I kept that version published until early 2024, when I switched to a Hugo site (using the [paper](https://github.com/nanxiaobei/hugo-paper) theme).
+Fast-forward to 2023, where I'm focused simply on writing and publishing, and _not_ developing overcomplicated websites. It was here where I decided to strip all of the heavy JavaScript frameworks away and go _almost_ as simple as I could using Jekyll, hosted directly on [GitHub Pages](https://pages.github.com), a far cry from my [Vercel](https://vercel.com)-hosted Next.js site from a couple years before. That lasted for a little while, until late that year, when I decided to go back to my roots and try out Next.js' relatively new [app router](https://nextjs.org/docs/app) introduced with [v13](https://nextjs.org/blog/next-13). I kept that version published until early 2024, when I concluded, once again, hat Next provided too much functionality that I wasn't using and switched to a Hugo site (using the [paper](https://github.com/nanxiaobei/hugo-paper) theme), with the idea that it would force me to focus on writing without getting distracted by fancy bells and whistles.
 
-I left this shiny new Hugo site alone for several months until school was out and I could actually dedicate time to writing, which was when I decided that using Hugo's theme didn't satisfy my desires in terms of look and feel of the site. I could have kept using Hugo and written my own theme from scratch, but I wasn't interested in using Go's templating libraries.
+I left the site alone for several months until school was out and I could actually dedicate time to writing, which was when I determined that using Hugo's theme didn't satisfy my desires in terms of look and feel of the site. I could have kept using Hugo and written my own theme from scratch, but I wasn't interested in using Go's templating libraries.
 
-So back to JavaScript I went. I knew I didn't want to use Next.js again, and I had heard of Astro, so I decided to try it out.
+So back to JavaScript I went. I knew I didn't want to use Next.js again, and I had heard of Astro, so I decided to try it out, with just a few requirements in mind:
+
+1. Easy to learn/use
+2. Content-focused
+3. Customizable
+
+As it turns out, Astro checks all of these boxes for me.
 
 ## Learning Astro
 
-Over the past couple days, I wrote this shiny new site, following their [blog tutorial](https://docs.astro.build/en/tutorial/0-introduction/), which coincided perfectly with what my intent was with `alainacn.dev`. Most of the code running this site is a product of that and small additions, like [reading time](https://docs.astro.build/en/recipes/reading-time/) and a [404 page](https://docs.astro.build/en/basics/astro-pages/#custom-404-error-page).
+Over the past couple days, I wrote this site, following their [blog tutorial](https://docs.astro.build/en/tutorial/0-introduction/), which coincided perfectly with what my intent was with `alainacn.dev`. Most of the code running this site is a product of that and small additions, like [reading time](https://docs.astro.build/en/recipes/reading-time/) and a [404 page](https://docs.astro.build/en/basics/astro-pages/#custom-404-error-page).
 
 In the process of following the tutorial, I was happy to realize that all of the markdown processing I was used to implementing manually with Next.js was done for me with Astro: no more messing with `remark` or `rehype` since I'm already provided with sane defaults! Aside from adding a plugin for reading time, all I had to do was add a plugin for generating a table of contents to a config array! Truly joyful, and exactly the simplicity I was looking for.
 
@@ -46,7 +52,7 @@ Of course, I would be remiss to talk about Astro without mentioning their [Islan
 
 This theme of opt-in complexity one of [the Astro team's explicit goals](https://docs.astro.build/en/concepts/why-astro/#easy-to-use), and it clearly shows in what they've built.
 
-As someone who doesn't love web development, Astro has honestly been able to make writing a website somewhat _fun_. By far the vast majority of what I'm writing is ordinary HTML, which strips out the complexity introduced by React or Vue. And customization is easy: Astro offers a [first-party integration](https://docs.astro.build/en/guides/integrations-guide/tailwind/) for [Tailwind](https://tailwindcss.com), which made setting up the CSS framework for use in my site a ten-second endeavor.
+As someone who doesn't love web development, Astro has honestly been able to make writing a website somewhat _fun_. By far the vast majority of what I'm writing is ordinary HTML, which strips out the complexity introduced by React or Vue. And customization is easy: Astro offers a [first-party integration](https://docs.astro.build/en/guides/integrations-guide/tailwind/) for [Tailwind](https://tailwindcss.com), which made setup as simple as running `npx astro add tailwind` in my terminal.
 
 Which brings me to my next task:
 
