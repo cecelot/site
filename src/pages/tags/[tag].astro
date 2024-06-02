@@ -34,16 +34,21 @@ const { posts } = Astro.props;
   <h3 class="text-3xl font-bold mt-3 mb-7">#{tag}</h3>
   <ul class="space-y-3">
     {
-      posts.map((post) => (
-        <li>
-          <PostCard
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            url={post.url}
-            featured={post.frontmatter.featured}
-          />
-        </li>
-      ))
+      posts
+        .sort((a, b) =>
+          a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
+        )
+        .reverse()
+        .map((post) => (
+          <li>
+            <PostCard
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              url={post.url}
+              featured={post.frontmatter.featured}
+            />
+          </li>
+        ))
     }
   </ul>
 </Base>
