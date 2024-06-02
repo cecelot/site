@@ -24,7 +24,7 @@ const { pageTitle, description, image } = Astro.props;
     <title>{pageTitle} · alainacn.dev</title>
     <OpenGraph
       siteName="alainacn.dev"
-      title={pageTitle || "alainacn.dev"}
+      title={`${pageTitle} · alainacn.dev`}
       description={description}
       type="article"
       url={Astro.url.toString()}
