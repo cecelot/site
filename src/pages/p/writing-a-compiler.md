@@ -51,7 +51,13 @@ As I alluded to before, I started writing a little compiler project around Septe
 
 _I chose Rust because [Ferris](https://rustacean.net) is the cutest programming language mascot. Just kidding-- I stand by my statement about Ferris though._
 
-This was fun to do, and eventually, I had a functioning "Hello, world!" program! I was incredibly excited. [Here's the program in question](https://github.com/alythical/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/examples/kyir/hello.kya).
+This was fun to do, and eventually, I had a functioning "Hello, world!" program! I was incredibly excited.
+
+```kt
+fun main() {
+    println_str("Hello, world!");
+}
+```
 
 This was not very easy -- especially for someone who had never done anything like this before at the level of abstraction I was using -- so it was also quite frustrating to get working. The two main culprits for this frustration were
 
@@ -84,11 +90,42 @@ Switching my efforts to the Rust compiler probably happened at the most opportun
 
 I didn't really know what each of these meant when I started, which made for some frustrating moments where I didn't really understand why something was being done at a particular time.
 
-For example, activation records (implemented in Kyanite [here](https://github.com/alythical/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Data allocation will be done _a lot_ in the translation to intermediate code, the next step in the process. I completely overlooked the latter until I started getting segmentation faults seemingly randomly after calling functions.
+For example, activation records (implemented in Kyanite [here](https://github.com/alythical/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Here's a snippet of the interface:
 
-Consider a variable such as `foo`, defined by the statement `let foo: int = 5;` in Kyanite. During the compilation process, I need some place to specify and keep track of where `foo` will go when I end up producing assembly instructions. For the sake of simplicity, in my compiler, I decided to have everything reside in the stack frame, so my "activation record abstraction" is responsible for keeping track of where certain variables are in memory (i.e. `foo` might exist at offset `+8` from the [frame pointer](https://en.wikipedia.org/wiki/Call_stack#FRAME-POINTER)).
+```rust
+pub trait Frame<I: ArchInstr> {
+    fn allocate(&mut self, ident: &str, ptr: bool) -> Expr;
+    fn get(&self, ident: &str) -> Expr;
+    fn prologue(&self) -> Vec<I>;
+    fn epilogue(&self) -> Vec<I>;
+}
+```
 
-The other important detail the activation record abstraction is responsible for is ensuring that registers' data remains stable. Since computers only have a finite amount of registers, multiple functions are going to end up wanting to use the same ones! On both ARM64 and x86_64, registers are divided into two categories: caller-save and callee-save. My compiler doesn't have to deal with caller-save registers, so I'll only be discussing callee-save registers here. These are the registers which are going to be used by a **calling function** after the function it calls returns. A short example: if we have a function `foo` and a function `bar`, where `foo` calls `bar`, `foo` is the caller and `bar` is the callee.
+Data allocation will be done _a lot_ in the translation to intermediate code, the next step in the process. This is where `allocate` and `get` come in, which should be pretty self-explanatory from looking at the code.
+
+Consider a variable such as `foo`, defined by the statement
+
+```ts
+let foo: int = 5;
+```
+
+in Kyanite. During the compilation process, I need some place to specify and keep track of where `foo` will go when I end up producing assembly instructions. The translator will call the current function frame's `allocate` method to store its location, and whenever `foo` is referenced, the translator will call `get` to retrieve an expression accessing that location.
+
+For the sake of simplicity, in my compiler, I decided to have everything reside in the stack frame, so my "activation record abstraction" is responsible for keeping track of where certain variables are in memory (i.e. `foo` might exist at offset `+8` from the [frame pointer](https://en.wikipedia.org/wiki/Call_stack#FRAME-POINTER)).
+
+The other important detail the activation record abstraction is responsible for is ensuring that registers' data remains stable. Since computers only have a finite amount of registers, multiple functions are going to end up wanting to use the same ones! On both ARM64 and x86_64, registers are divided into two categories: caller-save and callee-save. My compiler doesn't have to deal with caller-save registers, so I'll only be discussing callee-save registers here. These are the registers which are going to be used by a **calling function** after the function it calls returns. Here's a short example:
+
+```kt
+// `foo` is the calling function (the caller)
+fun foo() {
+    bar(); // `bar` is the function in calls (the callee)
+
+    /* nothing happens here, so we don't need to callee-save
+    any registers before we call `bar` above */
+}
+
+fun bar() {}
+```
 
 So, in addition to variables, I also store callee-save registers in the frame during the function's prologue, and restore them to registers during the epilogue (the prologue and epilogue are simply the glue code which sets up and cleans up functions' stack frames, etc.).
 
@@ -104,7 +141,20 @@ I figured it had to be pretty straightforward and simple. I would figure out whi
 
 Of course, it was not so simple.
 
-One of the first issues I ran into was simply not knowing how to create a proper entrypoint to a program written in assembly. Depending on the operating system and other factors, the linker might expect there to be some label called `_main` in the source assembly (as in the case for ARM -- the entrypoint I use for Kyanite programs is [here](https://github.com/alythical/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs#L158), which contains some extra components but has the basic idea).
+One of the first issues I ran into was simply not knowing how to create a proper entrypoint to a program written in assembly. Depending on the operating system and other factors, the linker might expect there to be some label called `_main` in the source assembly, as in the case for ARM:
+
+```asm
+.section __TEXT,__text,regular,pure_instructions
+    .global _main ; this is what the linker needs to see
+    .p2align 2
+_main:
+    stp x29, x30, [sp, #-16]!
+    mov x0, sp
+    bl _set_stack_base
+    bl main ; the actual main function defined using `fun main() { /* */ }`
+    ldp x29, x30, [sp], #16
+    ret
+```
 
 This was pretty simple to fix by compiling a "Hello world" program in C on my computer and seeing what the output was, a recurring theme throughout my journey -- figuring out how things were done by established tooling (clang, gcc, etc.) and taking inspiration from the assembly they were generating.
 
