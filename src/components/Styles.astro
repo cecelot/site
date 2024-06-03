@@ -1,6 +1,18 @@
 <style is:global>
   a:not(.ignored-link) {
-    @apply text-blue underline underline-offset-1 hover:text-sapphire;
+    @apply text-blue hover:underline transition-all;
+  }
+
+  a[href*="//"]:not(.ignored-link)::after
+  {
+    content: " ";
+    -webkit-mask-image: url("external-link.svg");
+    mask-image: url("/external-link.svg");
+    @apply inline-block bg-blue h-3 w-4 [mask-repeat:no-repeat] [mask-size:contain] ml-[3px];
+  }
+
+  svg {
+    @apply fill-blue stroke-blue text-blue;
   }
 
   .astro-code {
