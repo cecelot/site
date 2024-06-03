@@ -15,6 +15,9 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            a: {
+              textDecoration: "none",
+            },
             "--tw-prose-body": theme("colors.text.DEFAULT"),
             "--tw-prose-headings": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-lead": theme("colors.text.DEFAULT"),
