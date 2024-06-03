@@ -109,7 +109,7 @@ Consider a variable such as `foo`, defined by the statement
 let foo: int = 5;
 ```
 
-in Kyanite. During the compilation process, I need some place to specify and keep track of where `foo` will go when I end up producing assembly instructions. The translator will call the current function frame's `allocate` method to store its location (i.e. `foo` might exist at offset `+8` from the [frame pointer](https://en.wikipedia.org/wiki/Call_stack#FRAME-POINTER)), and whenever `foo` is referenced, the translator will call `get` to retrieve an expression accessing that location.
+in Kyanite. During the compilation process, I need some place to specify and keep track of where `foo` will go when I end up producing assembly instructions. The translator will call the current function frame's `allocate` method to store its location. To make it simple, all variables are stored on the stack, so `foo` might exist at offset `+8` from the [frame pointer](https://en.wikipedia.org/wiki/Call_stack#FRAME-POINTER). Then, whenever `foo` is referenced, the translator will call `get` to retrieve an expression accessing that location.
 
 The other important detail the activation record abstraction is responsible for is ensuring that registers' data remains stable. Since computers only have a finite amount of registers, multiple functions are going to end up wanting to use the same ones! On both ARM64 and x86_64, registers are divided into two categories: caller-save and callee-save. My compiler doesn't have to deal with caller-save registers, so I'll only be discussing callee-save registers here. These are the registers which are going to be used by a **calling function** after the function it calls returns. Here's a short example:
 
