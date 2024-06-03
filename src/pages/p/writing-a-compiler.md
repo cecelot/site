@@ -118,7 +118,7 @@ The other important detail the activation record abstraction is responsible for 
 ```kt
 // `foo` is the calling function (the caller)
 fun foo() {
-    bar(); // `bar` is the function in calls (the callee)
+    bar(); // `bar` is the function being called (the callee)
 
     /* nothing happens here, so we don't need to callee-save
     any registers before we call `bar` above */
