@@ -1,9 +1,10 @@
 ---
-const { title, description, url, featured } = Astro.props;
+const { title, description, date, url, featured } = Astro.props;
 ---
 
 <div class="flex flex-col">
-  {featured && <span class="text-red">featured</span>}
-  <a href={url}>{title}</a>
-  <span>{description}</span>
+  {featured && <span class="text-mauve">featured</span>}
+  <a href={url}>{title} →</a>
+  <span class="text-subtext0">{date.toDateString()}</span>
+  <span class="text-subtext1">{description}</span>
 </div>
