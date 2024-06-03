@@ -10,7 +10,7 @@ featured: false
 
 The 2024 developer landscape for frontend technologies and frameworks is staggering.
 
-We have, of course, the big three: [React](https://react.dev), [Vue](https://vuejs.org), and [Angular](https://angular.dev), but also some newer names, like [Svelte](https://svelte.dev) and [Solid](https://solidjs.com). Then, on one side of a spectrum, we have meta frameworks like [Next](https://nextjs.org) and [Nuxt](https://nuxt.com), and on the other, static site generators like [Hugo](https://gohugo.io) and [Eleventy](https://11ty.dev). Interestingly enough, in the space in-between there's a mix of the two in [Astro](https://astro.build), which [hit version 1.0 in late 2022](https://astro.build/blog/astro-1/). With all of these options, choosing the right one for the project -- and developer(s) -- is its own challenge, and with my latest rewrite of this website, I think I've finally made a good choice.
+We have, of course, the big three: [React](https://react.dev), [Vue](https://vuejs.org), and [Angular](https://angular.dev), but also some newer names, like [Svelte](https://svelte.dev) and [Solid](https://solidjs.com). Then, on one side of a spectrum, we have meta frameworks like [Next](https://nextjs.org) and [Nuxt](https://nuxt.com), and on the other, static site generators like [Hugo](https://gohugo.io) and [Eleventy](https://11ty.dev). Interestingly enough, in the space in-between there's a mix of the two in [Astro](https://astro.build), which [hit version 1.0 in late 2022](https://astro.build/blog/astro-1/). With all of the options available, choosing the right one for the project -- and developer(s) -- is its own challenge, and with my latest rewrite of this website, I think I've finally made a good choice.
 
 # Contents
 
@@ -40,9 +40,14 @@ As it turns out, Astro checks all of these boxes for me.
 
 Over the past couple days, I wrote this site, following their [blog tutorial](https://docs.astro.build/en/tutorial/0-introduction/), which coincided perfectly with my intentions for `alainacn.dev`. Most of the code running this site is a product of that and small additions, like [reading time](https://docs.astro.build/en/recipes/reading-time/) and a [404 page](https://docs.astro.build/en/basics/astro-pages/#custom-404-error-page).
 
-In the process of following the tutorial, I was happy to realize that all of the markdown processing I was used to implementing manually with Next.js was done for me with Astro: no more messing with `remark` or `rehype` since I'm already provided with sane defaults! Aside from adding a plugin for reading time, all I had to do was add a plugin for generating a table of contents to a config array! Truly joyful, and exactly the simplicity I was looking for.
+In the process of following the tutorial, I was happy to realize that all of the markdown processing I was used to implementing manually with Next.js was done for me with Astro: no more messing with `remark` or `rehype` since I'm already provided with sane defaults! Aside from adding a plugin for reading time, all I had to do was add a plugin for generating a table of contents to a config array.
 
-Horray for frameworks that do exactly what I want.
+```diff
+- remarkPlugins: []
++ remarkPlugins: [remarkToc, remarkReadingTime]
+```
+
+It's that simple!
 
 ## What I Love Most
 
@@ -62,7 +67,17 @@ Uncharacteristically for me, I held off on styling my site until I had finished 
 
 Most of this comes from the fact that I don't have to remember class names because Tailwind offers [IntelliSense](https://github.com/tailwindlabs/tailwindcss-intellisense) for [Visual Studio Code](https://code.visualstudio.com), my editor of choice, which provides me with autocompletion. I also love not having to mess with separate CSS files, and Tailwind offers sane defaults without sacrificing customizability like some established CSS frameworks (i.e. Bulma, [Bootstrap](https://getbootstrap.com)).
 
-One of the things that really stood out to me this time around was how easy it is with Tailwind to create responsive styles using the `prefers-color-scheme` media query[^2]. Combined with Catppuccin's [Tailwind plugin](https://github.com/catppuccin/tailwindcss), my entire handling for system theme preferences is simply `latte dark:frappe`[^3] in my base Astro [layout](https://docs.astro.build/en/basics/layouts/). With Catppuccin's plugin, I didn't have to deal with adjusting colors based on whether light or dark mode is currently active[^4].
+One of the things that really stood out to me this time around was how easy it is with Tailwind to create responsive styles using the `prefers-color-scheme` media query[^2]. Combined with Catppuccin's [Tailwind plugin](https://github.com/catppuccin/tailwindcss), this is my entire handling for system theme preferences[^3].
+
+_src/layouts/Base.astro:_
+
+```html
+<body class="latte dark:frappe">
+  <!--- snip -->
+</body>
+```
+
+And since I'm using Catppuccin, I don't have to deal with adjusting colors based on whether light or dark mode is currently active[^4].
 
 And with that, my technology stack is _almost_ complete. All I needed now was a domain and somewhere to host the site.
 
