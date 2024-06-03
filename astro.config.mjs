@@ -19,6 +19,6 @@ export default defineConfig({
     remarkRehype: {
       footnoteBackContent: "^",
     },
-    remarkPlugins: [remarkToc, remarkReadingTime],
+    remarkPlugins: [[remarkToc, { ordered: true }], remarkReadingTime],
   },
 });
