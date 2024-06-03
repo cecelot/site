@@ -50,6 +50,7 @@ const allPosts = await Astro.glob("../pages/p/*.md");
               <PostCard
                 title={post.frontmatter.title}
                 description={post.frontmatter.description}
+                date={new Date(post.frontmatter.pubDate)}
                 url={post.url}
                 featured={post.frontmatter.featured}
               />
