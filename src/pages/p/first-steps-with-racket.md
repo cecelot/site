@@ -228,9 +228,9 @@ Moving on from simple values to the section on [simple definitions and expressio
   (string-append flavor " pie"))
 ```
 
-Very interesting! `string-append` seems quite useful for my [hello-person](#hello-world) example from earlier.
+Very interesting! `string-append` seems quite useful.
 
-Let's see if I can make it more concise:
+Let's see if I can make `hello-person` more concise:
 
 _main.rkt:_
 
