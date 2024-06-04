@@ -188,11 +188,11 @@ This code is a bit awkward because I don't know how to concatanate strings in th
 Hi, Alaina!
 ```
 
-Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ start.
+Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ pick up.
 
 # Half of Racket Essentials
 
-It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). Of course, Racket has numbers:
+It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). Racket has numbers:
 
 ```racket
 42
@@ -204,9 +204,9 @@ and strings:
 "Hello, world!"
 ```
 
-Booleans are unusual, but only syntactically: `#t` for true and `#f` for false. What's less unusual is all non-`#f` values being treated as true. Delightfully simple.
+Booleans are unusual, but only syntactically: `#t` for true and `#f` for false. In terms of how values are treated, anything that's not an `#f` behaves like `#t`. Delightfully simple!
 
-Functions are where things get a bit interesting. The arguments are separated by spaces, and parentheses **wrap** the entire call, rather than surrounding only the arguments, which has been the case in the languages I've learned up until this point. Like so:
+Functions are where things get a bit more interesting. The arguments are separated by spaces, and parentheses **wrap** the entire call, rather than surrounding only the arguments, which has been the case in the languages I've learned up until this point. Like so:
 
 ```racket
 (substring "the girl dancing in the forest" 4 8)
@@ -270,13 +270,13 @@ The first `<expr>` is the condition, so it's always evaluated. If this condition
     "1 < 2")
 ```
 
-This prints `"1 < 2"`, as I'd expect it to. Neat! 
+This prints `"1 < 2"`, as I'd expect it to. Neat!
 
-These `if` expressions can be nested, too, though I imagine this would get pretty cumbersome. For instance, what if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, and `FizzBuzz` if it's divisible by both?
+These `if` expressions can be nested, too, though I imagine that would get pretty cumbersome. For instance, what if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, `FizzBuzz` if it's divisible by both, and the number itself if it's none of the above? That's four separate cases!
 
 ### Fizz Buzz for a Single Number
 
-For these extended conditionals, Racket provides this handy alternative called the `cond` form:
+For these extended conditionals, Racket provides this helpful alternative called the `cond` form:
 
 ```racket
 (define (fb-single n)
@@ -298,7 +298,7 @@ For these extended conditionals, Racket provides this handy alternative called t
 (fb-single 15)
 ```
 
-Here, we have three branches enclosed with `[`, whose first parameter is the condition, and the second is the expression to return. Above, the first parameter in the block for "Fizz" is `(equal? (modulo n 3) 0)`. Note that we also have an `else` block: this functions as a fallback, like the `default` branch in a `switch` statement or the `_` branch in a Rust [`match` expression](https://doc.rust-lang.org/std/keyword.match.html). In this case, I print the number, to meet FizzBuzz's requirements.
+Here, we have three branches enclosed with `[`, whose first parameter is the condition, and the second is the expression to return. To illustrate this, in the code snippet above, the condition for the first branch is `(equal? (modulo n 3) 0)`, and `"Fizz"` is the expression to return. Note that we also have an `else` block: this functions as a fallback, like the `default` branch of a `switch` statement or the `_` branch of a [`match` expression](https://doc.rust-lang.org/std/keyword.match.html) in Rust. In this case, I print the number, to meet FizzBuzz's requirements.
 
 ```racket
 "Fizz"
@@ -365,7 +365,7 @@ Much nicer, but `div-by?` isn't actually used outside of `fb-single`. I don't wa
 )
 ```
 
-As it turns out, this works perfectly, and is the first method for **local binding**. The other two methods are the `let` and `let*` forms.
+As it turns out, this works perfectly! It's the first method for **local binding**, with the other two options being the `let` and `let*` forms.
 
 ## Local Binding (aka, variables)
 
@@ -380,7 +380,7 @@ Beginning with the `let` form, I'm reminded of Nix's own `let ... in` expression
       [else "cat's game"]))
 ```
 
-The first section here declares the bindings in the block, `x` and `o`, and initializes them to the result of `(random 4)`. Then, we have a `cond` block which prints the outcome of the game.
+The first section here declares the bindings in the block, `x` and `o`, and initializes them to the result of `(random 4)`. Then, we have a `cond` block which prints the outcome of the game depending on the player scores.
 
 There's also the similar `let*` form, which allows the "declaration section" to use variables previously defined, a lot like `let rec`'s behavior in Nix. For example:
 
@@ -392,7 +392,7 @@ There's also the similar `let*` form, which allows the "declaration section" to 
     )
 ```
 
-Here, we're defining `diff` to be the absolute difference between `x` and `o`. We can't do that in a normal `let` block. Pretty useful!
+Here, we're defining `diff` to be the absolute difference between `x` and `o`. We can't do that in a normal `let` block. Pretty convenient!
 
 # Completing Fizz Buzz
 
