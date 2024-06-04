@@ -432,11 +432,11 @@ Phew!
 
 This was really fun to work through, and it was fascinating to see how closely `let` and `let*` mapped to Nix constructs I already knew. Additionally, I was pleasantly surprised at how versatile `cond` is.
 
-I'm already not that enthusiastic about the sheer number of parentheses I have to write, and it makes some of the logic a bit hard to reason through, especially with multiple layers of nesting. This was alleviated by Magic Racket, which the nesting easier to reason about with its format-on-save functionality.
+I'm already not that enthusiastic about the sheer number of parentheses I have to write, and it makes some of the logic a bit hard to reason through, especially with multiple layers of nesting. This was alleviated by Magic Racket, which made things more legible with its format-on-save functionality to provide "semantic spacing."
 
 While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix in the end and didn't take me too long to figure out.
 
-I plan to pick back up with the rest of Chapter 2 and start on Chapter 3 when I return from my trip that I'm leaving for tomorrow.
+This was a lot, and I've barely scratched the surface! I plan to pick back up with the rest of Chapter 2 and start on Chapter 3 when I return from my trip that I'm leaving for tomorrow.
 
 -- Alaina
 
