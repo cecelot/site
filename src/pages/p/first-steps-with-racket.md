@@ -147,7 +147,7 @@ Moment of truth?
 
 # Hello Racket
 
-To start off, let's see if I can run a simple program I took from the "Creating Executables" section of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>) with `racket`:
+To start off, let's see if I can run a simple program I took from the "Creating Executables" section in Chapter 1 of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>):
 
 _main.rkt:_
 
@@ -182,13 +182,13 @@ After some brief fiddling, I came up with this:
 (hello-person "Alaina")
 ```
 
-This code is a bit awkward because I don't know how to concatanate strings in the case where those strings are variables, and I'd rather not spend too much time messing around with it before diving into the guide. Running the code using the same `racket main.rkt` command from earlier produces the result I want, though.
+This code is a bit awkward because I don't know how to concatanate strings in the case where those strings are variables, and I'd rather not spend too much time messing around with it right now. Running the code using the same `racket main.rkt` command from earlier produces the result I want, though.
 
 ```
 Hi, Alaina!
 ```
 
-Ok, now time for Chapter 2 of the guide: Racket Essentials. This is where things _really_ start.
+Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ start.
 
 # Half of Racket Essentials
 
