@@ -145,7 +145,7 @@ Moment of truth?
 
 ... it works! Now for the fun part.
 
-# Hello Racket
+# Hello World
 
 To start off, let's see if I can run a simple program I took from the "Creating Executables" section in Chapter 1 of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>):
 
@@ -216,7 +216,7 @@ Functions are where things get a bit more interesting. The arguments are separat
 "girl"
 ```
 
-Now, if I want to _define_ my own functions, I can use the aptly-named `define` keyword as I did earlier in my [hello-person](#hello-racket) example.
+Now, if I want to _define_ my own functions, I can use the aptly-named `define` keyword as I did earlier in my [hello-person](#hello-world) example.
 
 ## Improving Hello World
 
