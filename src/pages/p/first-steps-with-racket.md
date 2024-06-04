@@ -423,7 +423,7 @@ This was really fun to work through, and it was fascinating to see how closely `
 
 I'm already not that enthusiastic about the sheer number of parentheses I have to write, and it makes some of the logic a bit hard to reason through, especially with multiple layers of nesting. This was mostly alleviated by Magic Racket, which made things more legible with its format-on-save functionality to provide what I'll call _semantic spacing_.
 
-While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix in the end and didn't take me too long to figure out.
+While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix and didn't take me too long to figure out.
 
 This was a lot, and I've barely scratched the surface! In Part 2 of this series, I plan to pick back up with the latter half of the Racket Essentials chapter and then start on the third one: Built-In Datatypes.
 
