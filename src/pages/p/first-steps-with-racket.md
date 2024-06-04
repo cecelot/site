@@ -216,7 +216,7 @@ Functions are where things get a bit interesting. The arguments are separated by
 "girl"
 ```
 
-Now, if I want to _define_ my own functions, I can use the aptly-named `define` keyword as I did earlier in my [hello-person](#hello-world) example.
+Now, if I want to _define_ my own functions, I can use the aptly-named `define` keyword as I did earlier in my [hello-person](#hello-racket) example.
 
 ## Improving Hello World
 
