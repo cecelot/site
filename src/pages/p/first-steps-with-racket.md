@@ -270,18 +270,9 @@ The first `<expr>` is the condition, so it's always evaluated. If this condition
     "1 < 2")
 ```
 
-This prints `"1 < 2"`, as I'd expect it to. Neat! These `if` expressions can be nested, too. Racket also provides `and` and `or`, which are both short-circuiting.
+This prints `"1 < 2"`, as I'd expect it to. Neat! 
 
-```racket
-(define (cookie-if-thank-you s)
-  (if (and (string? s) (string-prefix? s "thank you "))
-      "here's a cookie"
-      "no cookie for you"))
-```
-
-In this case, `and` won't check `string-prefix?` if `s` isn't even a string to begin with. All pretty familiar to other languages, so far.
-
-I imagine this would get pretty cumbersome if I tried to actually nest them, though. For instance, what if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, and `FizzBuzz` if it's divisible by both?
+These `if` expressions can be nested, too, though I imagine this would get pretty cumbersome. For instance, what if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, and `FizzBuzz` if it's divisible by both?
 
 ### Fizz Buzz for a Single Number
 
