@@ -188,7 +188,7 @@ This code is a bit awkward because I don't know how to concatanate strings in th
 Hi, Alaina!
 ```
 
-Ok, _now_ time for the guide.
+Ok, now time for Chapter 2 of the guide: Racket Essentials. This is where things _really_ start.
 
 # Racket Essentials pt. 1
 
@@ -436,7 +436,7 @@ I'm already not that enthusiastic about the sheer number of parentheses I have t
 
 While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix in the end and didn't take me too long to figure out.
 
-This was a lot, and I've barely scratched the surface! Next time, I plan to pick back up with the rest of the Racket Essentials chapter and start on the third one, Built-In Datatypes.
+This was a lot, and I've barely scratched the surface! In Part 2 of this series, I plan to pick back up with the rest of the Racket Essentials chapter and start on the third one: Built-In Datatypes.
 
 -- Alaina
 
