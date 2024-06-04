@@ -145,7 +145,7 @@ Moment of truth?
 
 ... it works! Now for the fun part.
 
-# Chapter 1: Hello Racket
+# Hello Racket
 
 To start off, let's see if I can run a simple program I took from the "Creating Executables" section of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>) with `racket`:
 
@@ -190,7 +190,7 @@ Hi, Alaina!
 
 Ok, _now_ time for the guide.
 
-# Chapter 2: Racket Essentials (part one)
+# Racket Essentials pt. 1
 
 It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). Of course, Racket has numbers:
 
@@ -436,7 +436,7 @@ I'm already not that enthusiastic about the sheer number of parentheses I have t
 
 While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix in the end and didn't take me too long to figure out.
 
-This was a lot, and I've barely scratched the surface! I plan to pick back up with the rest of Chapter 2 and start on Chapter 3 when I return from my trip that I'm leaving for tomorrow.
+This was a lot, and I've barely scratched the surface! Next time, I plan to pick back up with the rest of the Racket Essentials chapter and start on the third one, Built-In Datatypes.
 
 -- Alaina
 
