@@ -262,7 +262,7 @@ The format for the simplest conditional, `if`, goes like this:
 (if <expr> <expr> <expr>)
 ```
 
-The first `<expr>` is the condition, so it's always evaluated. If this condition evalutes to anything other than `#f`, then the second `<expr>` is evaluated as the "happy path" of the expression. Otherwise, the third `<expr>` is evaluated. Operator operator syntax is typical for a lisp, with the relevant symbol coming before its parameters like so:
+The first `<expr>` is the condition, so it's always evaluated. If this condition evalutes to anything other than `#f`, then the second `<expr>` is evaluated as the "happy path" of the expression. Otherwise, the third `<expr>` is evaluated. Operator syntax is typical for a lisp, with the relevant symbol coming before its parameters like so:
 
 ```racket
 (if (> 1 2)
