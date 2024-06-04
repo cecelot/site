@@ -82,7 +82,7 @@ nix search nixpkgs#racket-langserver
 error: flake 'flake:nixpkgs' does not provide attribute 'packages.aarch64-darwin.racket-langserver', 'legacyPackages.aarch64-darwin.racket-langserver' or 'racket-langserver'
 ```
 
-No luck, and I double checked with Nixpkgs' [online package search tool](https://search.nixos.org) to make sure it truly didn't exist. I can use the first-party `raco` command-line tool to install it instead.
+No luck, and I double checked with Nixpkgs' [online package search tool](https://search.nixos.org) to make sure it truly didn't exist. No problem -- I can use the first-party `raco` command-line tool instead.
 
 ```zsh
 raco pkg install racket-langserver
@@ -228,9 +228,7 @@ Moving on from simple values to the section on [simple definitions and expressio
   (string-append flavor " pie"))
 ```
 
-Very interesting! `string-append` seems quite useful.
-
-Let's see if I can make `hello-person` more concise:
+Very interesting! `string-append` seems quite useful. Let's see if I can take advantage of it to make `hello-person` more concise:
 
 _main.rkt:_
 
@@ -244,7 +242,7 @@ _main.rkt:_
 (hello-person "Alaina")
 ```
 
-I'm able to replace my three separate calls to `display` from earlier into a single `string-append` call! Verifying it produces the output I'm expecting:
+I'm able to replace my three separate calls to `display` from earlier with a single `string-append` call! Verifying it produces the output I'm expecting:
 
 ```
 racket main.rkt
@@ -264,7 +262,7 @@ The format for the simplest conditional, `if`, goes like this:
 (if <expr> <expr> <expr>)
 ```
 
-The first `<expr>` is the condition, so it's always evaluated. If this condition evalutes to anything other than `#f`, then the second `<expr>` is evaluated as the "happy path" of the expression. Otherwise, the third `<expr>` is evaluated. Conditional operator syntax are typical for a lisp, with the operator coming before its parameters like so:
+The first `<expr>` is the condition, so it's always evaluated. If this condition evalutes to anything other than `#f`, then the second `<expr>` is evaluated as the "happy path" of the expression. Otherwise, the third `<expr>` is evaluated. Operator operator syntax is typical for a lisp, with the relevant symbol coming before its parameters like so:
 
 ```racket
 (if (> 1 2)
@@ -283,7 +281,7 @@ This prints `"1 < 2"`, as I'd expect it to. Neat! These `if` expressions can be 
 
 In this case, `and` won't check `string-prefix?` if `s` isn't even a string to begin with. All pretty familiar to other languages, so far.
 
-I imagine this would get pretty cumbersome if I tried to actually nest them, though. What if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, and `FizzBuzz` if it's divisible by both?
+I imagine this would get pretty cumbersome if I tried to actually nest them, though. For instance, what if I [wanted to print](https://en.wikipedia.org/wiki/Fizz_buzz#Programming) `Fizz` if a number is divisible by `3`, `Buzz` if a number is divisible by `5`, and `FizzBuzz` if it's divisible by both?
 
 ### Fizz Buzz for a Single Number
 
@@ -309,7 +307,7 @@ For these extended conditionals, Racket provides this handy alternative called t
 (fb-single 15)
 ```
 
-Here, we have three branches enclosed with `[`, whose first parameter is the condition, and the second is the expression to return. The first parameter in the first block, for "Fizz," is `(equal? (modulo n 3) 0)`. Note that we also have an `else` block: this functions like a `break` block in a `switch` statement or a `_` branch in a Rust [`match` expression](https://doc.rust-lang.org/std/keyword.match.html): a fallback. In this case, I print the number, to meet FizzBuzz's requirements.
+Here, we have three branches enclosed with `[`, whose first parameter is the condition, and the second is the expression to return. Above, the first parameter in the block for "Fizz" is `(equal? (modulo n 3) 0)`. Note that we also have an `else` block: this functions as a fallback, like the `default` branch in a `switch` statement or the `_` branch in a Rust [`match` expression](https://doc.rust-lang.org/std/keyword.match.html). In this case, I print the number, to meet FizzBuzz's requirements.
 
 ```racket
 "Fizz"
@@ -319,7 +317,7 @@ Here, we have three branches enclosed with `[`, whose first parameter is the con
 "Fizz"
 ```
 
-That all looks correct, except for the last entry. It's an easy fix, though. Since `cond` exits at the first true condition, we can simply move the `and` expression above the other two.
+That all looks correct, except for the last entry. It's an easy fix, though. Since `cond` exits at the first true condition, we can simply move the `and` branch above the other two.
 
 ```racket
 (cond
@@ -418,7 +416,7 @@ With these basics out of the way, I wanted to finish my FizzBuzz example from ea
   )
 ```
 
-First, I declare a function `fb` which takes in `n`, which is the current number, and `end`, which is, well, the ending number. I use the handy `let` block to define `remaining`, the amount of iterations still to go through. In the main function body, I print out the current number, then use the `cond` conditional form for checking the base case: `remaining == 0`. If the base case is false, then I increment `n` by one and pass in `end` along with it. Since there isn't any logic that runs when the condition is false, `if` wouldn't be a good choice here, since an `else` expr is required:
+First, I declare a function `fb` which takes in `n`, which is the current number, and `end`, which is, well, the ending number. I use the handy `let` block to define `remaining`, the amount of iterations still to go through. In the main function body, I print out the current number, then use the `cond` conditional form for checking the base case: `remaining == 0`. If the base case is false, then I increment `n` by one and pass in `end` along with it. Since there isn't any logic that runs when the condition is false, `if` wouldn't be a good choice here because an `else` expr is required:
 
 > The first `‹expr›` is always evaluated. If it produces a non-`#f` value, then the second `‹expr›` is evaluated for the result of the whole `if` expression, otherwise the third `‹expr›` is evaluated for the result.
 
@@ -432,7 +430,7 @@ Phew!
 
 This was really fun to work through, and it was fascinating to see how closely `let` and `let*` mapped to Nix constructs I already knew. Additionally, I was pleasantly surprised at how versatile `cond` is.
 
-I'm already not that enthusiastic about the sheer number of parentheses I have to write, and it makes some of the logic a bit hard to reason through, especially with multiple layers of nesting. This was alleviated by Magic Racket, which made things more legible with its format-on-save functionality to provide "semantic spacing."
+I'm already not that enthusiastic about the sheer number of parentheses I have to write, and it makes some of the logic a bit hard to reason through, especially with multiple layers of nesting. This was mostly alleviated by Magic Racket, which made things more legible with its format-on-save functionality to provide what I'll call _semantic spacing_.
 
 While I had a bit of trouble setting up the language server used by Magic Racket initially, it ended up being a pretty straightforward fix in the end and didn't take me too long to figure out.
 
