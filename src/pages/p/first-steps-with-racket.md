@@ -230,7 +230,7 @@ Moving on from simple values to the section on [simple definitions and expressio
   (string-append flavor " pie"))
 ```
 
-Very interesting! `string-append` seems quite useful. Let's see if I can take advantage of it to make `hello-person` more concise:
+Very interesting! `string-append` seems quite useful. I wonder if I can take advantage of it to make `hello-person` more concise.
 
 _main.rkt:_
 
