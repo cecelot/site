@@ -8,7 +8,7 @@ tags: ["racket", "nix", "walkthrough"]
 featured: false
 ---
 
-Back when high school was still in session, I wanted to investigate & delve more into [Racket](https://racket-lang.org), because [CS 1102](https://www.wpi.edu/academics/calendar-courses/course-descriptions/3776/computer-science#CS-1102), the accelerated intro computer science course at my university, uses it as its functional language of choice. After running into issues setting up the language server for Visual Studio Code, I shelved my interest, but now that it's summer, I decided to give it another try.
+Back when high school was still in session, I wanted to investigate and delve more into [Racket](https://racket-lang.org), because [CS 1102](https://www.wpi.edu/academics/calendar-courses/course-descriptions/3776/computer-science#CS-1102), the accelerated intro computer science course at my university, uses it as its functional language of choice. After running into issues setting up the language server for Visual Studio Code, I shelved my interest, but now that it's summer, I decided to give it another try.
 
 # Contents
 
