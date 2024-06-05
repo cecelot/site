@@ -1,8 +1,12 @@
 # alainacn.dev
 
-My personal corner of the internet, written with [Astro](https://astro.build) and [Tailwind](https://tailwindcss.com).
+My personal corner of the internet! See it live at [alainacn.dev](https://alainacn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.alainacn.dev).
 
-See it live at [alainacn.dev](https://alainacn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.alainacn.dev).
+
+- **Static Site Generation**: [Astro](https://astro.build)
+- **Styling:** [Tailwind](https://tailwindcss.com)
+- **Content:** [GitHub Flavored Markdown](https://github.github.com/gfm/) with [remark-rehype](https://github.com/remarkjs/remark-rehype) for rendering to HTML
+- **Hosting**: [Vercel](https://vercel.com)
 
 ## Building
 
