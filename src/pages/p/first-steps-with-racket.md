@@ -105,7 +105,7 @@ buildInputs = with pkgs; [
 ];
 ```
 
-Reloading VSCode and... nope, same error message as before. At this point, I turned to the wider internet, and after some searching, came across [this issue on Nixpkgs' repository](https://github.com/NixOS/nixpkgs/issues/209660) and [this issue comment](https://github.com/NixOS/nixpkgs/issues/209660#issuecomment-1761191971), which is the exact issue I'm facing!
+Reloading VSCode and... nope, same error message as before. At this point, I turned to the wider internet, and after some searching, I come across [this issue on Nixpkgs' repository](https://github.com/NixOS/nixpkgs/issues/209660) and [this issue comment](https://github.com/NixOS/nixpkgs/issues/209660#issuecomment-1761191971), which is the exact issue I'm facing!
 
 This is the comment in question:
 
@@ -147,7 +147,7 @@ Moment of truth?
 
 # Hello World
 
-To start off, let's see if I can run a simple program I took from the "Creating Executables" section in Chapter 1 of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>):
+To start off, let's see if I can run a simple program I took from the "Creating Executables" section in Chapter 1 of their [official guide](<https://docs.racket-lang.org/guide/intro.html#(part._.Creating_.Executables)>).
 
 _main.rkt:_
 
@@ -192,7 +192,9 @@ Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ pic
 
 # Half of Racket Essentials
 
-It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). Racket has numbers:
+It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). 
+
+Racket has numbers:
 
 ```racket
 42
