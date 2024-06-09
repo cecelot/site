@@ -21,10 +21,10 @@ const { pageTitle, description, image } = Astro.props;
       is:inline
       src="https://cloud.umami.is/script.js"
       data-website-id="5ba07c82-f9f0-4d43-8288-d2f81b8242b7"></script>
-    <title>{pageTitle} · alainacn.dev</title>
+    <title>{pageTitle}</title>
     <OpenGraph
       siteName="alainacn.dev"
-      title={`${pageTitle} · alainacn.dev`}
+      title={pageTitle}
       description={description}
       type="article"
       url={Astro.url.toString()}
