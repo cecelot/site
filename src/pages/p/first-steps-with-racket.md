@@ -192,7 +192,7 @@ Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ pic
 
 # Half of Racket Essentials
 
-It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html). 
+It starts out with some [simple values](https://docs.racket-lang.org/guide/Simple_Values.html).
 
 Racket has numbers:
 
