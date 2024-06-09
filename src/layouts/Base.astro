@@ -6,6 +6,7 @@ import Navigation from "../components/Navigation.astro";
 import Styles from "../components/Styles.astro";
 import OpenGraph from "../components/OpenGraph.astro";
 const { pageTitle, description, image } = Astro.props;
+const BASE_URL = "https://alainacn.dev";
 ---
 
 <html lang="en">
@@ -16,6 +17,7 @@ const { pageTitle, description, image } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={`${BASE_URL}${Astro.url.pathname}`} />
     <script
       defer
       is:inline
