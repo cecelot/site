@@ -3,7 +3,7 @@ layout: ../../layouts/Post.astro
 title: "Learning Racket: Part 1"
 pubDate: "2024-06-04"
 description: "Introducing myself to Racket to be ahead when I start CS 1102 in the fall."
-author: "Alaina Newmark"
+author: "Sydney Newmark"
 tags: ["racket", "nix", "walkthrough"]
 featured: false
 ---
@@ -179,13 +179,13 @@ After some brief fiddling, I came up with this:
   (display "Hi, ") (display name) (display "!")
   )
 
-(hello-person "Alaina")
+(hello-person "Sydney")
 ```
 
 This code is a bit awkward because I don't know how to concatanate strings in the case where those strings are variables, and I'd rather not spend too much time messing around with it right now. Running the code using the same `racket main.rkt` command from earlier produces the result I want, though.
 
 ```
-Hi, Alaina!
+Hi, Sydney!
 ```
 
 Ok, now time for Chapter 2: Racket Essentials. This is where things _really_ pick up.
@@ -241,7 +241,7 @@ _main.rkt:_
   (string-append "Hello, " name "!")
   )
 
-(hello-person "Alaina")
+(hello-person "Sydney")
 ```
 
 I'm able to replace my three separate calls to `display` from earlier with a single `string-append` call! Verifying it produces the output I'm expecting:
@@ -251,7 +251,7 @@ racket main.rkt
 ```
 
 ```racket
-"Hello, Alaina!"
+"Hello, Sydney!"
 ```
 
 Awesome. Now, how about adding on some conditional logic?
@@ -429,6 +429,6 @@ While I had a bit of trouble setting up the language server used by Magic Racket
 
 This was a lot, and I've barely scratched the surface! In Part 2 of this series, I plan to pick back up with the latter half of the Racket Essentials chapter and then start on the third one: Built-In Datatypes.
 
--- Alaina
+-- Sydney
 
 [^1]: My assumption is the package directory must be different with the "Mac-style" installation

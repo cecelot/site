@@ -3,7 +3,7 @@ layout: ../../layouts/Post.astro
 title: "All About My Millionth Website Rewrite"
 pubDate: "2024-06-02"
 description: "From early iterations to today's version: a retrospective on the development of my website, discussing the techologies and tools I've experimented with to effectively publish and share my writing."
-author: "Alaina Newmark"
+author: "Sydney Newmark"
 tags: ["astro", "tailwindcss", "meta", "reflections"]
 featured: false
 ---
@@ -105,9 +105,9 @@ Web development can actually be kind of enjoyable and not a massive pain? I've l
 
 I now know the value of choosing _the appropriate tool for the project_, and also of not doing _more_ than I really should. I'm happy to say that I'm finally at a place where I'm satisfied with my site and hopefully, this iteration lasts a bit longer than my previous ones.
 
--- Alaina
+-- Sydney
 
-_You can find my website on GitHub [here](https://github.com/alythical/alainacn.dev)_.
+_You can find my website on GitHub [here](https://github.com/cecelot/alainacn.dev)_.
 
 [^1]: Superceded by [Draft Mode](https://nextjs.org/docs/pages/building-your-application/configuring/draft-mode). I hardly remember them introducing this (wow it's been a long time)
 [^2]: It seems like more effort than it's really worth to create a manual toggle for color scheme, so I decided not to mess with it this time around
