@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import TagList from "../../components/interactive/TagList";
 const allPosts = await Astro.glob("../p/*.md");
 const tags: Record<string, number> = {};
 allPosts.forEach((post) => {
@@ -14,18 +15,5 @@ const pageTitle = "Tags";
 ---
 
 <Base pageTitle={pageTitle} description="Browse posts by topic.">
-  <div class="space-y-5">
-    {
-      tagNames
-        .sort((a, b) => tags[b] - tags[a])
-        .map((tag) => (
-          <div class="flex flex-col">
-            <a href={`/tags/${tag}`}>#{tag}</a>
-            <span class="text-subtext1">
-              {tags[tag]} post{tags[tag] > 1 ? "s" : ""}
-            </span>
-          </div>
-        ))
-    }
-  </div>
+  <TagList client:load tags={tags} tagNames={tagNames} />
 </Base>
