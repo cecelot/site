@@ -3,7 +3,7 @@ layout: ../../layouts/Post.astro
 title: "A Foray Into Compiler Design"
 pubDate: "2024-05-31"
 description: "A story of my introduction to compilers and subsequent journey in writing my very own compiler from scratch."
-author: "Alaina Newmark"
+author: "Sydney Newmark"
 tags: ["compilers", "reflections"]
 featured: true
 ---
@@ -20,9 +20,9 @@ Now that I've finished the course, I figured I would take some time here to refl
 
 It's hard to quite pin down when my journey started, because I've been interested in compilers for at least a few years now. Initially, I turned to Google, as I always did back then[^4].
 
-I was doing some cursory searching to see if I could write a programming language of my own, and suffice it to say that 16-year-old Alaina had no idea what she was getting into. After looking around for a little while, I came across a few blog posts I no longer remember, which introduced me to the core ideas of lexical analysis, parsing, and abstract syntax trees (the practical ideas, discounting all the theory). After reading these posts, I felt prepared to write one myself, so I tried. I spent a couple days trying to write a simple lexical analyzer in C++, with the intention of transforming it into a full interpreter, but quickly realized I was in well over my head. While I vaguely understood what lexical analysis and parsing meant from reading those articles, I stil was clueless as to how I would implement them in a way that was both functional **and** not incredibly cumbersome to write and maintain.
+I was doing some cursory searching to see if I could write a programming language of my own, and suffice it to say that 16-year-old Sydney had no idea what she was getting into. After looking around for a little while, I came across a few blog posts I no longer remember, which introduced me to the core ideas of lexical analysis, parsing, and abstract syntax trees (the practical ideas, discounting all the theory). After reading these posts, I felt prepared to write one myself, so I tried. I spent a couple days trying to write a simple lexical analyzer in C++, with the intention of transforming it into a full interpreter, but quickly realized I was in well over my head. While I vaguely understood what lexical analysis and parsing meant from reading those articles, I stil was clueless as to how I would implement them in a way that was both functional **and** not incredibly cumbersome to write and maintain.
 
-It wasn't until several months later that I discovered the free [Crafting Interpreters](https://craftinginterpreters.com) book[^5] by Robert Nystrom. I cannot overstate how useful this book was in my compiler journey. If you're looking to get started in writing an interpreter or compiler of your own, I would highly recommend it. It taught me enough to create several small projects, which all ended up half-finished, in typical Alaina fashion.
+It wasn't until several months later that I discovered the free [Crafting Interpreters](https://craftinginterpreters.com) book[^5] by Robert Nystrom. I cannot overstate how useful this book was in my compiler journey. If you're looking to get started in writing an interpreter or compiler of your own, I would highly recommend it. It taught me enough to create several small projects, which all ended up half-finished, in typical Sydney fashion.
 
 ## Getting Serious
 
@@ -90,7 +90,7 @@ Switching my efforts to the Rust compiler probably happened at the most opportun
 
 I didn't really know what each of these meant when I started, which made for some frustrating moments where I didn't really understand why something was being done at a particular time.
 
-For example, activation records (implemented in Kyanite [here](https://github.com/alythical/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Here's a snippet of the interface:
+For example, activation records (implemented in Kyanite [here](https://github.com/cecelot/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Here's a snippet of the interface:
 
 ```rust
 pub trait Frame<I: ArchInstr> {
@@ -187,14 +187,14 @@ There are several things I'm definitely going to take away from this experience:
 
 In general, I'm pretty happy with where I ended up with this foray into compiler design after eight months, and I learned a lot from the experience. In the future, I'm looking forward to taking more formal compiler design courses, particularly on theory and optimizations, things I didn't cover as extensively in my practical-focused study.
 
-For the curious looking to take a peek at the code and/or run the compiler themselves, the GitHub repository is [here](https://github.com/alythical/kyanite).
+For the curious looking to take a peek at the code and/or run the compiler themselves, the GitHub repository is [here](https://github.com/cecelot/kyanite).
 
-I also have some preliminary (incomplete) documentation about it up [here](https://kyanite.alainacn.dev), which I plan to update some point this summer with everything I had done since my last edit to the docs.
+I also have some preliminary (incomplete) documentation about it up [here](https://kyanite.sydneyn.dev), which I plan to update some point this summer with everything I had done since my last edit to the docs.
 
--- Alaina
+-- Sydney
 
-[^1]: Anyone interested can check out that presentation [here (.pdf)](https://files.alainacn.dev/writing-a-compiler/final-presentation.pdf) ([.key](https://files.alainacn.dev/writing-a-compiler/final-presentation.key))
-[^2]: I went over the content I learned in the first semester at school and reflections on that experience in [this presentation (.pdf)](https://files.alainacn.dev/writing-a-compiler/midyear-presentation.pdf) ([.key](https://files.alainacn.dev/writing-a-compiler/midyear-presentation.key))
+[^1]: Anyone interested can check out that presentation [here (.pdf)](https://c.sydneyn.dev/writing-a-compiler/final-presentation.pdf) ([.key](https://c.sydneyn.dev/writing-a-compiler/final-presentation.key))
+[^2]: I went over the content I learned in the first semester at school and reflections on that experience in [this presentation (.pdf)](https://c.sydneyn.dev/writing-a-compiler/midyear-presentation.pdf) ([.key](https://c.sydneyn.dev/writing-a-compiler/midyear-presentation.key))
 [^3]: Independent Study is a class offered to students passionate about computer science at my high school who have completed the sequence through our data structures and algorithms course
 [^4]: I still do, but I have a much greater appreciation for books now
 [^5]: This was the first proper book I had read in my computer science journey, which I consider its own milestone worth noting
