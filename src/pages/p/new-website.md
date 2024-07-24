@@ -38,7 +38,7 @@ As it turns out, Astro checks all of these boxes for me.
 
 ## Learning Astro
 
-Over the past couple days, I wrote this site, following their [blog tutorial](https://docs.astro.build/en/tutorial/0-introduction/), which coincided perfectly with my intentions for `alainacn.dev`. Most of the code running this site is a product of that and small additions, like [reading time](https://docs.astro.build/en/recipes/reading-time/) and a [404 page](https://docs.astro.build/en/basics/astro-pages/#custom-404-error-page).
+Over the past couple days, I wrote this site, following their [blog tutorial](https://docs.astro.build/en/tutorial/0-introduction/), which coincided perfectly with my intentions for `sydneyn.dev`. Most of the code running this site is a product of that and small additions, like [reading time](https://docs.astro.build/en/recipes/reading-time/) and a [404 page](https://docs.astro.build/en/basics/astro-pages/#custom-404-error-page).
 
 In the process of following the tutorial, I was happy to realize that all of the markdown processing I was used to implementing manually with Next.js was done for me with Astro: no more messing with `remark` or `rehype` since I'm already provided with sane defaults! Aside from adding a plugin for reading time, all I had to do was add a plugin for generating a table of contents to a config array.
 
@@ -88,16 +88,16 @@ And with that, my technology stack is _almost_ complete. All I needed now was a 
 For the former, I chose Cloudflare, for three reasons.
 
 1. They support the `.dev` gTLD, and it was incredibly cheap per year -- just over $10.
-2. I can easily set up a [R2 bucket](https://www.cloudflare.com/developer-platform/r2/) on my [own subdomain](https://files.alainacn.dev), which I'm using to host some of the supplemental content I publish.
+2. I can easily set up a [R2 bucket](https://www.cloudflare.com/developer-platform/r2/) on my [own subdomain](https://c.sydneyn.dev), which I'm using to host some of the supplemental content I publish.
 3. DNS resolution and updates are [lightning fast](https://www.cloudflare.com/application-services/products/dns/), providing an excellent experience.
 
 ## Vercel
 
-For hosting, I decided to go with Vercel once again, after spending months on GitHub Pages, and the reason for this is that Vercel [supports preview deployments](https://vercel.com/docs/deployments/preview-deployments), which allow me to upload drafts of posts like this one as a public preview ([drafts.alainacn.dev](https://drafts.alainacn.dev)) for readers to see as they'll appear when published and offer feedback.
+For hosting, I decided to go with Vercel once again, after spending months on GitHub Pages, and the reason for this is that Vercel [supports preview deployments](https://vercel.com/docs/deployments/preview-deployments), which allow me to upload drafts of posts like this one as a public preview ([drafts.sydneyn.dev](https://drafts.sydneyn.dev)) for readers to see as they'll appear when published and offer feedback.
 
 # A Brief Note on Analytics
 
-For the sake of transparency, I'm using the cloud version of [Umami](https://umami.is), a privacy preserving [open-source](https://github.com/umami-software/umami) analytics tool. Data is stored on EU servers, and you can check out the exact same dashboard I see [here](https://cloud.umami.is/share/vCIqThw4NIVycoX1/alainacn.dev).
+For the sake of transparency, I'm using the cloud version of [Umami](https://umami.is), a privacy preserving [open-source](https://github.com/umami-software/umami) analytics tool. Data is stored on EU servers, and you can check out the exact same dashboard I see [here](https://cloud.umami.is/share/vCIqThw4NIVycoX1/sydneyn.dev).
 
 # Conclusion
 
@@ -107,7 +107,7 @@ I now know the value of choosing _the appropriate tool for the project_, and als
 
 -- Sydney
 
-_You can find my website on GitHub [here](https://github.com/cecelot/alainacn.dev)_.
+_You can find my website on GitHub [here](https://github.com/cecelot/forest)_.
 
 [^1]: Superceded by [Draft Mode](https://nextjs.org/docs/pages/building-your-application/configuring/draft-mode). I hardly remember them introducing this (wow it's been a long time)
 [^2]: It seems like more effort than it's really worth to create a manual toggle for color scheme, so I decided not to mess with it this time around

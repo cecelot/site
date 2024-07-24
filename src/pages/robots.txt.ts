@@ -4,7 +4,7 @@ import type { RobotsTxtRules } from "../types";
 const rules: RobotsTxtRules = {
   largeLanguageModels: {
     reasoning:
-      `alainacn.dev does not permit, without express permission by me, usage incl. 
+      `sydneyn.dev does not permit, without express permission by me, usage incl. 
       but not limited to: for large language models (LLMs), machine learning,
       and/or artificial intelligence-related purposes.`.trim(),
     bots: [

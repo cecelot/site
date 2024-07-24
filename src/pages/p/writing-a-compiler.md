@@ -189,12 +189,12 @@ In general, I'm pretty happy with where I ended up with this foray into compiler
 
 For the curious looking to take a peek at the code and/or run the compiler themselves, the GitHub repository is [here](https://github.com/cecelot/kyanite).
 
-I also have some preliminary (incomplete) documentation about it up [here](https://kyanite.alainacn.dev), which I plan to update some point this summer with everything I had done since my last edit to the docs.
+I also have some preliminary (incomplete) documentation about it up [here](https://kyanite.sydneyn.dev), which I plan to update some point this summer with everything I had done since my last edit to the docs.
 
 -- Sydney
 
-[^1]: Anyone interested can check out that presentation [here (.pdf)](https://files.alainacn.dev/writing-a-compiler/final-presentation.pdf) ([.key](https://files.alainacn.dev/writing-a-compiler/final-presentation.key))
-[^2]: I went over the content I learned in the first semester at school and reflections on that experience in [this presentation (.pdf)](https://files.alainacn.dev/writing-a-compiler/midyear-presentation.pdf) ([.key](https://files.alainacn.dev/writing-a-compiler/midyear-presentation.key))
+[^1]: Anyone interested can check out that presentation [here (.pdf)](https://c.sydneyn.dev/writing-a-compiler/final-presentation.pdf) ([.key](https://c.sydneyn.dev/writing-a-compiler/final-presentation.key))
+[^2]: I went over the content I learned in the first semester at school and reflections on that experience in [this presentation (.pdf)](https://c.sydneyn.dev/writing-a-compiler/midyear-presentation.pdf) ([.key](https://c.sydneyn.dev/writing-a-compiler/midyear-presentation.key))
 [^3]: Independent Study is a class offered to students passionate about computer science at my high school who have completed the sequence through our data structures and algorithms course
 [^4]: I still do, but I have a much greater appreciation for books now
 [^5]: This was the first proper book I had read in my computer science journey, which I consider its own milestone worth noting

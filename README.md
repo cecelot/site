@@ -1,6 +1,6 @@
-# alainacn.dev
+# sydneyn.dev
 
-My personal corner of the internet! See it live at [alainacn.dev](https://alainacn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.alainacn.dev).
+My personal corner of the internet! See it live at [sydneyn.dev](https://sydneyn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.sydneyn.dev).
 
 - **Static Site Generation**: [Astro](https://astro.build)
 - **Styling:** [Tailwind](https://tailwindcss.com)

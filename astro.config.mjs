@@ -6,7 +6,7 @@ import { remarkReadingTime } from "./src/readingTime";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://alainacn.dev",
+  site: "https://sydneyn.dev",
   integrations: [tailwind(), sitemap()],
   markdown: {
     shikiConfig: {
