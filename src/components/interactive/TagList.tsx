@@ -29,7 +29,7 @@ export default function TagList({ tagNames, tags }: TagListProps) {
     <div className="flex flex-col space-y-3">
       <input
         name="tag-filter"
-        placeholder="Filter tags..."
+        placeholder="Filter"
         className="border-4 rounded-lg p-2 bg-mantle border-crust"
         onChange={(e) => setQuery(e.target.value)}
       />
