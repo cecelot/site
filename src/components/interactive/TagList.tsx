@@ -29,13 +29,11 @@ export default function TagList({ tagNames, tags }: TagListProps) {
     <div className="flex flex-col space-y-3">
       <input
         name="tag-filter"
-        placeholder="Filter"
-        className="border-4 rounded-lg p-2 bg-mantle border-crust"
+        placeholder="Filter by name"
+        className="border-4 rounded-lg p-2 bg-mantle border-mantle"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <div>
-        <hr className="my-3" />
-      </div>
+      <div />
       {filtered.length === 0 && <p>{"No tags matched that query :("}</p>}
       {filtered
         .sort((a, b) => a.localeCompare(b))
