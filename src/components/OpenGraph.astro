@@ -1,17 +1,14 @@
 ---
-const { title, description, type, image, url } = Astro.props;
+const { title, description, type, url } = Astro.props;
 ---
 
 <meta name="description" content={description} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
-{
-  image && (
-    <>
-      <meta property="og:image" content={image} />
-      <meta name="twitter:card" content="summary_large_image" />
-    </>
-  )
-}
+<meta
+  property="og:image"
+  content=`https://og.sydneyn.dev/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
+/>
+<meta name="twitter:card" content="summary_large_image" />
 <meta property="og:url" content={url} />
