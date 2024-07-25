@@ -28,9 +28,9 @@ export default function TagList({ tagNames, tags }: TagListProps) {
   return (
     <div className="flex flex-col space-y-3">
       <input
-        name="tag-filter"
-        placeholder="Filter by name"
-        className="border-4 rounded-lg p-2 bg-mantle border-mantle"
+        name="tag-search"
+        placeholder="Search..."
+        className="border-4 rounded-lg p-2 bg-mantle border-mantle placeholder:text-subtext0 text-subtext0"
         onChange={(e) => setQuery(e.target.value)}
       />
       <div />
