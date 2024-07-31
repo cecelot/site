@@ -4,7 +4,7 @@ title: "Learning Racket: Part 1"
 pubDate: "2024-06-04"
 description: "Introducing myself to Racket to be ahead when I start CS 1102 in the fall."
 author: "Sydney Newmark"
-tags: ["racket", "nix", "walkthrough"]
+tags: ["racket", "nix", "exploration"]
 featured: false
 ---
 
