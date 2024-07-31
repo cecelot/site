@@ -17,10 +17,14 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/inclusive-sans": "^5.0.3",
     "@fontsource/recursive": "^5.0.18",
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.12.2",
+    "clsx": "^2.1.1",
     "fuse.js": "^7.0.0",
+    "license-checker": "^25.0.1",
     "mdast-util-to-string": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -31,6 +35,7 @@
   },
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
-    "@tailwindcss/typography": "^0.5.13"
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/license-checker": "^25.0.6"
   }
 }

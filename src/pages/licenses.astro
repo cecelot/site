@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import LicenseList from "../components/interactive/LicenseList";
+import checker from "license-checker";
+import { readFile } from "node:fs/promises";
+import { promisify } from "node:util";
+const licenseChecker = promisify(checker.init);
+const licenses = await licenseChecker({ start: process.cwd() });
+
+const linearized = [];
+
+for (const license in licenses) {
+  const { licenseFile } = licenses[license];
+  linearized.push({
+    name: license,
+    text: licenseFile
+      ? await readFile(licenseFile, "utf-8")
+      : "No license file found",
+  });
+}
+---
+
+<Base
+  pageTitle="Licenses"
+  description="An index of this site's dependencies and their associated licenses."
+>
+  <h3 class="text-3xl font-bold mt-3 mb-2">Licenses</h3>
+  <p class="mb-5">
+    An index of this site's dependencies and their associated licenses. Refer to
+    the <a href="https://github.com/cecelot/forest/blob/main/LICENSE"
+      >LICENSE file</a
+    > in the <a href="https://github.com/cecelot/forest">GitHub repository</a> for
+    licensing information pertaining to all the code and content published on sydneyn.dev.
+  </p>
+  <LicenseList client:load licenses={linearized} />
+</Base>
