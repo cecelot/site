@@ -4,12 +4,12 @@ import Base from "./Base.astro";
 
 const { frontmatter } = Astro.props;
 
-let pathname = new URL(Astro.url).pathname;
+let pathname = new URL(Astro.url).pathname.replace("/p/", "").trim();
 if (pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
 
-const editLink = `https://github.com/cecelot/forest/edit/drafts/src/pages${pathname}.md`;
+const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog/${pathname}.md`;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
