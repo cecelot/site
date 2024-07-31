@@ -28,39 +28,37 @@ const allPosts = await Astro.glob("../pages/p/*.md");
           href="/about">Read more</a
         >.
       </p>
-      <div class="mt-2">
-        <p>
-          I'm also on GitHub! Check out my profile <Social
-            text="here"
-            url="github.com"
-            username="cecelot"
-          />.
-        </p>
+      <div class="mt-2 flex flex-row space-x-2">
+        <Social icon="carbon:logo-github" link="https://github.com/cecelot" />
+        <Social
+          icon="carbon:logo-mastodon"
+          link="https://mastodon.social/@cecelot"
+        />
       </div>
+      <section>
+        <h3 class="text-xl font-semibold my-3">Recent Posts</h3>
+        <ul class="space-y-3">
+          {
+            allPosts
+              .sort((a, b) =>
+                a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
+              )
+              .reverse()
+              .slice(0, 2)
+              .map((post) => (
+                <li>
+                  <PostCard
+                    title={post.frontmatter.title}
+                    description={post.frontmatter.description}
+                    date={new Date(post.frontmatter.pubDate)}
+                    url={post.url}
+                    featured={post.frontmatter.featured}
+                  />
+                </li>
+              ))
+          }
+        </ul>
+      </section>
     </div>
-  </div>
-  <section>
-    <h3 class="text-xl font-semibold my-3">Recent Posts</h3>
-    <ul class="space-y-3">
-      {
-        allPosts
-          .sort((a, b) =>
-            a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
-          )
-          .reverse()
-          .slice(0, 2)
-          .map((post) => (
-            <li>
-              <PostCard
-                title={post.frontmatter.title}
-                description={post.frontmatter.description}
-                date={new Date(post.frontmatter.pubDate)}
-                url={post.url}
-                featured={post.frontmatter.featured}
-              />
-            </li>
-          ))
-      }
-    </ul>
-  </section>
-</Base>
+  </div></Base
+>

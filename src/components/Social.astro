@@ -1,5 +1,13 @@
 ---
-const { text, url, username } = Astro.props;
+import { Icon } from "astro-icon/components";
+const { icon, link } = Astro.props;
 ---
 
-<a href={`https://${url}/${username}`} target="_blank">{text}</a>
+<div>
+  <a class="ignored-link bg-mantle" href={link} rel="noopener noreferrer">
+    <Icon
+      name={icon}
+      class="text-4xl p-1 border-2 rounded-full hover:border-blue transition-all duration-75 ease-in-out"
+    />
+  </a>
+</div>
