@@ -1,8 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import PostCard from "../components/PostCard.astro";
 import Social from "../components/Social.astro";
 import Base from "../layouts/Base.astro";
-const allPosts = await Astro.glob("../pages/p/*.md");
+
+const allPosts = await getCollection("blog");
 ---
 
 <Base
@@ -40,19 +42,17 @@ const allPosts = await Astro.glob("../pages/p/*.md");
         <ul class="space-y-3">
           {
             allPosts
-              .sort((a, b) =>
-                a.frontmatter.pubDate > b.frontmatter.pubDate ? 1 : -1
-              )
+              .sort((a, b) => (a.data.pubDate > b.data.pubDate ? 1 : -1))
               .reverse()
               .slice(0, 2)
               .map((post) => (
                 <li>
                   <PostCard
-                    title={post.frontmatter.title}
-                    description={post.frontmatter.description}
-                    date={new Date(post.frontmatter.pubDate)}
-                    url={post.url}
-                    featured={post.frontmatter.featured}
+                    title={post.data.title}
+                    description={post.data.description}
+                    date={new Date(post.data.pubDate)}
+                    url={`/p/${post.slug}`}
+                    featured={post.data.featured}
                   />
                 </li>
               ))

@@ -1,16 +1,15 @@
 ---
 import Base from "../../layouts/Base.astro";
 import TagList from "../../components/interactive/TagList";
-const allPosts = await Astro.glob("../p/*.md");
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("blog");
 const tags: Record<string, number> = {};
 allPosts.forEach((post) => {
-  post.frontmatter.tags.forEach((tag: string) => {
+  post.data.tags.forEach((tag: string) => {
     tags[tag] = (tags[tag] || 0) + 1;
   });
 });
-const tagNames = [
-  ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
-];
+const tagNames = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 const pageTitle = "Tags";
 ---
 

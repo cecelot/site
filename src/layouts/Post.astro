@@ -1,11 +1,14 @@
 ---
 import type { Props } from "../types";
 import Base from "./Base.astro";
+
 const { frontmatter } = Astro.props;
+
 let pathname = new URL(Astro.url).pathname;
 if (pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
+
 const editLink = `https://github.com/cecelot/forest/edit/drafts/src/pages${pathname}.md`;
 ---
 
