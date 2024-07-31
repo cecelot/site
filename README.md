@@ -15,4 +15,4 @@ My personal corner of the internet! See it live at [sydneyn.dev](https://sydneyn
 
 ## License
 
-All of the code is licensed under the MIT License, and all of the prose content I write is [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See the license text for details.
+All of the code is licensed under the [MIT license](https://opensource.org/licenses/mit), and all of the prose content I write is [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Refer to the license text for details.
