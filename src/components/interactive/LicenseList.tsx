@@ -37,7 +37,10 @@ export default function LicenseList({ licenses }: LicenseProps) {
                 transition
                 className="origin-top transition duration-75 ease-in-out data-[closed]:-translate-y-6 data-[closed]:opacity-0"
               >
-                <p className="border-t-2 border-crust pt-5 m-4">{text}</p>
+                <p
+                  className="border-t-2 border-crust pt-5 m-4"
+                  dangerouslySetInnerHTML={{ __html: text }}
+                ></p>
               </DisclosurePanel>
             </div>
           )}
