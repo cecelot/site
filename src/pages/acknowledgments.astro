@@ -2,8 +2,13 @@
 import Base from "../layouts/Base.astro";
 import LicenseList from "../components/interactive/LicenseList";
 import checker from "license-checker";
+import remarkHtml from "remark-html";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
 import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
+const mdToHtml = async (input: string) =>
+  await unified().use(remarkParse).use(remarkHtml).process(input);
 const licenseChecker = promisify(checker.init);
 const licenses = await licenseChecker({ start: process.cwd() });
 const linearized = [];
@@ -12,7 +17,7 @@ for (const license in licenses) {
   linearized.push({
     name: license,
     text: licenseFile
-      ? await readFile(licenseFile, "utf-8")
+      ? (await mdToHtml(await readFile(licenseFile, "utf-8"))).toString()
       : "No license file found",
   });
 }
