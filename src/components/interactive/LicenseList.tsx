@@ -19,7 +19,7 @@ export default function LicenseList({ licenses }: LicenseProps) {
   return (
     <div className="flex flex-col space-y-3">
       {licenses.map(({ name, text }) => (
-        <Disclosure key={name}>
+        <Disclosure key={name} as="div" id={name}>
           {({ open }) => (
             <div className="bg-mantle rounded-md p-3">
               <DisclosureButton className="flex flex-wrap items-center gap-2">

@@ -1,0 +1,34 @@
+---
+import Base from "../layouts/Base.astro";
+import LicenseList from "../components/interactive/LicenseList";
+import checker from "license-checker";
+import { readFile } from "node:fs/promises";
+import { promisify } from "node:util";
+const licenseChecker = promisify(checker.init);
+const licenses = await licenseChecker({ start: process.cwd() });
+const linearized = [];
+for (const license in licenses) {
+  const { licenseFile } = licenses[license];
+  linearized.push({
+    name: license,
+    text: licenseFile
+      ? await readFile(licenseFile, "utf-8")
+      : "No license file found",
+  });
+}
+---
+
+<Base
+  pageTitle="Acknowledgments"
+  description="All of the open source libraries that make this website possible!"
+>
+  <h3 class="text-3xl font-bold mt-3 mb-2">Acknowledgments</h3>
+  <p class="mb-5">
+    All of the open source libraries that make this website possible!
+    Automatically generated with <a
+      href="https://github.com/davglass/license-checker?tab=readme-ov-file#requiring"
+      >license-checker</a
+    >'s programmatic API.
+  </p>
+  <LicenseList client:load licenses={linearized} />
+</Base>
