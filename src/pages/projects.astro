@@ -1,27 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
 import Base from "../layouts/Base.astro";
-interface Project {
-  title: string;
-  description: string;
-  url: string;
-  post: string;
-}
-const projects: Project[] = [
-  {
-    title: "Kyanite",
-    description:
-      "A toy compiled programming language written for my Independent Study project @ LASA",
-    url: "https://github.com/cecelot/kyanite",
-    post: "/p/writing-a-compiler",
-  },
-  {
-    title: "sydneyn.dev",
-    description: "This website! Written with Astro and Tailwind",
-    url: "https://github.com/cecelot/forest",
-    post: "/p/new-website",
-  },
-];
+
+const projects = await getCollection("projects");
 ---
 
 <Base pageTitle="Projects" description="Some of my favorite work to date.">
@@ -32,10 +14,10 @@ const projects: Project[] = [
       projects.map((project) => {
         return (
           <ProjectCard
-            title={project.title}
-            description={project.description}
-            url={project.url}
-            post={project.post}
+            title={project.data.title}
+            description={project.data.description}
+            url={project.data.url}
+            post={project.data.post}
           />
         );
       })
