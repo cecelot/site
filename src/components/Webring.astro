@@ -3,17 +3,13 @@ const root = "https://ctp-webr.ing";
 const slug = "alainacn";
 ---
 
-<div class="space-x-3">
-  <a
-    class="ignored-link text-mauve hover:text-pink transition-all"
-    href={`${root}/${slug}/previous`}>←</a
-  >
-  <a
-    class="ignored-link bg-mantle hover:bg-crust transition-all rounded-md p-1"
-    href={root}>💍</a
-  >
-  <a
-    class="ignored-link text-mauve hover:text-pink transition-all"
-    href={`${root}/${slug}/next`}>→</a
-  >
+<div class="space-x-3 text-sm">
+  <a class="ignored-link webring-link" href={`${root}/${slug}/previous`}>←</a>
+  <a class="ignored-link webring-link" href={root}>ctp webring</a>
+  <a class="ignored-link webring-link" href={`${root}/${slug}/next`}>→</a>
 </div>
+<style>
+  .webring-link {
+    @apply text-mauve bg-mantle transition-all rounded-full px-2 py-1 border-2 border-crust hover:border-mauve;
+  }
+</style>
