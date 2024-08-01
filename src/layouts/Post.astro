@@ -17,9 +17,9 @@ const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog
   <h4 class="text-md lg:text-xl font-medium mb-3 mt-2">
     {frontmatter.description}
   </h4>
-  <span class="flex space-x-1 font-light">
-    <p>{new Date(frontmatter.pubDate).toDateString()}</p>
-    <p>•</p>
+  <span class="flex flex-wrap font-light">
+    <p class="mr-1">{new Date(frontmatter.pubDate).toDateString()}</p>
+    <p class="mr-1">•</p>
     <p>{frontmatter.minutesRead}</p>
   </span>
   <article class="prose lg:prose-lg leading-6 mt-5">
