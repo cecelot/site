@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
 title: "Learning Racket: Part 2"
-pubDate: "2024-08-01"
+pubDate: "2024-07-31"
 description: "Finishing up the Racket Essentials chapter and a note on the future of the series."
 author: "Sydney Newmark"
 tags: ["racket", "exploration", "meta"]
