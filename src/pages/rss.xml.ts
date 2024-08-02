@@ -12,13 +12,14 @@ export async function GET(context: any) {
       (post) =>
         ({
           title: post.data.title,
+          author: post.data.author,
           pubDate: new Date(post.data.pubDate),
           description: post.data.description,
+          categories: post.data.tags,
           link: `/p/${post.slug}`,
         } satisfies RSSFeedItem)
     ),
     customData: `<language>en-us</language>`,
     trailingSlash: false,
-    stylesheet: "/feed.xsl",
   });
 }
