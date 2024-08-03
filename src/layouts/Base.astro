@@ -25,7 +25,13 @@ const BASE_URL = "https://sydneyn.dev";
       is:inline
       src="https://cloud.umami.is/script.js"
       data-website-id="5ba07c82-f9f0-4d43-8288-d2f81b8242b7"></script>
-    <title>{pageTitle}</title>
+    <title>
+      {
+        pageTitle !== "Sydney Newmark"
+          ? `${pageTitle} • Sydney Newmark`
+          : pageTitle
+      }
+    </title>
     <OpenGraph
       siteName="sydneyn.dev"
       title={pageTitle}

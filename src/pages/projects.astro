@@ -18,6 +18,7 @@ const projects = await getCollection("projects");
             description={project.data.description}
             url={project.data.url}
             post={project.data.post}
+            homepage={project.data.homepage}
           />
         );
       })
