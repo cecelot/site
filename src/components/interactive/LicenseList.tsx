@@ -17,35 +17,38 @@ interface LicenseProps {
 
 export default function LicenseList({ licenses }: LicenseProps) {
   return (
-    <div className="flex flex-col space-y-3">
-      {licenses.map(({ name, text }) => (
-        <Disclosure key={name} as="div" id={name}>
-          {({ open }) => (
-            <div className="bg-mantle rounded-md p-3">
-              <DisclosureButton className="flex flex-wrap items-center gap-2">
-                <ChevronDownIcon
-                  className={clsx(
-                    "w-5 transition-all duration-75",
-                    open && "rotate-180"
-                  )}
-                />
-                <p className="font-semibold text-sm md:text-xl lg:text-2xl">
-                  {name}
-                </p>
-              </DisclosureButton>
-              <DisclosurePanel
-                transition
-                className="origin-top transition duration-75 ease-in-out data-[closed]:-translate-y-6 data-[closed]:opacity-0"
-              >
-                <p
-                  className="border-t-2 border-crust pt-5 m-4"
-                  dangerouslySetInnerHTML={{ __html: text }}
-                ></p>
-              </DisclosurePanel>
-            </div>
-          )}
-        </Disclosure>
-      ))}
-    </div>
+    <section>
+      <ul className="flex flex-col space-y-3">
+        {licenses.map(({ name, text }) => (
+          <Disclosure key={name} as="div" id={name}>
+            {({ open }) => (
+              <li className="bg-mantle rounded-md p-3">
+                <DisclosureButton className="flex flex-wrap items-center gap-2">
+                  <ChevronDownIcon
+                    width={20}
+                    className={clsx(
+                      "w-5 transition-all duration-75",
+                      open && "rotate-180"
+                    )}
+                  />
+                  <h1 className="font-semibold text-sm md:text-xl lg:text-2xl">
+                    {name}
+                  </h1>
+                </DisclosureButton>
+                <DisclosurePanel
+                  transition
+                  className="origin-top transition duration-75 ease-in-out data-[closed]:-translate-y-6 data-[closed]:opacity-0"
+                >
+                  <p
+                    className="border-t-2 border-crust pt-5 m-4"
+                    dangerouslySetInnerHTML={{ __html: text }}
+                  />
+                </DisclosurePanel>
+              </li>
+            )}
+          </Disclosure>
+        ))}
+      </ul>
+    </section>
   );
 }

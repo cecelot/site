@@ -7,9 +7,9 @@ const projects = await getCollection("projects");
 ---
 
 <Base pageTitle="Projects" description="Some of my favorite work to date.">
-  <h3 class="text-3xl font-bold mt-3 mb-2">Projects</h3>
+  <h1 class="text-3xl font-bold mt-3 mb-2">Projects</h1>
   <p class="mb-5">Some of my favorite work to date.</p>
-  <div class="space-y-5">
+  <ul class="space-y-5">
     {
       projects.map((project) => {
         return (
@@ -23,5 +23,5 @@ const projects = await getCollection("projects");
         );
       })
     }
-  </div>
+  </ul>
 </Base>
