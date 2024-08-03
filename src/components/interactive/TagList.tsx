@@ -28,24 +28,27 @@ export default function TagList({ tagNames, tags }: TagListProps) {
   return (
     <div className="flex flex-col space-y-3">
       <input
-        name="tag-search"
-        placeholder="Search..."
-        className="border-4 rounded-lg p-2 bg-mantle border-mantle placeholder:text-subtext0 text-subtext0"
+        name="tag-filter"
+        placeholder="Filter..."
+        className="rounded-lg p-3 bg-mantle placeholder:text-subtext0 text-subtext0"
         onChange={(e) => setQuery(e.target.value)}
       />
       <div />
       {filtered.length === 0 && <p>{"No tags matched that query :("}</p>}
-      {filtered
-        .sort((a, b) => a.localeCompare(b))
-        .map((tag) => (
-          <div className="flex flex-row space-x-3" key={tag}>
-            <a href={`/tags/${tag}`}>#{tag}</a>
-            <span className="text-subtext1">·</span>
-            <span className="text-subtext1">
-              {tags[tag]} post{tags[tag] > 1 ? "s" : ""}
+      <div className="my-5 flex flex-wrap gap-y-5">
+        {filtered
+          .sort((a, b) => a.localeCompare(b))
+          .map((tag) => (
+            <span>
+              <a
+                className="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
+                href={`/tags/${tag}`}
+              >
+                #{tag}
+              </a>
             </span>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 }
