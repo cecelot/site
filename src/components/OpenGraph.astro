@@ -2,7 +2,9 @@
 const { title, description, type, url } = Astro.props;
 ---
 
+<meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta property="og:site_name" content="sydneyn.dev" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
