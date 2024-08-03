@@ -4,9 +4,9 @@ import { Icon } from "astro-icon/components";
 const { title, description, url, post, homepage } = Astro.props;
 ---
 
-<div class="rounded-3xl border-2 p-3">
+<li class="rounded-3xl border-2 p-3">
   <h2 class="font-semibold">{title}</h2>
-  <span class="text-subtext1">{description}</span>
+  <p class="text-subtext1">{description}</p>
   <ul class="mt-2 flex flex-row flex-wrap">
     <li>
       <a class="ignored-link" href={homepage} rel="noopener noreferrer">
@@ -33,4 +33,4 @@ const { title, description, url, post, homepage } = Astro.props;
       </a>
     </li>
   </ul>
-</div>
+</li>

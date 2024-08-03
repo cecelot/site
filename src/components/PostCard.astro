@@ -9,6 +9,6 @@ const { title, description, date, url, featured } = Astro.props;
 >
   {featured && <span class="text-mauve">featured</span>}
   <h2 class="font-semibold">{title}</h2>
-  <span class="text-subtext0">{date.toDateString()}</span>
-  <span class="text-subtext1">{description}</span>
+  <p class="text-subtext0">{date.toDateString()}</p>
+  <p class="text-subtext1">{description}</p>
 </a>

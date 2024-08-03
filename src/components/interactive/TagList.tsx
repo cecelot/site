@@ -26,7 +26,7 @@ export default function TagList({ tagNames, tags }: TagListProps) {
   }, [query]);
 
   return (
-    <div className="flex flex-col space-y-3">
+    <section className="flex flex-col space-y-3">
       <input
         name="tag-filter"
         placeholder="Filter..."
@@ -35,20 +35,22 @@ export default function TagList({ tagNames, tags }: TagListProps) {
       />
       <div />
       {filtered.length === 0 && <p>{"No tags matched that query :("}</p>}
-      <div className="my-5 flex flex-wrap gap-y-5">
+      <ul className="my-5 flex flex-wrap gap-y-5">
         {filtered
           .sort((a, b) => a.localeCompare(b))
           .map((tag) => (
-            <span>
-              <a
-                className="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
-                href={`/tags/${tag}`}
-              >
-                #{tag}
-              </a>
-            </span>
+            <li>
+              <span key={tag}>
+                <a
+                  className="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
+                  href={`/tags/${tag}`}
+                >
+                  #{tag}
+                </a>
+              </span>
+            </li>
           ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }

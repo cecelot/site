@@ -2,15 +2,29 @@
 
 ---
 
-<nav class="my-5 flex flex-wrap gap-y-4">
-  <a class="navbar-link ignored-link" href="/">/home</a>
-  <a class="navbar-link ignored-link" href="/projects">/projects</a>
-  <a class="navbar-link ignored-link" href="/blog">/blog</a>
-  <a class="navbar-link ignored-link" href="/tags">/tags</a>
-  <a class="navbar-link ignored-link" href="/about">/about</a>
-</nav>
+<header>
+  <nav>
+    <ul class="my-5 flex flex-wrap gap-y-8">
+      <li>
+        <a class="navbar-link ignored-link" href="/">/home</a>
+      </li>
+      <li>
+        <a class="navbar-link ignored-link" href="/projects">/projects</a>
+      </li>
+      <li>
+        <a class="navbar-link ignored-link" href="/blog">/blog</a>
+      </li>
+      <li>
+        <a class="navbar-link ignored-link" href="/tags">/tags</a>
+      </li>
+      <li>
+        <a class="navbar-link ignored-link" href="/about">/about</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 <style>
   .navbar-link {
-    @apply mr-3 text-mauve bg-mantle border-2 border-crust rounded-full px-2 py-1 hover:border-mauve transition-all ease-in-out duration-200;
+    @apply mr-3 text-mauve bg-mantle border-2 border-crust rounded-full px-2 py-2 hover:border-mauve transition-all ease-in-out duration-200;
   }
 </style>

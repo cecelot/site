@@ -14,9 +14,9 @@ const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
   <h1 class="text-4xl lg:text-5xl font-black">{frontmatter.title}</h1>
-  <h4 class="text-md lg:text-xl font-medium mb-3 mt-2">
+  <h2 class="text-md lg:text-xl font-medium mb-3 mt-2">
     {frontmatter.description}
-  </h4>
+  </h2>
   <span class="flex flex-wrap font-light">
     <p class="mr-1">{new Date(frontmatter.pubDate).toDateString()}</p>
     <p class="mr-1">•</p>
@@ -25,27 +25,27 @@ const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog
   <article class="prose lg:prose-lg leading-6 mt-5">
     <slot />
   </article>
-  <div class="my-5 flex flex-wrap gap-y-5">
+  <ul class="my-5 flex flex-wrap gap-y-5">
     {
       frontmatter.tags.map((tag) => (
-        <span>
-          <a
-            class="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
-            href={`/tags/${tag}`}
-          >
-            #{tag}
-          </a>
-        </span>
+        <li>
+          <span>
+            <a
+              class="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
+              href={`/tags/${tag}`}
+            >
+              #{tag}
+            </a>
+          </span>
+        </li>
       ))
     }
-  </div>
-  <div class="text-xs">
-    <a
-      class="ignored-link text-subtext0 hover:text-subtext1 hover:underline"
-      href={editLink}
-      >✎ Edit on GitHub
-    </a>
-  </div>
+  </ul>
+  <a
+    class="ignored-link text-xs text-subtext0 hover:text-subtext1 hover:underline"
+    href={editLink}
+    >✎ Edit on GitHub
+  </a>
 </Base>
 <style>
   .tag-foot {
