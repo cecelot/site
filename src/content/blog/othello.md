@@ -12,7 +12,7 @@ I've wanted to code a realtime two-player game for a couple of years now (mostly
 
 ...right? Wrong.
 
-I tried for months to build an engine for the game that could simply validate moves. After running [perft](https://www.chessprogramming.org/Perft) at [depths](https://en.wikipedia.org/wiki/Tree-depth) of 1-6, I moved on to a depth of 7, which far took too long for debugging errors to be feasible (considering the degree I was willing to tolerate waiting). This was further compounded when I hit a road block trying to improve performance _even more than I already had_. Perhaps with a fresh approach and more experience with Rust than I had at the time, I could have been more successful, but I decided to discontinue the project because the "chess part" was distracting me too much from my end goal: building the app itself.
+I tried for months to build an engine for the game that could simply validate moves. After running [perft](https://www.chessprogramming.org/Perft) at [depths](https://en.wikipedia.org/wiki/Tree-depth) of 1-6, I moved on to a depth of 7, which took far too long for iteratively debugging errors to be feasible. This was further compounded when I hit a road block trying to improve performance even more than I already had. Perhaps with a fresh approach and more experience with Rust than I had at the time, I could have been more successful, but I decided to discontinue the project because the "chess part" was distracting me too much from my end goal: building the app itself.
 
 Several months ago, back in February, I decided to revisit the concept. This time, I had a different, much simpler target: Othello, otherwise known as Reversi.
 
@@ -67,7 +67,7 @@ For the purposes of this post, the `●` and `○` characters represent disks[^2
 
 ## Implementation
 
-After choosing what language I would use to write the backend[^4], I began building.
+I decided to write the backend using Rust, my favorite language, and a quick `cargo new` later, I began building.
 
 ### Board
 
@@ -77,7 +77,7 @@ Using the rules laid out above, I implemented these three essential features:
 - an algorithm to validate disk placements
 - an algorithm that, for each of those placements, determines all disk flips
 
-This was straightforward, and while I won't get into it here for brevity, [`board.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/board.rs) contains all of the relevant code for this component. It was pretty standard two-dimensional array traversal, and I ended up using some of the minor utilities I've written for solving certain [Advent of Code](https://adventofcode.com) challenges more ergonomically.
+This was straightforward, and while I won't get into it here for brevity, [`board.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/board.rs) contains all of the relevant code for this component. It was pretty standard two-dimensional array traversal, and I even ended up using some of the minor utilities I've written for solving certain [Advent of Code](https://adventofcode.com) challenges.
 
 ### Game
 
@@ -90,7 +90,7 @@ After completing my board representation, the next item of business was the game
 
 Scoring is not only useful for determining the winner. Since Othello is a [zero-sum game](https://en.wikipedia.org/wiki/Zero-sum_game), the scores can be used by a [minimax](https://en.wikipedia.org/wiki/Minimax) algorithm for [computer Othello](https://en.wikipedia.org/wiki/Computer_Othello) purposes.
 
-[relevant code](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/game.rs)
+relevant code: [`game.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/game.rs)
 
 # Server
 
@@ -183,7 +183,7 @@ where
 
 _from [src/server/extractors/mod.rs](https://github.com/cecelot/olly/blob/efe1c9b/src/server/extractors/mod.rs)_
 
-This extractor makes it trivially easy to protect a route which requires authentication. All a route handler function needs to do is include `User` in the extractor list as a parameter, like so:
+This extractor makes it very easy to protect a route which requires authentication. All a route handler function needs to do is include `User` in the extractor list as a parameter, like so:
 
 ```rust
 pub async fn route_handler(
@@ -195,7 +195,7 @@ pub async fn route_handler(
 
 ### Realtime
 
-For `/live`, which is the websocket that sends and receives all board updates, it works a little differently. Rather than authenticating users before connection to the websocket, clients are required to send a [payload](<https://en.wikipedia.org/wiki/Payload_(computing)>) identifying the user initiating the connection. This identification is the _session token_ for the currently logged in user (`sid`). If no payload is sent within `500ms`, the server automatically closes the connection.
+For `/live`, which is the websocket that sends and receives all board updates, things work a little differently. Rather than authenticating users before connection to the websocket, clients are required to send a [payload](<https://en.wikipedia.org/wiki/Payload_(computing)>) identifying the user initiating the connection. This identification is the _session token_ for the currently logged in user (`sid`). If no payload is sent within `500ms`, the server automatically closes the connection.
 
 _If_ the payload is sent within the time frame, and the payload contains valid credentials, the server will respond with a simple acknowledgment. On each subsequent payload, the client must continue to send this session token.
 
@@ -258,6 +258,8 @@ The very first and most complex thing I worked on for the client was the play sc
 </section>
 ```
 
+![The Othello play screen UI](/img/othello/play-screen.png)
+
 Each item in that grid is a [`<Square/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
 
 - whether there's currently a preview happening (which occurs whenever the user hovers over any square)
@@ -278,7 +280,7 @@ const { sendJsonMessage } = useWebSocket("ws://0.0.0.0:3000/live", {
 });
 ```
 
-This code above handlers all of the connecting (and reconnecting, too, I think) for me, and provides a simple `sendJsonMessage` function to use to my heart's content. I sprinkled in some examples of usage of this function earlier, and I'll show one more important one here:
+This code above handles all of the connecting (and reconnecting, too, I think), and provides a simple `sendJsonMessage` function to use to my heart's content. I sprinkled in some examples of usage of this function earlier, and I'll show one more important one here:
 
 ```ts
 const stringifyPiece = (piece: Piece) =>
@@ -307,7 +309,7 @@ And with that, I've covered all of the core code that makes it possible for peop
 
 One thing I noticed as I was play testing my app was that when I restarted the Rust server, games that had been created disappeared on the client. However, these were games that still existed in the database!
 
-The issue turned out to be that I wasn't saving _game states_ anywhere external from the server; I only stored whether a game existed between two players (for authentication and displaying active games on the client). Furthermore, the [tokio channels](https://tokio.rs/tokio/tutorial/channels) I was using to concurrently send game updates to clients and process new HTTP requests & websocket payloads weren't being recreated on server restart. This meant that if I needed to restart the server for any reason, there wouldn't be any way to send clients game updates! To fix this issue, I brought in another tool: [Redis](https://redis.io), an [in-memory](https://en.wikipedia.org/wiki/In-memory_database) [key-value](https://en.wikipedia.org/wiki/Key–value_database) database. This was particularly convenient for me because Redis stores JSON, and I already had (de)serialization for game states.
+The issue turned out to be that I wasn't saving _game states_ anywhere external from the server; I only stored whether a game existed between two players (for authentication and displaying active games on the client). Furthermore, the [tokio channels](https://tokio.rs/tokio/tutorial/channels) I was using, which handled sending game updates to clients, weren't being recreated on server restart. This meant that if I needed to restart the server for any reason, there wouldn't be any way for a player to let their opponent know they played! To fix this issue, I brought in another tool: [Redis](https://redis.io), an [in-memory](https://en.wikipedia.org/wiki/In-memory_database) [key-value](https://en.wikipedia.org/wiki/Key–value_database) database. This was particularly convenient for me because Redis stores JSON, and I already had (de)serialization for game states.
 
 For context, this is part of what runs when a user presses the button to create a game in the web app
 
@@ -398,7 +400,7 @@ let game = if let Ok(cached) = conn.get::<String, String>(format!("game:{gid}"))
 // -- snip --
 ```
 
-Instead of always creating a _new_ `Game` object, I first check to see if Redis has a game state saved for the associated game ID. If it does, then I fetch the serialized JSON object representing that state, and deserialize it back into a `Game` object! As a side effect, the `create_in_memory_game` function also restores our transceiver so we can jump right back into sending clients updates[^5]!
+Instead of always creating a _new_ `Game` object, I first check to see if Redis has a game state saved for the associated game ID. If it does, then I fetch the serialized JSON object representing that state, and deserialize it back into a `Game` object! As a side effect, the `create_in_memory_game` function also restores our transceiver so we can jump right back into sending clients updates[^4]!
 
 # Conclusion
 
@@ -411,5 +413,4 @@ Currently, I don't have any plans to host this project anywhere for financial re
 [^1]: Diagonals count
 [^2]: Depending on your system color scheme, the disks will appear differently. It's not super relevant here, but `●` is the light side, and `○` is the dark side. It makes sense in dark mode (you're welcome)
 [^3]: Each disk must be placed adjacent to an already placed one
-[^4]: I chose Rust just because I like the language
-[^5]: Perhaps only after a client refresh. This is one thing I haven't quite tested enough yet
+[^4]: Perhaps only after a client refresh. This is one thing I haven't quite tested enough yet
