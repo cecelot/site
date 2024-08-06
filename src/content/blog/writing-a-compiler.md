@@ -4,7 +4,7 @@ title: "A Foray Into Compiler Design"
 pubDate: "2024-05-31"
 description: "A story of my introduction to compilers and subsequent journey in writing my very own compiler from scratch."
 author: "Sydney Newmark"
-tags: ["compilers", "reflections"]
+tags: ["compilers", "reflection"]
 featured: true
 ---
 

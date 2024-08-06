@@ -1,0 +1,416 @@
+---
+layout: ../../layouts/Post.astro
+title: "From Chess to Othello: Digitizing Games"
+pubDate: "2024-08-06"
+description: "Diving headfirst into realtime communication over the internet by way of an old strategy board game."
+author: "Sydney Newmark"
+tags: ["websockets", "axum", "next.js", "game", "reflection"]
+featured: true
+---
+
+I've wanted to code a realtime two-player game for a couple of years now (mostly to become comfortable building and handling websockets... also they're cool), but I could never decide _what_ to build. At first, I thought Chess. Surely, it can't be _that_ complicated, right?
+
+...right? Wrong.
+
+I tried for months to build an engine for the game that could simply validate moves. After running [perft](https://www.chessprogramming.org/Perft) at [depths](https://en.wikipedia.org/wiki/Tree-depth) of 1-6, I moved on to a depth of 7, which took far too long for iteratively debugging errors to be feasible. This was further compounded when I hit a road block trying to improve performance even more than I already had. Perhaps with a fresh approach and more experience with Rust than I had at the time, I could have been more successful, but I decided to discontinue the project because the "chess part" was distracting me too much from my end goal: building the app itself.
+
+Several months ago, back in February, I decided to revisit the concept. This time, I had a different, much simpler target: Othello, otherwise known as Reversi.
+
+# Contents
+
+# The Game
+
+The rules for Othello are simple. I'll let [the Wikipedia article](https://en.wikipedia.org/wiki/Reversi) explain:
+
+> Two players compete, using 64 identical game pieces ("disks") that are light on one side and dark on the other. Each player chooses one color to use throughout the game. Players take turns placing one disk on an empty square, with their assigned color facing up. After a play is made, any disks of the opponent's color that lie in a straight line bounded by the one just played and another one in the current player's color are turned over[^1]. When all playable empty squares are filled, the player with more disks showing in their own color wins the game.
+
+For the purposes of this post, the `●` and `○` characters represent disks[^2]. If the explanation above was confusing, here's a visual example:
+
+**Initial board state**:
+
+```
+........
+........
+........
+...●○...
+...○●...
+........
+........
+........
+```
+
+**After placing a disk[^3]**:
+
+```
+........
+........
+........
+...●○...
+...○●...
+....○...
+........
+........
+```
+
+**After flips**:
+
+```
+........
+........
+........
+...●○...
+...○○...
+....○...
+........
+........
+```
+
+## Implementation
+
+I decided to write the backend using Rust, my favorite language, and with a quick `cargo new` later, I began building.
+
+### Board
+
+Using the rules laid out above, I implemented these three essential features:
+
+- a representation of the board and its pieces
+- an algorithm to validate disk placements
+- an algorithm that, for each of those placements, determines all disk flips
+
+This was straightforward, and while I won't get into it here for brevity, [`board.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/board.rs) contains all of the relevant code for this component. It was pretty standard two-dimensional array traversal, and I even ended up using some of the minor utilities I've written for solving certain [Advent of Code](https://adventofcode.com) challenges.
+
+### Game
+
+After completing my board representation, the next item of business was the game state and its associated functions. This consists of things like
+
+- finding all valid moves for a particular turn
+- calculating the score
+- determining whether a game has ended
+- move history
+
+Scoring is not only useful for determining the winner. Since Othello is a [zero-sum game](https://en.wikipedia.org/wiki/Zero-sum_game), the scores can be used by a [minimax](https://en.wikipedia.org/wiki/Minimax) algorithm for [computer Othello](https://en.wikipedia.org/wiki/Computer_Othello) purposes.
+
+relevant code: [`game.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/game.rs)
+
+# Server
+
+Now that the basics were out of the way, I could focus on the bulk of this project, starting with the server.
+
+## Primary Libraries
+
+For this, I chose [axum](https://github.com/tokio-rs/axum), from the creators of [tokio](https://github.com/tokio-rs/tokio), because it seemed like the most modern option available and also highly recommended. Like many other web servers, `axum` offers both normal HTTP handlers and lets me configure any of those routes as a websocket handler, using `ws`, an optional [Cargo feature](https://doc.rust-lang.org/cargo/reference/features.html) for the crate.
+
+I also went with [PostgreSQL](https://postgres.org) as my database of choice, using [sea-orm](https://www.sea-ql.org/SeaORM/) for [object-relational mapping](https://en.wikipedia.org/wiki/Object–relational_mapping) to reduce the amount of SQL I had to write. For example, to find a game, I can write this
+
+```rust
+match Game::find_by_id(id).one(state.database.as_ref()).await {
+    Ok(Some(game)) => Ok(game),
+    Ok(None) => Err(StringError(
+        strings::INVALID_GAME_ID.to_string(),
+        StatusCode::NOT_FOUND,
+    )),
+    Err(e) => Err(StringError(
+        e.to_string(),
+        StatusCode::INTERNAL_SERVER_ERROR,
+    )),
+}
+```
+
+instead of an entire select statement. There are, of course, merits to writing SQL, for example, if the ORM doesn't support the type of query I'm trying to write, but I didn't encounter that issue writing this project.
+
+Creating and authenticating users, adding and removing friends, creating games, and replying to invites for games are handled similarly to the above example. For example, this fetches a user's session:
+
+```rust
+match Session::find()
+    .filter(session::Column::Key.eq(token))
+    .one(state.database.as_ref())
+    .await
+{
+    Ok(Some(session)) => Ok(session.id.to_string()),
+    Ok(None) => Err(StringError(
+        strings::INVALID_TOKEN.into(),
+        StatusCode::FORBIDDEN,
+    )),
+    Err(e) => Err(StringError(
+        e.to_string(),
+        StatusCode::INTERNAL_SERVER_ERROR,
+    )),
+}
+```
+
+_from [src/server/helpers.rs](https://github.com/cecelot/olly/blob/efe1c9bf92bf52d9754b8e013bbe2b947dd3ced8/src/server/helpers.rs#L63)_
+
+## Authentication
+
+The code above is executed, among other places, in the `User` [extractor](https://docs.rs/axum/latest/axum/extract/index.html), a concept in `axum` that allows developers to perform some operation on a client request and return another object. This could be taking the request body and deserializing it from JSON, or in the case of `User`, retrieve the cookies sent in the request and either fetch the user associated with the found session, or reject the request as unauthorized if no session exists.
+
+```rust
+pub struct User {
+    pub id: Uuid,
+    pub username: String,
+}
+
+#[async_trait]
+impl<S> FromRequestParts<S> for User
+where
+    S: Send + Sync,
+    Arc<AppState>: FromRef<S>,
+{
+    type Rejection = StringError;
+
+    async fn from_request_parts(parts: &mut Parts, state: &S) -> Result<Self, Self::Rejection> {
+        // Extract the session cookie from the app state. We use `from_request_parts` because we want to be able
+        // to use other extractors after this one, and `from_request` consumes the request.
+        let jar = CookieJar::from_request_parts(parts, state).await.unwrap();
+        let state: State<Arc<AppState>> = State::from_request_parts(parts, state).await.unwrap();
+        let sid = jar
+            .get(strings::SESSION_COOKIE_NAME)
+            .ok_or(StringError(
+                strings::INVALID_TOKEN.into(),
+                StatusCode::UNAUTHORIZED,
+            ))?
+            .value_trimmed();
+        // Fetch the session associated with the cookie and then fetch the user associated with the session.
+        let session = helpers::get_session(&state, sid).await?;
+        let user = helpers::get_user(&state, &session, false).await?;
+        Ok(User {
+            id: user.id,
+            username: user.username,
+        })
+    }
+}
+```
+
+_from [src/server/extractors/mod.rs](https://github.com/cecelot/olly/blob/efe1c9b/src/server/extractors/mod.rs)_
+
+This extractor makes it very easy to protect a route which requires authentication. All a route handler function needs to do is include `User` in the extractor list as a parameter, like so:
+
+```rust
+pub async fn route_handler(
+    State(state): State<Arc<AppState>>,
+    authed_user: User,
+    Json(body): Json</* struct representation of the request body */>,
+)
+```
+
+### Realtime
+
+For `/live`, which is the websocket that sends and receives all board updates, things work a little differently. Rather than authenticating users before connection to the websocket, clients are required to send a [payload](<https://en.wikipedia.org/wiki/Payload_(computing)>) identifying the user initiating the connection. This identification is the _session token_ for the currently logged in user (`sid`). If no payload is sent within `500ms`, the server automatically closes the connection.
+
+_If_ the payload is sent within the time frame, and the payload contains valid credentials, the server will respond with a simple acknowledgment. On each subsequent payload, the client must continue to send this session token.
+
+To illustrate this, here's an example of the flow. It begins with the client fetching the token from the document cookie:
+
+```ts
+setToken(cookie.parse(document.cookie).sid);
+```
+
+Then, it sends the initial payload:
+
+```ts
+sendJsonMessage({
+  op: 6,
+  t: token,
+  d: {
+    type: "Identify",
+  },
+});
+```
+
+After `Identify`ing, the client can proceed to send other requests. For instance, if an authenticated user wanted to join or rejoin a game in which they are the host or guest, the client sends the following message:
+
+```ts
+sendJsonMessage({
+  op: 3,
+  t: token,
+  d: {
+    type: "Join",
+    id: gameId,
+  },
+});
+```
+
+The two other major messages the server processes are `Place` and `Preview`.
+
+- `Place` will commit a disk to be placed on the board in the specified location
+
+- `Preview` will tell the client which disks will be flipped by a given placement, so the client can show it to the player.
+
+`Preview` only exists because I didn't want to duplicate the code I wrote on the server to handle disk flips on the client.
+
+# Client
+
+Moving on to the aforementioned client, I initially wanted to use [Solid Start](https://start.solidjs.com), a framework for [Solid.js](https://solidjs.com), but after building out an initial MVP for the client with it and really enjoying Solid's approach, the quality of Start didn't quite match what I was used to with [Next.js](https://nextjs.org), so I ended up switching to the latter.
+
+## User Interface
+
+The very first and most complex thing I worked on for the client was the play screen. I started by building out the UI, and since it's just a grid of 64 squares, I was able to pretty quickly create one using [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox), one of the best(?) CSS utilities to ever be released. Anyway, with just a `flex flex-col` on a `<section>` and eight `<div>`s with `flex flex-row`, I had a grid:
+
+```tsx
+<section className="flex flex-col items-center p-5">
+  {board.map((arr, row) => (
+    <div className="flex flex-row" key={row}>
+      {arr.map((piece, col) => ({
+        {/* -- snip -- */}
+      }))}
+    </div>
+  ))}
+</section>
+```
+
+![The Othello play screen UI](/img/othello/play-screen.png)
+
+Each item in that grid is a [`<Square/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
+
+- whether there's currently a preview happening (which occurs whenever the user hovers over any square)
+- whether the disk is currently white or black
+- whether a square is occupied or empty
+
+To know when each of these states apply, I incorporated what I worked on with the server: realtime communication!
+
+## Communication
+
+It sounds more fancy than it is: I just open a websocket connection to the `/live` endpoint [I mentioned earlier](#realtime) and start sending JSON payloads. As a convenient wrapper, I decided to use [react-use-websocket](https://www.npmjs.com/package/react-use-websocket) for handling all of the interesting technical stuff for me (yay, [NPM](https://www.npmjs.com)).
+
+```ts
+const { sendJsonMessage } = useWebSocket("ws://0.0.0.0:3000/live", {
+  onMessage: (msg) => {
+    // -- snip --
+  },
+});
+```
+
+This code above handles all of the connecting (and reconnecting, too, I think), and provides a simple `sendJsonMessage` function to use to my heart's content. I sprinkled in some examples of usage of this function earlier, and I'll show one more important one here:
+
+```ts
+const stringifyPiece = (piece: Piece) =>
+  piece === Piece.Black ? "Black" : "White";
+
+// -- snip --
+
+sendJsonMessage({
+  op: 7,
+  t: token,
+  d: {
+    type: "Place",
+    id: gameId,
+    x: col,
+    y: row,
+    piece: stringifyPiece(color),
+  },
+});
+```
+
+Since I'm using [enums](https://www.typescriptlang.org/docs/handbook/enums.html) for pieces, I need to convert them to strings so that the backend can properly deserialize the JSON to the associated Rust enum, which is why `stringifyPiece` exists. Another (de)serialization quirk is `type: "Place"` in the `d` field, which just exists to make [serde](https://serde.rs) happy. Finally, there's the `id` field, which tells the server which game it needs to update, and the `x` and `y` fields, which tell the server where on the board the `piece` was placed.
+
+And with that, I've covered all of the core code that makes it possible for people to play the game! Of course, there's a lot more code involved putting all of these pieces together, so feel free to explore [the GitHub repository](https://github.com/cecelot/olly) to discover more.
+
+# Persistence
+
+One thing I noticed as I was play testing my app was that when I restarted the Rust server, games that had been created disappeared on the client. However, these were games that still existed in the database!
+
+The issue turned out to be that I wasn't saving _game states_ anywhere external from the server; I only stored whether a game existed between two players (for authentication and displaying active games on the client). Furthermore, the [tokio channels](https://tokio.rs/tokio/tutorial/channels) I was using, which handled sending game updates to clients, weren't being recreated on server restart. This meant that if I needed to restart the server for any reason, there wouldn't be any way for a player to let their opponent know they played! To fix this issue, I brought in another tool: [Redis](https://redis.io), an [in-memory](https://en.wikipedia.org/wiki/In-memory_database) [key-value](https://en.wikipedia.org/wiki/Key–value_database) database. This was particularly convenient for me because Redis stores JSON, and I already had (de)serialization for game states.
+
+For context, this is part of what runs when a user presses the button to create a game in the web app
+
+```rust
+pub fn create_in_memory_game(state: &Arc<AppState>, gid: Uuid) {
+    let game = Game::new(); // (1)
+    let (tx, _) = broadcast::channel(16); // (2)
+    let mut games = state.games.lock().expect("mutex was poisoned");
+    let mut rooms = state.rooms.lock().expect("mutex was poisoned");
+    games.insert(gid, game); // (3)
+    rooms.insert(gid, tx); // (4)
+}
+```
+
+which does the following four things:
+
+1. I create a new `Game` object
+2. I create a new _transceiver_ to send game updates to clients
+3. I associate the game's [uuid](https://en.wikipedia.org/wiki/Universally_unique_identifier) with the `Game` object
+4. I associate the game's uuid with the transceiver
+
+Then, whenever a client makes a disk placement, I run the following, which fetches the game object and transceiver associated with the game's ID, places the piece, and sends a `GameUpdate` event to all clients connected to that game (the player and their opponent).
+
+```rust
+let mut games = state.games.lock().expect("mutex was poisoned");
+let mut rooms = state.rooms.lock().expect("mutex was poisoned");
+let uuid = Uuid::from_str(id)
+    .map_err(|_| Event::error(strings::INVALID_GAME_ID_FORMAT, StatusCode::BAD_REQUEST))?;
+let game = games.get_mut(&uuid).ok_or(Event::error(
+    strings::INVALID_GAME_ID,
+    StatusCode::NOT_FOUND,
+))?;
+let tx = rooms.get_mut(&uuid).ok_or(Event::error(
+    strings::INVALID_GAME_ID,
+    StatusCode::NOT_FOUND,
+))?;
+let res = game.place(*x, *y, *piece).map_or_else(
+    |e| Err(Event::error(&e.to_string(), StatusCode::BAD_REQUEST)),
+    |()| Ok(Event::new(EventKind::Ack, EventData::Ack)),
+)?;
+let _ = tx.send(Event::new(
+    EventKind::GameUpdate,
+    EventData::GameUpdate { game: game.clone() },
+));
+```
+
+There's just one issue: this is all _in memory_, and so when the server terminates and releases that memory to the operating system, players' hard work just disappear. _Poof_.
+
+The first part of the solution to this problem is, after sending the `GameUpdate` event, to update a key-value pair in Redis associated with a game ID:
+
+```rust
+if let Ok(mut conn) = state.redis.get_connection() {
+    let _ = conn.set::<String, String, String>(
+        format!("game:{}", id.clone()),
+        serde_json::to_string(game).unwrap(),
+    );
+}
+```
+
+Then, the second part of the solution is to restore all games in Redis when the server starts up:
+
+```rust
+pub async fn restore_active_games(state: &Arc<AppState>) -> Result<(), String> {
+    let games = entities::game::Entity::find()
+        .filter(Column::Pending.eq(false))
+        .all(state.database.as_ref())
+        .await
+        .map_err(|e| e.to_string())?;
+    for game in &games {
+        create_in_memory_game(state, game.id);
+    }
+    Ok(())
+}
+```
+
+This finds all games that are currently active using `sea-orm`, and then runs `create_in_memory_game` on each, which is our function from earlier, with one key adjustment:
+
+```rust
+// -- snip --
+let mut conn = state.redis.get_connection().unwrap();
+let game = if let Ok(cached) = conn.get::<String, String>(format!("game:{gid}")) {
+      let game: Game = serde_json::from_str(&cached).unwrap();
+      log::info!("Restoring {gid:?} from cache: raw {cached}");
+      game
+} else {
+    Game::new()
+};
+// -- snip --
+```
+
+Instead of always creating a _new_ `Game` object, I first check to see if Redis has a game state saved for the associated game ID. If it does, then I fetch the serialized JSON object representing that state, and deserialize it back into a `Game` object! As a side effect, the `create_in_memory_game` function also restores our transceiver so we can jump right back into sending clients updates[^4]!
+
+# Conclusion
+
+This was a lot to write, and I know I've only _barely_ scratched the surface. Putting together all of the pieces here felt really good, and it was fun to try out a new web framework, even though I didn't end up going with it.
+
+Currently, I don't have any plans to host this project anywhere for financial reasons, but it is runnable locally following [the instructions in the README](https://github.com/cecelot/olly?tab=readme-ov-file#develop) for the repository. Feel free to poke around and explore!
+
+-- Sydney
+
+[^1]: Diagonals count
+[^2]: Depending on your system color scheme, the disks will appear differently. It's not super relevant here, but `●` is the light side, and `○` is the dark side. It makes sense in dark mode (you're welcome)
+[^3]: Each disk must be placed adjacent to an already placed one
+[^4]: Perhaps only after a client refresh. This is one thing I haven't quite tested enough yet
