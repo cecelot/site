@@ -1,6 +1,11 @@
 <style is:global>
   a:not(.ignored-link) {
-    @apply text-blue hover:underline transition-all;
+    @apply relative text-blue hover:underline;
+  }
+
+  a[href*="//"]:not(.ignored-link)
+  {
+    @apply pr-5;
   }
 
   a[href*="//"]:not(.ignored-link)::after
@@ -8,7 +13,21 @@
     content: " ";
     -webkit-mask-image: url("external-link.svg");
     mask-image: url("/external-link.svg");
-    @apply inline-block bg-blue h-3 w-4 [mask-repeat:no-repeat] [mask-size:contain] ml-[3px] -mr-[4px];
+    @apply absolute mt-[3px] ml-1 inline-block bg-blue h-full w-4 [mask-repeat:no-repeat] [mask-size:contain];
+  }
+
+  article a[href*="//"]:not(.ignored-link)::after
+  {
+    @apply lg:mt-2;
+  }
+
+  footer a[href*="//"]:not(.ignored-link)::after
+  {
+    @apply mt-[5px];
+  }
+
+  pre {
+    @apply text-wrap;
   }
 
   .footnotes {

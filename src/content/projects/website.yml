@@ -1,5 +1,6 @@
 title: "sydneyn.dev"
 description: "This website! Written with Astro and Tailwind"
-url: "https://github.com/cecelot/forest"
+repo: "https://github.com/cecelot/forest"
 post: "/p/new-website"
 homepage: "https://sydneyn.dev"
+position: 2

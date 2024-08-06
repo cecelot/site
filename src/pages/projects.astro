@@ -11,17 +11,19 @@ const projects = await getCollection("projects");
   <p class="mb-5">Some of my favorite work to date.</p>
   <ul class="space-y-5">
     {
-      projects.map((project) => {
-        return (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            url={project.data.url}
-            post={project.data.post}
-            homepage={project.data.homepage}
-          />
-        );
-      })
+      projects
+        .sort((a, b) => (a.data.position < b.data.position ? 1 : -1))
+        .map((project) => {
+          return (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              repo={project.data.repo}
+              post={project.data.post}
+              homepage={project.data.homepage}
+            />
+          );
+        })
     }
   </ul>
 </Base>
