@@ -67,7 +67,7 @@ For the purposes of this post, the `●` and `○` characters represent disks[^2
 
 ## Implementation
 
-I decided to write the backend using Rust, my favorite language, and a quick `cargo new` later, I began building.
+I decided to write the backend using Rust, my favorite language, and with a quick `cargo new` later, I began building.
 
 ### Board
 
