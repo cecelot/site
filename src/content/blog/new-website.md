@@ -4,7 +4,7 @@ title: "All About My Millionth Website Rewrite"
 pubDate: "2024-06-02"
 description: "From early iterations to today's version: a retrospective on the development of my website, discussing the techologies and tools I've experimented with to effectively publish and share my writing."
 author: "Sydney Newmark"
-tags: ["astro", "tailwindcss", "meta", "reflections"]
+tags: ["astro", "tailwindcss", "meta", "reflection"]
 featured: true
 ---
 
