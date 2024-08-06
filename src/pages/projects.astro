@@ -18,7 +18,7 @@ const projects = await getCollection("projects");
             <ProjectCard
               title={project.data.title}
               description={project.data.description}
-              url={project.data.url}
+              repo={project.data.repo}
               post={project.data.post}
               homepage={project.data.homepage}
             />

@@ -1,6 +1,6 @@
 title: "Kyanite"
 description: "A toy compiled programming language written for my Independent Study project @ LASA"
-url: "https://github.com/cecelot/kyanite"
+repo: "https://github.com/cecelot/kyanite"
 post: "/p/writing-a-compiler"
 homepage: "https://kyanite.sydneyn.dev"
 position: 1

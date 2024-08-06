@@ -1,6 +1,4 @@
 title: "Olly"
 description: "A game client and server for the two-player strategy board game, Othello"
-url: "https://github.com/cecelot/olly"
-post: "/p/othello"
-homepage: "https://github.com/cecelot/olly"
+repo: "https://github.com/cecelot/olly"
 position: 3
