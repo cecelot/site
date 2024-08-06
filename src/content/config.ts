@@ -20,6 +20,7 @@ const projectsCollection = defineCollection({
     url: z.string(),
     post: z.string(),
     homepage: z.string(),
+    position: z.number(),
   }),
 });
 
