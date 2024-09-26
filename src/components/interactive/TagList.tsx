@@ -16,7 +16,7 @@ export default function TagList({ tagNames, tags }: TagListProps) {
         tagNames.map((tag) => ({ tag })),
         {
           keys: ["tag"],
-        }
+        },
       );
       const results = fuse.search(query);
       setFiltered(results.map((result) => result.item.tag));

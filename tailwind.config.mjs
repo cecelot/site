@@ -44,7 +44,7 @@ export default {
             "--tw-prose-invert-hr": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quotes": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quote-borders": theme(
-              `colors.${accent}.DEFAULT`
+              `colors.${accent}.DEFAULT`,
             ),
             "--tw-prose-invert-captions": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-code": theme("colors.white"),

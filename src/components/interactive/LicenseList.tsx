@@ -28,7 +28,7 @@ export default function LicenseList({ licenses }: LicenseProps) {
                     width={20}
                     className={clsx(
                       "w-5 transition-all duration-75",
-                      open && "rotate-180"
+                      open && "rotate-180",
                     )}
                   />
                   <h1 className="font-semibold text-sm md:text-xl lg:text-2xl">
