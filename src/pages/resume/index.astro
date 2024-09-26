@@ -1,0 +1,34 @@
+---
+import {
+  Header,
+  DatedItemSection,
+  TechnicalKnowledge,
+  Interests,
+} from "../../components/resume";
+import Base from "../../layouts/Base.astro";
+---
+
+<Base pageTitle="Resumé" description="A public copy of my resumé.">
+  <h1 class="text-3xl font-bold mt-3 mb-2" id="print-hidden">Resumé</h1>
+  <p
+    id="print-hidden"
+    class="mb-5 border-4 p-1 rounded-xl bg-mantle border-mantle"
+  >
+    A public copy of my resumé (sensitive information has been redacted). For
+    additional details, please <a href="mailto:contact@sydneyn.dev">reach out</a
+    >. This isn't intended for web viewing: I recommend <a href="/resume.pdf"
+      >switching to the PDF version</a
+    >.
+  </p>
+  <article class="font-serif mx-3">
+    <Header />
+    <DatedItemSection title="Education" collectionName="education" />
+    <TechnicalKnowledge />
+    <DatedItemSection title="Projects" collectionName="resumeProjects" />
+    <DatedItemSection
+      title="Extracurriculars"
+      collectionName="extracurriculars"
+    />
+    <Interests />
+  </article>
+</Base>

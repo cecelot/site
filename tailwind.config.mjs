@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inclusive Sans", ...defaultTheme.fontFamily.sans],
+        serif: ["Crimson Pro", ...defaultTheme.fontFamily.serif],
         mono: ["Recursive Mono", ...defaultTheme.fontFamily.mono],
       },
       typography: (theme) => ({
@@ -44,7 +45,7 @@ export default {
             "--tw-prose-invert-hr": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quotes": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quote-borders": theme(
-              `colors.${accent}.DEFAULT`,
+              `colors.${accent}.DEFAULT`
             ),
             "--tw-prose-invert-captions": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-code": theme("colors.white"),

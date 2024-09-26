@@ -24,7 +24,32 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const datedItemCollection = defineCollection({
+  type: "data",
+  schema: z.object({
+    position: z.number(),
+    title: z.string(),
+    location: z.optional(z.string()),
+    date: z.optional(
+      z.object({
+        range: z.string(),
+        additionalInfo: z.optional(z.array(z.string())),
+      })
+    ),
+    items: z.optional(
+      z.object({
+        general: z.optional(z.array(z.string())),
+        bulleted: z.optional(z.array(z.string())),
+      })
+    ),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   projects: projectsCollection,
+  // resumé
+  education: datedItemCollection,
+  resumeProjects: datedItemCollection,
+  extracurriculars: datedItemCollection,
 };

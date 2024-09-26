@@ -1,0 +1,11 @@
+position: 1
+title: "The Kyanite Programming Language"
+date:
+  range: "Aug 2023 - May 2024"
+items:
+  bulleted:
+    - "Researched programming language design techniques and methods for implementation."
+    - "Researched assembly format and conventions for Intel- and ARM-based Mac computers."
+    - "Applied knowledge to design and implement an original compiled programming language."
+    - "Applied Agile methodology to track progress and demonstrate project milestones to course advisor."
+    - "Presented research findings and project outcomes at the University of Texas at Austin's Oden Institute."

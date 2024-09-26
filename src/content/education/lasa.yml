@@ -1,0 +1,9 @@
+position: 2
+title: "Liberal Arts and Science Academy, High School"
+location: "Austin, TX"
+date:
+  range: "Aug 2020 - Jun 2024"
+items:
+  general:
+    - "GPA: 4.5 / 4.0"
+    - "Coursework: AP Calculus AB, AP Computer Science A, Data Structures and Algorithms, Digital Electronics, Independent Study in Computer Science (self-directed project-based course in compiler design)"

@@ -26,3 +26,6 @@ pnpm-debug.log*
 # other
 .direnv
 .vscode
+
+# local generated resumé PDFs
+_downloads

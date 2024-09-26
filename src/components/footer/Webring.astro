@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+
+const root = "https://ctp-webr.ing";
+const slug = "alainacn";
+---
+
+<nav class="text-sm flex flex-wrap justify-center">
+  <a class="ignored-link webring-link" href={`${root}/${slug}/previous`}>
+    <Icon
+      name="mdi:keyboard-arrow-left"
+      class="p-1 text-2xl transition-all duration-200 ease-in-out"
+    />
+  </a>
+  <a class="ignored-link webring-link" href={root}>
+    <Icon
+      name="mdi:ring"
+      class="p-1 text-2xl transition-all duration-200 ease-in-out"
+    />
+  </a>
+  <a class="ignored-link webring-link" href={`${root}/${slug}/next`}>
+    <Icon
+      name="mdi:keyboard-arrow-right"
+      class="p-1 text-2xl transition-all duration-200 ease-in-out"
+    />
+  </a>
+</nav>
+<style>
+  .webring-link {
+    @apply mr-3 mb-2 text-mauve bg-mantle transition-all rounded-full px-2 py-1 border-2 border-crust hover:border-mauve;
+  }
+</style>

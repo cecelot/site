@@ -1,0 +1,9 @@
+position: 2
+title: '"Improving Transparency and Mitigating Hallucinations in LLMs."'
+date:
+  range: "Jun 2023 - Sep 2023"
+items:
+  bulleted:
+    - "Researched fundamental machine learning techniques in NLP, like transformers and RNNs."
+    - "Researched methods for mitigating hallucinations and improving transparency in large language models."
+    - "Wrote a paper proposing a methodology for combining semantic uncertainty, mixed-contrastive learning, and methods for mitigating hallucinations into a cohesive framework for modifying LLM training structure."

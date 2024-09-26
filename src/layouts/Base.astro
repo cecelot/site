@@ -1,11 +1,12 @@
 ---
 import "@fontsource/inclusive-sans";
 import "@fontsource/recursive";
-import Footer from "../components/Footer.astro";
+import "@fontsource/crimson-pro";
+import Footer from "../components/footer/Footer.astro";
 import Navigation from "../components/Navigation.astro";
-import Styles from "../components/Styles.astro";
+import Styles from "../components/style/Styles.astro";
 import OpenGraph from "../components/OpenGraph.astro";
-import CssNakedDay from "../components/CssNakedDay.astro";
+import CssNakedDay from "../components/style/CssNakedDay.astro";
 
 const { pageTitle, description, image } = Astro.props;
 const BASE_URL = "https://sydneyn.dev";
@@ -42,9 +43,7 @@ const BASE_URL = "https://sydneyn.dev";
       image={image}
     />
   </head>
-  <body
-    class="latte dark:macchiato bg-base text-text max-w-screen-md mt-8 mx-auto p-5 pl-6"
-  >
+  <body class="latte dark:macchiato bg-base text-text max-w-screen-md mx-auto">
     <CssNakedDay />
     <Navigation />
     <main>

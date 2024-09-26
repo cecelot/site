@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  location?: string;
+  items?: {
+    general?: string[];
+    bulleted?: string[];
+  };
+  date?: {
+    range?: string;
+    additionalInfo?: string[];
+  };
+}
+
+const { title, location, items, date } = Astro.props;
+---
+
+<div class="mb-1">
+  <div class="inline-block">
+    <h4>
+      <span class="font-semibold">{title}</span>{
+        location ? `, ${location}` : ""
+      }
+    </h4>
+  </div>
+  <div class="float-right text-right">
+    <p>{date?.range}</p>
+    {date?.additionalInfo?.map((item: string) => <p>{item}</p>)}
+  </div>
+  {items?.general?.map((item: string) => <p>{item}</p>)}
+  {
+    items?.bulleted && (
+      <ul class="list-disc list-inside">
+        {items.bulleted.map((item: string) => (
+          <li class="list-item">{item}</li>
+        ))}
+      </ul>
+    )
+  }
+</div>
