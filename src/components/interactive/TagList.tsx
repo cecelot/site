@@ -16,7 +16,7 @@ export default function TagList({ tagNames, tags }: TagListProps) {
         tagNames.map((tag) => ({ tag })),
         {
           keys: ["tag"],
-        },
+        }
       );
       const results = fuse.search(query);
       setFiltered(results.map((result) => result.item.tag));
@@ -39,8 +39,8 @@ export default function TagList({ tagNames, tags }: TagListProps) {
         {filtered
           .sort((a, b) => a.localeCompare(b))
           .map((tag) => (
-            <li>
-              <span key={tag}>
+            <li key={tag}>
+              <span>
                 <a
                   className="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
                   href={`/tags/${tag}`}
