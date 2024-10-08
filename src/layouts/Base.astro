@@ -7,6 +7,12 @@ import Styles from "../components/Styles.astro";
 import OpenGraph from "../components/OpenGraph.astro";
 import CssNakedDay from "../components/CssNakedDay.astro";
 
+interface Props {
+  pageTitle: string;
+  description: string;
+  image?: string;
+}
+
 const { pageTitle, description, image } = Astro.props;
 const BASE_URL = "https://sydneyn.dev";
 ---
