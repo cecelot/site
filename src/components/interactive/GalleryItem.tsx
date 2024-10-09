@@ -23,7 +23,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
   const imageTransform = (transform: Transform) =>
-    `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality}${BASE_URL}/${name}`;
+    `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=auto${BASE_URL}/${name}`;
 
   return (
     <div className="m-1">
