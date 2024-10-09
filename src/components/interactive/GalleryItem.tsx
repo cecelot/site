@@ -38,7 +38,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
           src={imageTransform({
             width: (width || DEFAULT_WIDTH) / 16,
             height: (height || DEFAULT_HEIGHT) / 16,
-            quality: 50,
+            quality: 100,
           })}
           alt={name}
           width={width}
