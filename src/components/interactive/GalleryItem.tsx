@@ -28,6 +28,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
   return (
     <div className="m-1">
       <Button
+        name={`Expand ${name}`}
         onClick={open}
         className="rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve transition-all ease-in-out duration-200"
       >
@@ -69,7 +70,11 @@ export default function GalleryItem({ name, date, width, height }: Props) {
                 width={width}
                 height={height}
               />
-              <Button className="text-mauve hover:underline" onClick={close}>
+              <Button
+                name="Close expanded image"
+                className="text-mauve hover:underline"
+                onClick={close}
+              >
                 Close
               </Button>{" "}
               |{" "}
