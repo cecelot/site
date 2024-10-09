@@ -38,8 +38,8 @@ export default function GalleryItem({ name, date, width, height }: Props) {
         <img
           className="rounded-lg"
           src={imageTransform({
-            width: (width || DEFAULT_WIDTH) / 16,
-            height: (height || DEFAULT_HEIGHT) / 16,
+            width: (width || DEFAULT_WIDTH) * 0.1,
+            height: (height || DEFAULT_HEIGHT) * 0.1,
             quality: 100,
           })}
           alt={name}
@@ -67,9 +67,9 @@ export default function GalleryItem({ name, date, width, height }: Props) {
               <img
                 className="rounded-lg my-2"
                 src={imageTransform({
-                  width: (width || DEFAULT_WIDTH) / 1.5,
-                  height: (height || DEFAULT_HEIGHT) / 1.5,
-                  quality: 50,
+                  width: (width || DEFAULT_WIDTH) * 0.5,
+                  height: (height || DEFAULT_HEIGHT) * 0.5,
+                  quality: 100,
                 })}
                 width={width}
                 height={height}
