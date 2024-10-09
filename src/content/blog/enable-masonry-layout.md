@@ -23,7 +23,7 @@ There will be more here eventually, but for now, this is how you enable the feat
 2. Ensure "Show features for web developers" is checked
 3. Click on the "Feature Flags" tab
 4. Type "masonry" in the search bar on the top right
-5. Click the checkbox nex to "CSS Masonry Layout"
+5. Click the checkbox next to "CSS Masonry Layout"
 
 ## In Firefox
 
