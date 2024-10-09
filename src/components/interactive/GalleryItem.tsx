@@ -67,8 +67,8 @@ export default function GalleryItem({ name, date, width, height }: Props) {
               <img
                 className="rounded-lg my-2"
                 src={imageTransform({
-                  width: (width || DEFAULT_WIDTH) * 0.5,
-                  height: (height || DEFAULT_HEIGHT) * 0.5,
+                  width: (width || DEFAULT_WIDTH) * 0.25,
+                  height: (height || DEFAULT_HEIGHT) * 0.25,
                   quality: 100,
                 })}
                 width={width}
