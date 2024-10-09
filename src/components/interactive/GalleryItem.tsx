@@ -12,6 +12,7 @@ interface Transform {
   width: number;
   height: number;
   quality: 50 | 75 | 100;
+  format?: "auto" | "jpeg";
 }
 
 const BASE_URL = "/img/gallery";
@@ -22,9 +23,10 @@ export default function GalleryItem({ name, date, width, height }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
-  const imageTransform = (transform: Transform) =>
-    `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=auto${BASE_URL}/${name}`;
-
+  const imageTransform = (transform: Transform) => {
+    const format = transform.format ? transform.format : "auto";
+    return `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=${format}${BASE_URL}/${name}`;
+  };
   return (
     <div className="m-1">
       <Button
@@ -85,6 +87,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
                   width: width || DEFAULT_WIDTH,
                   height: height || DEFAULT_HEIGHT,
                   quality: 100,
+                  format: "jpeg",
                 })}
                 target="_blank"
               >
