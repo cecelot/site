@@ -24,8 +24,8 @@ const galleryItems = readdirSync("public/img/gallery")
     return {
       name,
       date,
-      width: String(exifData["Image Width"]?.value) ?? "????",
-      height: String(exifData["Image Height"]?.value) ?? "????",
+      width: exifData["Image Width"]?.value,
+      height: exifData["Image Height"]?.value,
     };
   });
 ---

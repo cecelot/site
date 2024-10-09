@@ -4,17 +4,26 @@ import { useState } from "react";
 interface Props {
   name: string;
   date: string;
-  width: string;
-  height: string;
+  width?: number;
+  height?: number;
+}
+
+interface Transform {
+  width: number;
+  height: number;
+  quality: 50 | 75 | 100;
 }
 
 const BASE_URL = "/img/gallery";
+const DEFAULT_WIDTH = 1920;
+const DEFAULT_HEIGHT = 1080;
 
 export default function GalleryItem({ name, date, width, height }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
-  const src = `${BASE_URL}/${name}`;
+  const imageTransform = (transform: Transform) =>
+    `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality}${BASE_URL}/${name}`;
 
   return (
     <div className="m-1">
@@ -22,7 +31,16 @@ export default function GalleryItem({ name, date, width, height }: Props) {
         onClick={open}
         className="rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve transition-all ease-in-out duration-200"
       >
-        <img className="rounded-lg" src={src} width={width} height={height} />
+        <img
+          className="rounded-lg"
+          src={imageTransform({
+            width: (width || DEFAULT_WIDTH) / 8,
+            height: (height || DEFAULT_HEIGHT) / 8,
+            quality: 50,
+          })}
+          width={width}
+          height={height}
+        />
       </Button>
       <Dialog
         open={isOpen}
@@ -43,7 +61,11 @@ export default function GalleryItem({ name, date, width, height }: Props) {
               </DialogTitle>
               <img
                 className="rounded-lg my-2"
-                src={`${BASE_URL}/${name}`}
+                src={imageTransform({
+                  width: (width || DEFAULT_WIDTH) / 1.5,
+                  height: (height || DEFAULT_HEIGHT) / 1.5,
+                  quality: 50,
+                })}
                 width={width}
                 height={height}
               />
@@ -51,7 +73,14 @@ export default function GalleryItem({ name, date, width, height }: Props) {
                 Close
               </Button>{" "}
               |{" "}
-              <a href={`${BASE_URL}/${name}`} target="_blank">
+              <a
+                href={imageTransform({
+                  width: width || DEFAULT_WIDTH,
+                  height: height || DEFAULT_HEIGHT,
+                  quality: 100,
+                })}
+                target="_blank"
+              >
                 View Original
               </a>
             </DialogPanel>
