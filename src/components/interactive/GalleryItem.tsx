@@ -32,6 +32,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
         onClick={open}
         className="rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve transition-all ease-in-out duration-200"
       >
+        {/* TODO: better alt text */}
         <img
           className="rounded-lg"
           src={imageTransform({
@@ -39,6 +40,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
             height: (height || DEFAULT_HEIGHT) / 8,
             quality: 50,
           })}
+          alt={name}
           width={width}
           height={height}
         />
