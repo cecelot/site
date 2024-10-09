@@ -1,0 +1,69 @@
+---
+import GalleryItem from "../components/interactive/GalleryItem";
+import Base from "../layouts/Base.astro";
+import { readdirSync, readFileSync } from "fs";
+import ExifReader from "exifreader";
+import { format, parse } from "date-format-parse";
+import { nan } from "astro:schema";
+
+const galleryItems = readdirSync("public/img/gallery")
+  .filter(
+    (name) =>
+      name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")
+  )
+  .map((name) => {
+    const fullPath = `public/img/gallery/${name}`;
+    const buf = readFileSync(fullPath);
+    const exifData = ExifReader.load(buf);
+    const date = format(
+      parse(
+        exifData["DateTime"]?.description ?? "1970:01:01 00:00:00",
+        "YYYY:MM:DD HH:mm:ss"
+      ),
+      "DD MMM YYYY HH:mm"
+    );
+    return {
+      name,
+      date,
+      width: String(exifData["Image Width"]?.value) ?? "????",
+      height: String(exifData["Image Height"]?.value) ?? "????",
+    };
+  });
+---
+
+<Base
+  pageTitle="Gallery"
+  description="A collection of my favorite photographs I've taken! Shot on iPhone (mostly)."
+>
+  <div class="mt-8 mb-5 border-2 bg-mantle border-peach rounded-lg p-2">
+    This page depends on the experimental <a
+      target="_blank"
+      href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout"
+      >masonry layout</a
+    > for CSS Grid to display as intended. Learn how to enable this feature in <a
+      href="/p/enable-masonry-layout#in-safari"
+      target="_blank"
+      >Safari
+    </a> or <a href="/p/enable-masonry-layout#in-firefox">Firefox</a>.
+  </div>
+  <h1 class="text-3xl font-bold mt-3 mb-2">Gallery</h1>
+  <p class="mb-5">
+    A collection of my favorite photographs I've taken! Shot on iPhone (mostly).
+  </p>
+
+  <div
+    class="grid [grid-template-columns:repeat(2,1fr)] [grid-template-rows:masonry]"
+  >
+    {
+      galleryItems.map((item) => (
+        <GalleryItem
+          client:load
+          name={item.name}
+          date={item.date}
+          width={item.width}
+          height={item.height}
+        />
+      ))
+    }
+  </div>
+</Base>

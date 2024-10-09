@@ -19,4 +19,5 @@ export interface Frontmatter {
   tags: string[];
   minutesRead: string;
   featured: boolean;
+  draft: boolean;
 }

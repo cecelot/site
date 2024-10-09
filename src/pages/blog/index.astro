@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import PostCard from "../../components/PostCard.astro";
 import Base from "../../layouts/Base.astro";
 
-const allPosts = await getCollection("blog");
+const allPosts = (await getCollection("blog")).filter(
+  (post) => !post.data.draft
+);
 ---
 
 <Base
@@ -28,6 +30,7 @@ const allPosts = await getCollection("blog");
               date={new Date(post.data.pubDate)}
               url={`/p/${post.slug}`}
               featured={post.data.featured}
+              draft={post.data.draft}
             />
           </li>
         ))

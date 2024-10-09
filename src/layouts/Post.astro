@@ -13,6 +13,7 @@ const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
+  {frontmatter.draft && <span class="text-peach text-xl">draft</span>}
   <h1 class="text-4xl lg:text-5xl font-black">{frontmatter.title}</h1>
   <h2 class="text-md lg:text-xl font-medium mb-3 mt-2">
     {frontmatter.description}
