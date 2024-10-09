@@ -6,19 +6,31 @@ const slug = "alainacn";
 ---
 
 <nav class="text-sm flex flex-wrap justify-center">
-  <a class="ignored-link webring-link" href={`${root}/${slug}/previous`}>
+  <a
+    aria-label="Previous webring site"
+    class="ignored-link webring-link"
+    href={`${root}/${slug}/previous`}
+  >
     <Icon
       name="mdi:keyboard-arrow-left"
       class="p-1 text-2xl transition-all duration-200 ease-in-out"
     />
   </a>
-  <a class="ignored-link webring-link" href={root}>
+  <a
+    aria-label="Webring site list"
+    class="ignored-link webring-link"
+    href={root}
+  >
     <Icon
       name="mdi:ring"
       class="p-1 text-2xl transition-all duration-200 ease-in-out"
     />
   </a>
-  <a class="ignored-link webring-link" href={`${root}/${slug}/next`}>
+  <a
+    aria-label="Next webring site"
+    class="ignored-link webring-link"
+    href={`${root}/${slug}/next`}
+  >
     <Icon
       name="mdi:keyboard-arrow-right"
       class="p-1 text-2xl transition-all duration-200 ease-in-out"
