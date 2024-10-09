@@ -1,11 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const { icon, link } = Astro.props;
+interface Props {
+  icon: string;
+  link: string;
+  label: string;
+}
+
+const { icon, link, label } = Astro.props;
 ---
 
 <a class="ignored-link bg-mantle" href={link} rel="noopener noreferrer">
   <Icon
+    aria-label={label}
     name={icon}
     class="text-4xl p-1 border-2 rounded-full border-mantle hover:border-blue transition-all duration-200 ease-in-out"
   />
