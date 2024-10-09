@@ -35,6 +35,9 @@ ${Object.keys(rules)
   })
   .join("\n\n")}
 
+# https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/#disallow-using-robotstxt
+Disallow: /cdn-cgi/
+
 Sitemap: ${new URL("sitemap-index.xml", import.meta.env.SITE).href}
 `.trim();
 
