@@ -76,7 +76,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
               />
               <Button
                 name="Close expanded image"
-                className="text-mauve hover:underline"
+                className="text-mauve hover:text-pink underline"
                 onClick={close}
               >
                 Close
