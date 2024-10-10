@@ -62,7 +62,7 @@ It's also possible on iOS and iPadOS. The steps are almost identical, except via
 
 # Image Optimization
 
-Once I had my nice masonry grid of photos, I decided to run [PageSpeed Insights](https://pagespeed.web.dev), was when I discovered that loading half a dozen 3MB images isn't really that great: my Performance score on mobile dropped to ~40. Luckily, [Cloudflare](https://cloudflare.com) offers [a feature to transform images](https://developers.cloudflare.com/images/transform-images/) on a zone[^3], which works by setting up a `cdn-cgi` endpoint that looks like this:
+Once I had my nice masonry grid of photos, I decided to run [PageSpeed Insights](https://pagespeed.web.dev), which was when I discovered that loading half a dozen 3MB images isn't really that great: my Performance score on mobile dropped to ~40. Luckily, [Cloudflare](https://cloudflare.com) offers [a feature to transform images](https://developers.cloudflare.com/images/transform-images/) on a zone[^3], which works by setting up a `cdn-cgi` endpoint that looks like this:
 
 ```
 /cdn-cgi/image/options/url
