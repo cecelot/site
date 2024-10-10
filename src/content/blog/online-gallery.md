@@ -75,10 +75,11 @@ I used this to (1) dynamically convert my `jpeg` images to either `webp` or `avi
 I've learned a few things in doing this, some of which seem obvious in retrospect:
 
 - Don't serve big files, like, ever, unless the user explicitly wants the originals ([so much bandwidth will be saved](#bandwidth-statistics))
-	- Don't serve 4 MB high-res photos for thumbnails (I really wasn't thinking for that one)
+  - Don't serve 4 MB high-res photos for thumbnails (I really wasn't thinking for that one)
 - It's important to run tools like PageSpeed Insights to catch design issues[^5]
 
-#### Bandwidth Statistics
+## Bandwidth Statistics
+
 ![Raw stats for bandwith saved](/img/online-gallery/stats.png)
 
 I'm also really excited to finally have my very own photography portfolio/gallery.
