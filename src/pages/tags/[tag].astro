@@ -4,9 +4,7 @@ import PostCard from "../../components/PostCard.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const allPosts = (await getCollection("blog")).filter(
-    (post) => !post.data.draft
-  );
+  const allPosts = await getCollection("blog");
   const uniqueTags = [
     ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];
