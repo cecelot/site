@@ -1,0 +1,98 @@
+---
+layout: ../../layouts/Post.astro
+title: "Creating an Online Photo Gallery"
+pubDate: "2024-10-09"
+description: "Building a simple way to showcase my photography on the web; and: please make CSS Masonry Grid a reality!"
+author: "Sydney Newmark"
+tags: ["css", "webkit", "grid"]
+featured: false
+draft: false
+---
+
+I've wanted to publish a self-hosted online photo gallery for a while now, but I could never decide what to use. From server solutions with way more functionality than I needed to minimal premade static galleries like [Sigal](http://sigal.saimon.org/en/latest/) or [the "Gallery" Hugo theme](https://themes.gohugo.io/themes/hugo-theme-gallery/), there are a plethora of options out there.
+
+They all fell _just a little short_: either in terms of functionality, UI, or a mix of both. After experimenting a bit with Sigal and briefly considering a couple other options, I decided to scrap the idea of using something that already existed and just build my own.
+
+# Contents
+
+# CSS Grid: Now
+
+I had seen swipeable image galleries online many, many times, but I didn't really want to write something that involved, and I figured any online JavaScript library I found would be too clunky to use and/or look out of place here[^1]. A simple grid would suffice for me.
+
+**At least, I _thought_ it was simple.**
+
+But no! I spent far, far too long yesterday trying to figure out how design something that had "a fixed number of columns and variable height rows." I tried many different search queries to figure out the magical CSS invocations I needed to write, including "row with dynamic height css grid" and "css mosaic grid," to _almost_ no avail.
+
+The latter query, though, led me to [this wonderful post from Smashing Magazine](https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/), and following their steps, I was able to achieve exactly what I wanted with just a few Tailwind classes:
+
+```tsx
+<div class="grid [grid-template-columns:repeat(auto-fill, minmax(160px,1fr))] [grid-template-rows:masonry]">
+  {/* [items] */}
+</div>
+```
+
+# CSS Grid: Future
+
+Unfortunately, `grid-template-rows: masonry` is part of an [in-progress initiative](https://webkit.org/blog/15269/help-us-invent-masonry-layouts-for-css-grid-level-3/) led by [WebKit](https://webkit.org) to make "CSS Grid Level 3" a reality, so this doesn't actually exist in most browsers yet. There's also some debate over how to implement the feature, but I really do hope it comes to fruition. They describe all the motivation for why this should exist in their blog post, so I won't reiterate it here.
+
+I will comment, though, that I think it is a natural thing to say, "I don't actually want a row axis, just give me a certain number of columns," as shown by (1) I really thought this was possible with the version of CSS Grid available now; and (2) there are _so many_ examples of this layout on the web (so it doesn't seem to just be me).
+
+There are some alternatives available now to achieve the same effect, like the [`masonry-layout`](https://masonry.desandro.com) JavaScript library, and maybe I will pursue that in the future, but I'm happy enough with how [my gallery](/gallery) looks right now, even with the feature disabled, that it's not a priority for me[^2].
+
+## The Experiment
+
+As of the time of publishing this post, [only Safari and Firefox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout#browser_compatibility) support the masonry grid, and both as an experimental, opt-in feature. But this is how you can enable it, if you're using either of those browsers:
+
+### In Safari
+
+1. Go to Safari > Settings > Advanced
+2. Ensure "Show features for web developers" is checked
+3. Click on the "Feature Flags" tab
+4. Type "masonry" in the search bar on the top right
+5. Click the checkbox next to "CSS Masonry Layout"
+
+It's also possible on iOS and iPadOS. The steps are almost identical, except via the Settings app rather than the browser itself.
+
+### In Firefox
+
+1. Type `about:config` into the address bar and press enter
+2. Click "Accept the Risk and Continue"
+3. Type "masonry" into the search bar at the top of the page
+4. Double click on the "layout.css.grid-template-masonry-value.enabled" line
+
+# Image Optimization
+
+Once I had my nice masonry grid of photos, I decided to run [PageSpeed Insights](https://pagespeed.web.dev), was when I discovered that loading half a dozen 3MB images isn't really that great: my Performance score on mobile dropped to ~40. Luckily, [Cloudflare](https://cloudflare.com) offers [a feature to transform images](https://developers.cloudflare.com/images/transform-images/) on a zone[^3], which works by setting up a `cdn-cgi` endpoint that looks like this:
+
+```
+/cdn-cgi/image/options/url
+```
+
+I used this to (1) dynamically convert my `jpeg` images to either `webp` or `avif` (depending on the browser); and (2) reduce the width and height for the thumbnail photos[^4], reducing my file sizes from several MB each to just a few KiB. These changes bumped my PageSpeed performance on mobile to ~80 (and it's nearly perfect for desktop). That's still not _amazing_, but it is much better than before.
+
+# Conclusion
+
+I've learned a few things in doing this, some of which seem obvious in retrospect:
+
+- Don't serve big files, like, ever, unless the user explicitly wants the originals ([so much bandwidth will be saved](#bandwidth-statistics))
+	- Don't serve 4 MB high-res photos for thumbnails (I really wasn't thinking for that one)
+- It's important to run tools like PageSpeed Insights to catch design issues[^5]
+
+#### Bandwidth Statistics
+![Raw stats for bandwith saved](/img/online-gallery/stats.png)
+
+I'm also really excited to finally have my very own photography portfolio/gallery.
+
+Thanks for reading!
+
+-- Sydney
+
+[^1]: I have not done my due diligence on this front so there might be something out there that fits all my requirements
+
+[^2]: I'd rather not have to use JavaScript for something I now know can be done without, but I might do it eventually just for consistency's sake
+
+[^3]: A domain, basically
+
+[^4]: [Read more about how Cloudflare image transformations work](https://developers.cloudflare.com/images/transform-images/)
+
+[^5]: I didn't mention this, but running PageSpeed Insights on the gallery page prompted me to check all my other pages and so I've made a bunch of accessibility-related improvements for links and navigation
