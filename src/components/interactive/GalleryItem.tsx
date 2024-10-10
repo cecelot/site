@@ -32,7 +32,7 @@ export default function GalleryItem({ name, date, width, height }: Props) {
       <Button
         name={`Expand ${name}`}
         onClick={open}
-        className="rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve transition-all ease-in-out duration-200"
+        className="rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve transition-all ease-in-out duration-75"
       >
         {/* TODO: better alt text */}
         <img
