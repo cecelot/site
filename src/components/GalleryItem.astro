@@ -1,0 +1,35 @@
+---
+import { transformImage } from "../image";
+
+interface Props {
+  id: number;
+  name: string;
+  width?: number;
+  height?: number;
+}
+
+const { id, name, width, height } = Astro.props;
+
+const DEFAULT_WIDTH = 1920;
+const DEFAULT_HEIGHT = 1080;
+---
+
+<div class="m-1">
+  <a
+    href={`/gallery/${id}`}
+    class="inline-block rounded-lg bg-mantle text-sm border-2 border-crust hover:border-mauve"
+  >
+    {/* TODO: better alt text */}
+    <img
+      class="rounded-lg"
+      src={transformImage(name, {
+        width: (width || DEFAULT_WIDTH) * 0.04,
+        height: (height || DEFAULT_HEIGHT) * 0.04,
+        quality: 100,
+      })}
+      alt={name}
+      width={width}
+      height={height}
+    />
+  </a>
+</div>

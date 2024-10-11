@@ -21,3 +21,10 @@ export interface Frontmatter {
   featured: boolean;
   draft: boolean;
 }
+
+export interface Transform {
+  width: number;
+  height: number;
+  quality: 50 | 75 | 100;
+  format?: "auto" | "jpeg";
+}

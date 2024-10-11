@@ -1,0 +1,33 @@
+---
+import GalleryItem from "./GalleryItem.astro";
+
+interface GalleryImage {
+  name: string;
+  date: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<div
+  class="grid [grid-template-columns:repeat(auto-fill,minmax(160px,1fr))] [grid-template-rows:masonry]"
+>
+  {
+    images
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .map((img, key) => (
+        <GalleryItem
+          id={key}
+          name={img.name}
+          width={img.width}
+          height={img.height}
+        />
+      ))
+  }
+</div>

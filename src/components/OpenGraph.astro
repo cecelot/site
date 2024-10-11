@@ -1,5 +1,8 @@
 ---
-const { title, description, type, url } = Astro.props;
+const { title, description, type, url, image } = Astro.props;
+const imageUrl = image
+  ? image
+  : `https://og.sydneyn.dev/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 ---
 
 <meta name="title" content={title} />
@@ -8,9 +11,6 @@ const { title, description, type, url } = Astro.props;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
-<meta
-  property="og:image"
-  content=`https://og.sydneyn.dev/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
-/>
+<meta property="og:image" content={imageUrl} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="og:url" content={url} />

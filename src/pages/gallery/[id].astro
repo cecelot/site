@@ -1,0 +1,46 @@
+---
+import { getAllImages, transformImage } from "../../image";
+import Base from "../../layouts/Base.astro";
+
+const DEFAULT_WIDTH = 1920;
+const DEFAULT_HEIGHT = 1080;
+
+export const getStaticPaths = async () => {
+  const count = (await getAllImages()).length;
+  return Array.from({ length: count }).map((_, index) => ({
+    params: { id: index },
+  }));
+};
+
+const images = (await getAllImages()).sort((a, b) =>
+  new Date(a.date) < new Date(b.date) ? 1 : -1
+);
+
+const index = Astro.params.id;
+const { name, width, height, date } = images[index];
+const quarterPercent = transformImage(name, {
+  width: (width || DEFAULT_WIDTH) * 0.25,
+  height: (height || DEFAULT_HEIGHT) * 0.25,
+  quality: 100,
+});
+---
+
+<Base pageTitle={name} description={name} image={quarterPercent}>
+  <a href="/gallery">Back</a>
+  <p>
+    {name} | {width}x{height} | {date} | <a
+      href={transformImage(name, {
+        width: width || DEFAULT_WIDTH,
+        height: height || DEFAULT_HEIGHT,
+        quality: 100,
+      })}
+      target="_blank">View Original</a
+    >
+  </p>
+  <img
+    class="rounded-lg my-2"
+    src={quarterPercent}
+    width={width}
+    height={height}
+  />
+</Base>
