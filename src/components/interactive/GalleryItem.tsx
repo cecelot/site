@@ -1,11 +1,14 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
+  id: number;
   name: string;
   date: string;
   width?: number;
   height?: number;
+  activeItem: number | null;
+  setActiveItem: (key: number | null) => void;
 }
 
 interface Transform {
@@ -19,10 +22,33 @@ const BASE_URL = "/img/gallery";
 const DEFAULT_WIDTH = 1920;
 const DEFAULT_HEIGHT = 1080;
 
-export default function GalleryItem({ name, date, width, height }: Props) {
+export default function GalleryItem({
+  id,
+  name,
+  date,
+  width,
+  height,
+  activeItem,
+  setActiveItem,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const open = () => setIsOpen(true);
-  const close = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (activeItem === id) {
+      setIsOpen(true);
+    }
+  }, [activeItem]);
+
+  const open = () => {
+    setActiveItem(id);
+    setIsOpen(true);
+    window.history.pushState(null, "", `?image=${id}`);
+  };
+  const close = () => {
+    setActiveItem(null);
+    setIsOpen(false);
+    window.history.pushState(null, "", "/gallery");
+  };
   const imageTransform = (transform: Transform) => {
     const format = transform.format ? transform.format : "auto";
     return `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=${format}${BASE_URL}/${name}`;

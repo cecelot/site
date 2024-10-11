@@ -1,5 +1,5 @@
 ---
-import GalleryItem from "../components/interactive/GalleryItem";
+import GalleryView from "../components/interactive/GalleryView";
 import Base from "../layouts/Base.astro";
 import { readdirSync, readFileSync } from "fs";
 import ExifReader from "exifreader";
@@ -48,22 +48,5 @@ const galleryItems = readdirSync("public/img/gallery")
   <p class="mb-5">
     A collection of my favorite photographs I've taken! Shot on iPhone (mostly).
   </p>
-
-  <div
-    class="grid [grid-template-columns:repeat(auto-fill,minmax(160px,1fr))] [grid-template-rows:masonry]"
-  >
-    {
-      galleryItems
-        .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-        .map((item) => (
-          <GalleryItem
-            client:load
-            name={item.name}
-            date={item.date}
-            width={item.width}
-            height={item.height}
-          />
-        ))
-    }
-  </div>
+  <GalleryView client:load galleryItems={galleryItems} />
 </Base>
