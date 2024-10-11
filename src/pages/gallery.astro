@@ -53,15 +53,17 @@ const galleryItems = readdirSync("public/img/gallery")
     class="grid [grid-template-columns:repeat(auto-fill,minmax(160px,1fr))] [grid-template-rows:masonry]"
   >
     {
-      galleryItems.map((item) => (
-        <GalleryItem
-          client:load
-          name={item.name}
-          date={item.date}
-          width={item.width}
-          height={item.height}
-        />
-      ))
+      galleryItems
+        .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+        .map((item) => (
+          <GalleryItem
+            client:load
+            name={item.name}
+            date={item.date}
+            width={item.width}
+            height={item.height}
+          />
+        ))
     }
   </div>
 </Base>
