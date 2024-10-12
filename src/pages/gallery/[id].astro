@@ -45,6 +45,7 @@ const next = Math.min(images.length - 1, index + 1);
       class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
     >
       <a
+        id="previous"
         aria-label="Previous image"
         class="ignored-link webring-link"
         href={`/gallery/${previous}`}
@@ -73,6 +74,7 @@ const next = Math.min(images.length - 1, index + 1);
       class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
     >
       <a
+        id="next"
         aria-label="Next image"
         class="ignored-link webring-link"
         href={`/gallery/${next}`}
@@ -94,21 +96,14 @@ const next = Math.min(images.length - 1, index + 1);
   <script>
     document.addEventListener("keydown", (ev) => {
       ev.preventDefault();
-      const currentPhoto = Number(
-        document.location.pathname.replace("/gallery/", "").trim()
-      );
       if (ev.code === "ArrowLeft" || ev.code === "KeyH" || ev.code === "KeyA") {
-        window.open(`/gallery/${Math.max(0, currentPhoto - 1)}`, "_self");
+        document.getElementById("previous")?.click();
       } else if (
         ev.code === "ArrowRight" ||
         ev.code === "KeyL" ||
         ev.code === "KeyD"
       ) {
-        fetch(`/gallery/${currentPhoto + 1}`).then((res) => {
-          if (res.status !== 404) {
-            window.open(`/gallery/${currentPhoto + 1}`, "_self");
-          }
-        });
+        document.getElementById("next")?.click();
       }
     });
   </script>
