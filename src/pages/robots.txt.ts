@@ -1,10 +1,11 @@
-import type { APIRoute } from "astro";
+import { domain } from "../../data/config.json";
 import type { RobotsTxtRules } from "../types";
+import type { APIRoute } from "astro";
 
 const rules: RobotsTxtRules = {
   largeLanguageModels: {
     reasoning:
-      `sydneyn.dev does not permit, without express permission by me, usage incl. 
+      `${domain} does not permit, without express permission by me, usage incl. 
       but not limited to: for large language models (LLMs), machine learning,
       and/or artificial intelligence-related purposes.`.trim(),
     bots: [

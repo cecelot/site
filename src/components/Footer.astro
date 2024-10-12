@@ -1,4 +1,5 @@
 ---
+import { analytics } from "../../data/config.json";
 import Webring from "./Webring.astro";
 ---
 
@@ -9,11 +10,7 @@ import Webring from "./Webring.astro";
       <a class="text-xs mr-3" href="/acknowledgments">Acknowledgments</a>
     </li>
     <li>
-      <a
-        class="text-xs"
-        href="https://cloud.umami.is/share/vCIqThw4NIVycoX1/sydneyn.dev"
-        >Analytics</a
-      >
+      <a class="text-xs" href={analytics.shareUrl}>Analytics</a>
     </li>
   </ul>
 </footer>

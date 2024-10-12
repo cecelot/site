@@ -1,13 +1,15 @@
 ---
+import { domain } from "../../data/config.json";
+
 const { title, description, type, url, image } = Astro.props;
 const imageUrl = image
   ? image
-  : `https://og.sydneyn.dev/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+  : `https://og.${domain}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 ---
 
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta property="og:site_name" content="sydneyn.dev" />
+<meta property="og:site_name" content={domain} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />

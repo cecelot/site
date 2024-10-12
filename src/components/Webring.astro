@@ -1,29 +1,27 @@
 ---
+import { webring } from "../../data/config.json";
 import { Icon } from "astro-icon/components";
-
-const root = "https://ctp-webr.ing";
-const slug = "sydney";
 ---
 
 <nav class="text-sm flex flex-wrap justify-center">
   <a
     aria-label="Previous webring site"
     class="ignored-link webring-link"
-    href={`${root}/${slug}/previous`}
+    href={`${webring.root}/${webring.slug}/previous`}
   >
     <Icon name="mdi:keyboard-arrow-left" class="p-1 text-2xl" />
   </a>
   <a
     aria-label="Webring site list"
     class="ignored-link webring-link"
-    href={root}
+    href={webring.root}
   >
     <Icon name="mdi:ring" class="p-1 text-2xl" />
   </a>
   <a
     aria-label="Next webring site"
     class="ignored-link webring-link"
-    href={`${root}/${slug}/next`}
+    href={`${webring.root}/${webring.slug}/next`}
   >
     <Icon name="mdi:keyboard-arrow-right" class="p-1 text-2xl" />
   </a>

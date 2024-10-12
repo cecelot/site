@@ -1,4 +1,5 @@
 import { remarkReadingTime } from "./src/readingTime";
+import { baseUrl } from "./data/config.json";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
@@ -10,7 +11,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sydneyn.dev",
+  site: baseUrl,
   integrations: [tailwind(), sitemap(), react(), icon()],
   markdown: {
     shikiConfig: {

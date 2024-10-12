@@ -1,12 +1,19 @@
 ---
+import {
+  baseUrl,
+  domain,
+  socials,
+  analytics,
+  fullName,
+} from "../../data/config.json";
+import CssNakedDay from "../components/CssNakedDay.astro";
+import Navigation from "../components/Navigation.astro";
+import OpenGraph from "../components/OpenGraph.astro";
+import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Styles from "../components/Styles.astro";
 import "@fontsource/inclusive-sans";
 import "@fontsource/recursive";
-import Footer from "../components/Footer.astro";
-import Navigation from "../components/Navigation.astro";
-import Styles from "../components/Styles.astro";
-import OpenGraph from "../components/OpenGraph.astro";
-import CssNakedDay from "../components/CssNakedDay.astro";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   pageTitle: string;
@@ -15,19 +22,18 @@ interface Props {
 }
 
 const { pageTitle, description, image } = Astro.props;
-const BASE_URL = "https://sydneyn.dev";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="me" href="https://mastodon.social/@cecelot" />
+    <link rel="me" href={socials.mastodon} />
     <meta name="theme-color" content="#ea76cb" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="canonical" href={`${BASE_URL}${Astro.url.pathname}`} />
+    <link rel="canonical" href={`${baseUrl}${Astro.url.pathname}`} />
     <link
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
       rel="stylesheet"
@@ -36,16 +42,12 @@ const BASE_URL = "https://sydneyn.dev";
       defer
       is:inline
       src="https://cloud.umami.is/script.js"
-      data-website-id="5ba07c82-f9f0-4d43-8288-d2f81b8242b7"></script>
+      data-website-id={analytics.websiteId}></script>
     <title>
-      {
-        pageTitle !== "Sydney Newmark"
-          ? `${pageTitle} • Sydney Newmark`
-          : pageTitle
-      }
+      {pageTitle !== fullName ? `${pageTitle} • ${fullName}` : pageTitle}
     </title>
     <OpenGraph
-      siteName="sydneyn.dev"
+      siteName={domain}
       title={pageTitle}
       description={description}
       type="article"

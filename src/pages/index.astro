@@ -1,4 +1,5 @@
 ---
+import { socials } from "../../data/config.json";
 import Social from "../components/Social.astro";
 import Base from "../layouts/Base.astro";
 ---
@@ -32,14 +33,14 @@ import Base from "../layouts/Base.astro";
           <Social
             label="Sydney Newmark's GitHub"
             icon="carbon:logo-github"
-            link="https://github.com/cecelot"
+            link={socials.github}
           />
         </li>
         <li>
           <Social
             label="Sydney Newmark's Mastodon"
             icon="carbon:logo-mastodon"
-            link="https://mastodon.social/@cecelot"
+            link={socials.mastodon}
           />
         </li>
       </ul>

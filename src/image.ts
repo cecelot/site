@@ -1,11 +1,13 @@
 import { format, parse } from "date-format-parse";
+import { baseUrl } from "../data/config.json";
 import type { Transform } from "./types";
 import ExifReader from "exifreader";
-const BASE_URL = "/img/gallery";
+
+const imageDir = "/img/gallery";
 
 export const transformImage = (name: string, transform: Transform) => {
   const format = transform.format ? transform.format : "auto";
-  return `https://sydneyn.dev/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=${format}${BASE_URL}/${name}`;
+  return `${baseUrl}/cdn-cgi/image/width=${transform.width},height=${transform.height},quality=${transform.quality},format=${format}${imageDir}/${name}`;
 };
 
 export const getAllImages = async () => {
@@ -13,13 +15,13 @@ export const getAllImages = async () => {
   // use dynamic import for this.
   const { readdirSync, readFileSync } = await import("fs");
 
-  return readdirSync("public/img/gallery")
+  return readdirSync("public" + imageDir)
     .filter(
       (name) =>
         name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")
     )
     .map((name) => {
-      const fullPath = `public/img/gallery/${name}`;
+      const fullPath = `public/${imageDir}/${name}`;
       const buf = readFileSync(fullPath);
       const exifData = ExifReader.load(buf);
       const date = format(

@@ -5,7 +5,10 @@ const linkColor = "blue";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "data/config.json",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -44,7 +47,7 @@ export default {
             "--tw-prose-invert-hr": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quotes": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-quote-borders": theme(
-              `colors.${accent}.DEFAULT`,
+              `colors.${accent}.DEFAULT`
             ),
             "--tw-prose-invert-captions": theme(`colors.${accent}.DEFAULT`),
             "--tw-prose-invert-code": theme("colors.white"),

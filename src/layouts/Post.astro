@@ -1,4 +1,5 @@
 ---
+import { socials } from "../../data/config.json";
 import type { Props } from "../types";
 import Base from "./Base.astro";
 
@@ -9,7 +10,7 @@ if (pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
 
-const editLink = `https://github.com/cecelot/forest/edit/drafts/src/content/blog/${pathname}.md`;
+const editLink = `${socials.github}/forest/edit/drafts/src/content/blog/${pathname}.md`;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>

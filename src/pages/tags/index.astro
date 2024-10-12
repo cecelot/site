@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import TagList from "../../components/interactive/TagList";
 import { getCollection } from "astro:content";
+
 const allPosts = (await getCollection("blog")).filter(
   (post) => !post.data.draft
 );

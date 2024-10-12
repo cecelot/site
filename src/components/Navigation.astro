@@ -1,21 +1,18 @@
 ---
+import { banner } from "../../data/config.json";
 import mdToHtml from "../mdToHtml";
 import clsx from "clsx";
-
-const bannerText = "Make your voice heard. **[Vote](https://iwillvote.com)**.";
-const bannerBorder =
-  "border-t-red border-b-blue border-x-crust dark:border-x-text";
 ---
 
 <header>
   {
-    bannerText && (
+    banner.text && (
       <section
         class={clsx(
           "rounded-lg py-1 border-2 border-mantle bg-mantle w-full text-center",
-          bannerBorder
+          banner.border
         )}
-        set:html={mdToHtml(bannerText)}
+        set:html={mdToHtml(banner.text)}
       />
     )
   }

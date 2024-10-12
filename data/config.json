@@ -1,0 +1,21 @@
+{
+  "fullName": "Sydney Newmark",
+  "domain": "sydneyn.dev",
+  "baseUrl": "https://sydneyn.dev",
+  "socials": {
+    "mastodon": "https://mastodon.social/@cecelot",
+    "github": "https://github.com/cecelot"
+  },
+  "analytics": {
+    "websiteId": "5ba07c82-f9f0-4d43-8288-d2f81b8242b7",
+    "shareUrl": "https://cloud.umami.is/share/vCIqThw4NIVycoX1/sydneyn.dev"
+  },
+  "banner": {
+    "text": "Make your voice heard. **[Vote](https://iwillvote.com)**.",
+    "border": "border-t-red border-b-blue border-x-crust dark:border-x-text"
+  },
+  "webring": {
+    "root": "https://ctp-webr.ing",
+    "slug": "sydney"
+  }
+}
