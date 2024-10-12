@@ -7,8 +7,9 @@ import clsx from "clsx";
 const mdToHtml = async (input: string) =>
   await unified().use(remarkParse).use(remarkHtml).process(input);
 
-const bannerText = "";
-const bannerBorder = "";
+const bannerText = "Make your voice heard. **[Vote](https://iwillvote.com)**.";
+const bannerBorder =
+  "border-t-red border-b-blue border-x-crust dark:border-x-text";
 ---
 
 <header>
