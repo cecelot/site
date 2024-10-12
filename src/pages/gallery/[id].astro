@@ -25,7 +25,11 @@ const quarterPercent = transformImage(name, {
 });
 ---
 
-<Base pageTitle={name} description={name} image={quarterPercent}>
+<Base
+  pageTitle={name}
+  description={`${width}x${height} digital image captured on ${date}`}
+  image={quarterPercent}
+>
   <div class="mb-3 flex flex-row">
     <a href="/gallery">Gallery</a>
     <p class="px-2">/</p>
