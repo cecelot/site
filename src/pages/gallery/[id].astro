@@ -51,7 +51,7 @@ const quarterPercent = transformImage(name, {
     class="rounded-lg my-2"
     src={quarterPercent}
     alt={name}
-    width={width}
-    height={height}
+    width={(width || DEFAULT_WIDTH) * 0.25}
+    height={(height || DEFAULT_HEIGHT) * 0.25}
   />
 </Base>
