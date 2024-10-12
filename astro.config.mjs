@@ -1,10 +1,12 @@
+import { remarkReadingTime } from "./src/readingTime";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 import react from "@astrojs/react";
-import icon from "astro-icon";
 import remarkToc from "remark-toc";
-import { remarkReadingTime } from "./src/readingTime";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +24,7 @@ export default defineConfig({
       footnoteBackContent: "^",
     },
     remarkPlugins: [
+      remarkMath,
       [
         remarkToc,
         {
@@ -30,5 +33,6 @@ export default defineConfig({
       ],
       remarkReadingTime,
     ],
+    rehypePlugins: [rehypeKatex],
   },
 });
