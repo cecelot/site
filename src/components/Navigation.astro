@@ -1,11 +1,6 @@
 ---
-import remarkHtml from "remark-html";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
+import mdToHtml from "../mdToHtml";
 import clsx from "clsx";
-
-const mdToHtml = async (input: string) =>
-  await unified().use(remarkParse).use(remarkHtml).process(input);
 
 const bannerText = "Make your voice heard. **[Vote](https://iwillvote.com)**.";
 const bannerBorder =

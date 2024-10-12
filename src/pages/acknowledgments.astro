@@ -2,14 +2,10 @@
 import Base from "../layouts/Base.astro";
 import LicenseList from "../components/interactive/LicenseList";
 import checker from "license-checker";
-import remarkHtml from "remark-html";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
 import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
+import mdToHtml from "../mdToHtml";
 
-const mdToHtml = async (input: string) =>
-  await unified().use(remarkParse).use(remarkHtml).process(input);
 const licenseChecker = promisify(checker.init);
 
 const licenses = await licenseChecker({ start: process.cwd() });
