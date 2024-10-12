@@ -26,9 +26,16 @@ const quarterPercent = transformImage(name, {
 ---
 
 <Base pageTitle={name} description={name} image={quarterPercent}>
-  <a href="/gallery">Back</a>
-  <p>
-    {name} | {width}x{height} | {date} | <a
+  <div class="mb-3 flex flex-row">
+    <a href="/gallery">Gallery</a>
+    <p class="px-2">/</p>
+    <p>{name}</p>
+  </div>
+  <div class="border-2 border-lavender bg-mantle rounded-lg p-3 mb-4">
+    <p>{name}</p>
+    <p>{width}x{height}</p>
+    <p>{date}</p>
+    <a
       href={transformImage(name, {
         width: width || DEFAULT_WIDTH,
         height: height || DEFAULT_HEIGHT,
@@ -36,7 +43,7 @@ const quarterPercent = transformImage(name, {
       })}
       target="_blank">View Original</a
     >
-  </p>
+  </div>
   <img
     class="rounded-lg my-2"
     src={quarterPercent}
