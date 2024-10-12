@@ -17,7 +17,7 @@ const images = (await getAllImages()).sort((a, b) =>
   new Date(a.date) < new Date(b.date) ? 1 : -1
 );
 
-const index = Astro.params.id;
+const index = Number(Astro.params.id);
 const { name, width, height, date } = images[index];
 const quarterPercent = transformImage(name, {
   width: (width || DEFAULT_WIDTH) * 0.25,
