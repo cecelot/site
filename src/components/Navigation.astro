@@ -1,8 +1,28 @@
 ---
+import remarkHtml from "remark-html";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
+import clsx from "clsx";
 
+const mdToHtml = async (input: string) =>
+  await unified().use(remarkParse).use(remarkHtml).process(input);
+
+const bannerText = "";
+const bannerBorder = "";
 ---
 
 <header>
+  {
+    bannerText && (
+      <section
+        class={clsx(
+          "rounded-lg py-1 border-2 border-mantle bg-mantle w-full text-center",
+          bannerBorder
+        )}
+        set:html={mdToHtml(bannerText)}
+      />
+    )
+  }
   <nav>
     <ul class="my-5 flex flex-wrap gap-y-8 justify-center">
       <li>
