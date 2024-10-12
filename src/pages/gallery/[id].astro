@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { getAllImages, transformImage } from "../../image";
 import Base from "../../layouts/Base.astro";
 
@@ -23,6 +24,8 @@ const quarterPercent = transformImage(name, {
   height: (height || DEFAULT_HEIGHT) * 0.25,
   quality: 100,
 });
+const previous = Math.max(0, index - 1);
+const next = Math.min(images.length - 1, index + 1);
 ---
 
 <Base
@@ -30,28 +33,83 @@ const quarterPercent = transformImage(name, {
   description={`${width}x${height} digital image captured on ${date}`}
   image={quarterPercent}
 >
-  <div class="mb-3 flex flex-row">
+  <div class="mb-3 flex flex-row justify-center gap-2">
     <a href="/gallery">Gallery</a>
-    <p class="px-2">/</p>
+    <p>/</p>
     <p>{name}</p>
   </div>
-  <div class="border-2 border-lavender bg-mantle rounded-lg p-3 mb-4">
-    <p>{width}x{height}</p>
-    <p>{date}</p>
-    <a
-      href={transformImage(name, {
-        width: width || DEFAULT_WIDTH,
-        height: height || DEFAULT_HEIGHT,
-        quality: 100,
-      })}
-      target="_blank">View Original</a
+  <div
+    class="flex flex-col sm:flex-row flex-wrap justify-between mt-4 mb-5 gap-4"
+  >
+    <p
+      class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
     >
+      <a
+        aria-label="Previous image"
+        class="ignored-link webring-link"
+        href={`/gallery/${previous}`}
+      >
+        <Icon
+          name="mdi:keyboard-arrow-left"
+          class="p-1 text-2xl block m-auto"
+        />
+      </a>
+    </p>
+    <div
+      class="border-2 text-center flex-grow border-lavender bg-mantle rounded-lg p-3"
+    >
+      <p>{width}x{height}</p>
+      <p>{date}</p>
+      <a
+        href={transformImage(name, {
+          width: width || DEFAULT_WIDTH,
+          height: height || DEFAULT_HEIGHT,
+          quality: 100,
+        })}
+        target="_blank">View Original</a
+      >
+    </div>
+    <p
+      class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
+    >
+      <a
+        aria-label="Next image"
+        class="ignored-link webring-link"
+        href={`/gallery/${next}`}
+      >
+        <Icon
+          name="mdi:keyboard-arrow-right"
+          class="p-1 text-2xl block m-auto"
+        />
+      </a>
+    </p>
   </div>
   <img
-    class="rounded-lg my-2"
+    class="rounded-lg my-2 mx-auto"
     src={quarterPercent}
     alt={name}
     width={(width || DEFAULT_WIDTH) * 0.25}
     height={(height || DEFAULT_HEIGHT) * 0.25}
   />
+  <script>
+    document.addEventListener("keydown", (ev) => {
+      ev.preventDefault();
+      const currentPhoto = Number(
+        document.location.pathname.replace("/gallery/", "").trim()
+      );
+      if (ev.code === "ArrowLeft" || ev.code === "KeyH" || ev.code === "KeyA") {
+        window.open(`/gallery/${Math.max(0, currentPhoto - 1)}`, "_self");
+      } else if (
+        ev.code === "ArrowRight" ||
+        ev.code === "KeyL" ||
+        ev.code === "KeyD"
+      ) {
+        fetch(`/gallery/${currentPhoto + 1}`).then((res) => {
+          if (res.status !== 404) {
+            window.open(`/gallery/${currentPhoto + 1}`, "_self");
+          }
+        });
+      }
+    });
+  </script>
 </Base>
