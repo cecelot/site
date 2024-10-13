@@ -4,7 +4,8 @@
   "baseUrl": "https://sydneyn.dev",
   "socials": {
     "mastodon": "https://mastodon.social/@cecelot",
-    "github": "https://github.com/cecelot"
+    "github": "https://github.com/cecelot",
+    "orcid": "https://orcid.org/0009-0003-7309-5928"
   },
   "analytics": {
     "websiteId": "5ba07c82-f9f0-4d43-8288-d2f81b8242b7"

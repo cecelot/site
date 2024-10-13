@@ -30,8 +30,8 @@ import { Image } from "astro:assets";
           >highlight my favorite projects</a
         >.
       </p>
-      <ul class="mt-2 flex flex-row flex-wrap gap-y-2">
-        <li class="mr-2">
+      <ul class="mt-2 flex flex-row flex-wrap gap-2">
+        <li>
           <Social
             label="Sydney Newmark's GitHub"
             icon="carbon:logo-github"
@@ -43,6 +43,13 @@ import { Image } from "astro:assets";
             label="Sydney Newmark's Mastodon"
             icon="carbon:logo-mastodon"
             link={socials.mastodon}
+          />
+        </li>
+        <li>
+          <Social
+            label="Sydney Newmark's ORCID iD"
+            icon="fa-brands:orcid"
+            link={socials.orcid}
           />
         </li>
       </ul>
