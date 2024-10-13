@@ -1,0 +1,20 @@
+---
+title: "Am I stuck with Cloudflare?"
+description: "I was editing my README for this site yesterday (12 Oct 2024 for people from the future) and I noticed that I am relying on Cloudflare for a lot of things"
+---
+
+1. Domain registrar
+2. DNS
+3. R2
+4. Image transformations
+5. Redirects
+
+I think that's all, and it is five things, which seems like a lot, but I think it wouldn't be _too_ problematic to switch.
+
+**Domain registrar and DNS**: I know domain transfers and DNS server changes are [definitely possible and relatively straightforward](https://developers.cloudflare.com/registrar/account-options/transfer-out-from-cloudflare/)
+
+**R2**: I'm using the S3 API to retrieve images from R2, so any S3-compatible storage should be a feasible migration target using something like [rclone](http://rclone.org) to transfer the objects?
+
+**Image transformations**: [cloudinary](https://cloudinary.com) has a free option that might meet my requirements, but I could also do it manually with a JavaScript library like [sharp](https://www.npmjs.com/package/sharp) and rely on my hosting provider to have a CDN to deliver those assets
+
+**Redirects**: This is the least crucial of all, and I can do this [with the relevant Astro feature](https://docs.astro.build/en/guides/routing/#redirects) (maybe I should aleady be using this?)
