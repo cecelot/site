@@ -1,16 +1,12 @@
 ---
-import { analytics } from "../../data/config.json";
 import Webring from "./Webring.astro";
 ---
 
 <footer class="text-center mt-10 space-y-3 mb-20">
   <Webring />
-  <ul class="flex flex-col list-none">
-    <li>
-      <a class="text-xs mr-3" href="/acknowledgments">Acknowledgments</a>
-    </li>
-    <li>
-      <a class="text-xs" href={analytics.shareUrl}>Analytics</a>
-    </li>
+  <ul class="flex flex-col list-none gap-1">
+    <p class="text-xs text-subtext0">Copyright © 2024 Sydney Newmark</p>
+    <a class="text-xs" href="/acknowledgments">Acknowledgments</a>
+    <a class="text-xs" href="/analytics">Analytics</a>
   </ul>
 </footer>
