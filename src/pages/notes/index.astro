@@ -1,0 +1,33 @@
+---
+import SimpleCard from "../../components/SimpleCard.astro";
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const notes = await getCollection("notes");
+---
+
+<Base
+  pageTitle="Notes"
+  description="Miscellaneous thoughts and writings that don't have another home."
+>
+  <h1 class="text-3xl font-bold mb-2">
+    <a href="/collections">../</a>notes
+  </h1>
+  <p class="mb-5">
+    Miscellaneous thoughts and writings that don't have another home.
+  </p>
+  {notes.length === 0 && <p>Nothing here yet.</p>}
+  <ul class="space-y-3">
+    {
+      notes.map((note) => (
+        <li>
+          <SimpleCard
+            title={note.data.title}
+            description={note.data.description}
+            url={`/n/${note.slug}`}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</Base>

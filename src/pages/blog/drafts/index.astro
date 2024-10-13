@@ -1,25 +1,25 @@
 ---
 import { getCollection } from "astro:content";
-import PostCard from "../../components/PostCard.astro";
-import Base from "../../layouts/Base.astro";
+import PostCard from "../../../components/PostCard.astro";
+import Base from "../../../layouts/Base.astro";
 
-const publishedPosts = (await getCollection("blog")).filter(
-  (post) => !post.data.draft
+const draftPosts = (await getCollection("blog")).filter(
+  (post) => post.data.draft
 );
 ---
 
-<Base pageTitle="Blog" description="A collection of all my organized writings.">
+<Base
+  pageTitle="Drafts"
+  description="A collection of (drafts of) all my organized writings."
+>
   <h1 class="text-3xl font-bold mb-2">
-    <a href="/collections">../</a>blog
+    <a href="/collections">../</a><a href="/blog">blog/</a>drafts
   </h1>
-  <p class="mb-5">
-    A collection of all my organized writings. Also available as an
-    <a href="/rss.xml" class="text-blue">RSS feed</a>.
-  </p>
-  {publishedPosts.length === 0 && <p>Nothing here yet.</p>}
+  <p class="mb-5">A collection of (drafts of) all my organized writings.</p>
+  {draftPosts.length === 0 && <p>Nothing here yet.</p>}
   <ul class="space-y-3">
     {
-      publishedPosts
+      draftPosts
         .sort((a, b) => (a.data.pubDate > b.data.pubDate ? 1 : -1))
         .reverse()
         .map((post) => (

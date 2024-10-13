@@ -1,0 +1,31 @@
+---
+import SimpleCard from "../../components/SimpleCard.astro";
+import Base from "../../layouts/Base.astro";
+---
+
+<Base
+  pageTitle="Collections"
+  description="An index of the types of content I publish here."
+>
+  <h1 class="text-3xl font-bold mt-3 mb-2">Collections</h1>
+  <p class="mb-5">An index of the types of content I publish here.</p>
+  <div
+    class="grid [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] gap-1"
+  >
+    <SimpleCard
+      title="blog"
+      description="All my organized writings."
+      url="/blog"
+    />
+    <SimpleCard
+      title="drafts"
+      description="As-yet unpublished writings and post ideas."
+      url="/blog/drafts"
+    />
+    <SimpleCard
+      title="notes"
+      description="Miscellaneous thoughts and writings that don't have another home."
+      url="/notes"
+    />
+  </div>
+</Base>
