@@ -3,6 +3,7 @@ import { baseUrl } from "./data/config.json";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import react from "@astrojs/react";
@@ -14,7 +15,7 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   output: "hybrid",
   site: baseUrl,
-  integrations: [tailwind(), sitemap(), react(), icon(), mdx()],
+  integrations: [vercel(), tailwind(), sitemap(), react(), icon(), mdx()],
   markdown: {
     shikiConfig: {
       themes: {
