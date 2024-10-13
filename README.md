@@ -3,9 +3,10 @@
 My personal corner of the internet!
 
 - **Static Site Generation**: [Astro](https://astro.build)
-- **Styling:** [Tailwind](https://tailwindcss.com)
-- **Content:** [MDX](https://mdxjs.com/) with [remark-rehype](https://github.com/remarkjs/remark-rehype) for rendering to HTML
-- **Hosting**: [Vercel](https://vercel.com) with [Cloudflare](https://www.cloudflare.com) for supportive services ([R2](https://www.cloudflare.com/developer-platform/r2/), [DNS](https://www.cloudflare.com/application-services/products/dns/), [Registrar](https://developers.cloudflare.com/registrar/))
+- **Styling**: [Tailwind](https://tailwindcss.com)
+- **Content**: [MDX](https://mdxjs.com/) with [remark-rehype](https://github.com/remarkjs/remark-rehype) for rendering to HTML
+- **Hosting**: [Vercel](https://vercel.com) with [Cloudflare](https://www.cloudflare.com) for supportive services ([R2](https://www.cloudflare.com/developer-platform/r2/), [DNS](https://www.cloudflare.com/application-services/products/dns/), [Registrar](https://developers.cloudflare.com/registrar/), [Image Transformations](https://developers.cloudflare.com/images/transform-images/), [Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/))
+- **Analytics**: [Umami](https://umami.is) ([public view](https://sydneyn.dev/analytics))
 
 ## Develop
 
