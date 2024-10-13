@@ -3,13 +3,12 @@ layout: ../../layouts/Post.astro
 title: "From Chess to Othello: Digitizing Games"
 pubDate: "2024-08-06"
 description: "Diving headfirst into realtime communication over the internet by way of an old strategy board game."
-author: "Sydney Newmark"
 tags: ["websockets", "axum", "next.js", "game", "reflection"]
 featured: true
 ---
 
-import { Image } from 'astro:assets';
-import playScreen from '../../images/othello/play-screen.png';
+import { Image } from "astro:assets";
+import playScreen from "../../images/othello/play-screen.png";
 
 I've wanted to code a realtime two-player game for a couple of years now (mostly to become comfortable building and handling websockets... also they're cool), but I could never decide _what_ to build. At first, I thought Chess. Surely, it can't be _that_ complicated, right?
 
@@ -261,7 +260,7 @@ The very first and most complex thing I worked on for the client was the play sc
 </section>
 ```
 
-<Image src={playScreen} alt="Othello play screen UI"/>
+<Image src={playScreen} alt="Othello play screen UI" />
 
 Each item in that grid is a [`<Square/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
 
@@ -414,6 +413,9 @@ Currently, I don't have any plans to host this project anywhere for financial re
 -- Sydney
 
 [^1]: Diagonals count
+
 [^2]: Depending on your system color scheme, the disks will appear differently. It's not super relevant here, but `●` is the light side, and `○` is the dark side. It makes sense in dark mode (you're welcome)
+
 [^3]: Each disk must be placed adjacent to an already placed one
+
 [^4]: Perhaps only after a client refresh. This is one thing I haven't quite tested enough yet

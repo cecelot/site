@@ -1,6 +1,9 @@
 ---
-import { socials } from "../../data/config.json";
+import profilePicture from "../images/profilePicture.jpeg";
+import { socials, fullName } from "../../data/config.json";
+import { format } from "date-format-parse";
 import type { Props } from "../types";
+import { Image } from "astro:assets";
 import Base from "./Base.astro";
 
 const { frontmatter } = Astro.props;
@@ -14,17 +17,33 @@ const editLink = `${socials.github}/forest/edit/drafts/src/content/blog/${pathna
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
-  {frontmatter.draft && <span class="text-peach text-xl">draft</span>}
-  <h1 class="text-4xl lg:text-5xl font-black">{frontmatter.title}</h1>
-  <h2 class="text-md lg:text-xl font-medium mb-3 mt-2">
-    {frontmatter.description}
-  </h2>
-  <span class="flex flex-wrap font-light">
-    <p class="mr-1">{new Date(frontmatter.pubDate).toDateString()}</p>
-    <p class="mr-1">•</p>
-    <p>{frontmatter.minutesRead}</p>
-  </span>
-  <article class="prose lg:prose-lg leading-6 mt-5">
+  <section class="space-y-2 mb-4">
+    {frontmatter.draft && <span class="text-peach text-xl">draft</span>}
+    <h1 class="text-4xl lg:text-5xl font-black">{frontmatter.title}</h1>
+    <h2 class="text-lg lg:text-xl font-medium text-subtext1">
+      {frontmatter.description}
+    </h2>
+    <span class="flex flex-wrap font-light text-subtext0 gap-2">
+      <Image
+        class="inline w-10 h-10 rounded-full my-auto"
+        width="64"
+        height="64"
+        src={profilePicture}
+        alt="A tinted purple rose"
+      />
+      <span>
+        <p>{fullName}</p>
+        <div class="space-x-[2px]">
+          <span>
+            {format(new Date(frontmatter.pubDate), "DD MMM YYYY")}
+          </span>
+          <span>•</span>
+          <span>{frontmatter.minutesRead}</span>
+        </div>
+      </span>
+    </span>
+  </section>
+  <article class="prose lg:prose-lg leading-6">
     <slot />
   </article>
   <ul class="my-5 flex flex-wrap gap-y-5">
