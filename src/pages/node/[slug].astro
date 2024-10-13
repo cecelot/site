@@ -1,6 +1,8 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 
+export const prerender = true;
+
 export const getStaticPaths = async () => {
   const nodes = await getCollection("nodes");
   return nodes.map((item) => ({

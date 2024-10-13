@@ -2,6 +2,8 @@ import rss, { type RSSFeedItem } from "@astrojs/rss";
 import { domain, collections } from "../../../data/config.json";
 import { getCollection } from "astro:content";
 
+export const prerender = true;
+
 export const getStaticPaths = async () => {
   return (["notes", "drafts", "blog"] as const).map((slug) => ({
     params: { slug },
