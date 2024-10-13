@@ -1,17 +1,27 @@
-# sydneyn.dev
+# [sydneyn.dev](https://sydneyn.dev)
 
-My personal corner of the internet! See it live at [sydneyn.dev](https://sydneyn.dev), or check out previews of additions, modifications, etc. to posts [here](https://drafts.sydneyn.dev).
+My personal corner of the internet!
 
 - **Static Site Generation**: [Astro](https://astro.build)
 - **Styling:** [Tailwind](https://tailwindcss.com)
-- **Content:** [GitHub Flavored Markdown](https://github.github.com/gfm/) with [remark-rehype](https://github.com/remarkjs/remark-rehype) for rendering to HTML
-- **Hosting**: [Vercel](https://vercel.com)
+- **Content:** [MDX](https://mdxjs.com/) with [remark-rehype](https://github.com/remarkjs/remark-rehype) for rendering to HTML
+- **Hosting**: [Vercel](https://vercel.com) with [Cloudflare](https://www.cloudflare.com) for supportive services ([R2](https://www.cloudflare.com/developer-platform/r2/), [DNS](https://www.cloudflare.com/application-services/products/dns/), [Registrar](https://developers.cloudflare.com/registrar/))
 
 ## Develop
 
+### Running
+
 1. Install dependencies: `npm i`
-2. Run the development server: `npm run dev`
-3. Navigate to http://localhost:4321
+2. Set the necessary environment variables (below) in `.env`
+3. Run the development server: `npm run dev`
+4. Navigate to http://localhost:4321
+
+```env
+R2_BUCKET_NAME=""
+R2_SECRET_ACCESS_KEY=""
+R2_ACCESS_KEY_ID=""
+R2_ACCOUNT_ID=""
+```
 
 ## License
 
