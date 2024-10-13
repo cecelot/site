@@ -1,9 +1,9 @@
 import { remarkReadingTime } from "./src/readingTime";
+import vercel from "@astrojs/vercel/serverless";
 import { baseUrl } from "./data/config.json";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import react from "@astrojs/react";
@@ -13,9 +13,10 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  output: "server",
+  adapter: vercel(),
   site: baseUrl,
-  integrations: [vercel(), tailwind(), sitemap(), react(), icon(), mdx()],
+  integrations: [tailwind(), sitemap(), react(), icon(), mdx()],
   markdown: {
     shikiConfig: {
       themes: {
