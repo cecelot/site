@@ -1,11 +1,12 @@
 ---
+import { fullName } from "../../data/config.json";
 import Webring from "./Webring.astro";
 ---
 
 <footer class="text-center mt-10 space-y-3 mb-20">
   <Webring />
   <ul class="flex flex-col list-none gap-1">
-    <p class="text-xs text-subtext0">Copyright © 2024 Sydney Newmark</p>
+    <p class="text-xs text-subtext0">Copyright © 2024 {fullName}</p>
     <a class="text-xs" href="/acknowledgments">Acknowledgments</a>
     <a class="text-xs" href="/analytics">Analytics</a>
   </ul>
