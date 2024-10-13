@@ -1,4 +1,5 @@
 ---
+import { Content as ShortBio } from "../content/misc/short-bio.mdx";
 import profilePicture from "../images/profilePicture.jpeg";
 import { socials } from "../../data/config.json";
 import Social from "../components/Social.astro";
@@ -10,27 +11,18 @@ import { Image } from "astro:assets";
   pageTitle="Sydney Newmark"
   description="My personal corner of the internet, where I write about my projects and experiences in tech and elsewhere."
 >
-  <section class="flex flex-col mt-10 mb-5">
+  <section class="flex flex-col gap-3">
     <Image
       src={profilePicture}
       alt="A tinted purple rose"
       width="96"
       height="96"
-      class="rounded-full h-24 w-24 mr-4 mb-4 motion-safe:hover:animate-spin"
+      class="rounded-full h-24 w-24 motion-safe:hover:animate-spin"
     />
-    <div>
-      <h1 class="text-xl font-semibold my-3">Hi, I'm Sydney!</h1>
-      <p>
-        I'm a first-year student at <a target="_blank" href="https://wpi.edu"
-          >Worcester Polytechnic Institute</a
-        > majoring in Computer Science, interested in developing sustainable software
-        solutions for our digital future. In my corner of the internet, I <a
-          href="/blog">write about a variety of topics</a
-        >, <a href="/gallery">share my photography</a>, and <a href="/projects"
-          >highlight my favorite projects</a
-        >.
-      </p>
-      <ul class="mt-2 flex flex-row flex-wrap gap-y-2">
+    <div class="flex flex-col gap-3">
+      <h1 class="text-xl font-semibold">Hi, I'm Sydney!</h1>
+      <ShortBio />
+      <ul class="flex flex-row flex-wrap gap-y-2">
         <li class="mr-2">
           <Social
             label="Sydney Newmark's GitHub"
