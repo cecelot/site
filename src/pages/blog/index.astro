@@ -8,12 +8,12 @@ const publishedPosts = (await getCollection("blog")).filter(
 );
 ---
 
-<Base pageTitle="Blog" description="A collection of all my organized writings.">
+<Base pageTitle="Blog" description="All my organized writings.">
   <h1 class="text-3xl font-bold mb-2">
     <a href="/collections">../</a>blog
   </h1>
   <p class="mb-5">
-    A collection of all my organized writings. Also available as an
+    All my organized writings. Also available as an
     <a href="/rss.xml" class="text-blue">RSS feed</a>.
   </p>
   {publishedPosts.length === 0 && <p>Nothing here yet.</p>}
