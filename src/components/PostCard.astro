@@ -1,4 +1,13 @@
 ---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  url: string;
+  featured?: boolean;
+  draft?: boolean;
+}
+
 import clsx from "clsx";
 const { title, description, date, url, featured, draft } = Astro.props;
 ---
