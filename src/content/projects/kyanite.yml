@@ -1,6 +1,6 @@
 title: "Kyanite"
 description: 'A toy compiled programming language based on the book "Modern Compiler Design in Java"'
 repo: "https://github.com/cecelot/kyanite"
-post: "/p/writing-a-compiler"
+post: "/node/writing-a-compiler"
 homepage: "https://kyanite.sydneyn.dev"
 position: 4

@@ -1,25 +1,28 @@
 ---
-import Base from "../../layouts/Base.astro";
 import TagList from "../../components/interactive/TagList";
 import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
 
-const publishedPosts = (await getCollection("blog")).filter(
-  (post) => !post.data.draft
-);
+const nodes = await getCollection("nodes");
 const tags: Record<string, number> = {};
-publishedPosts.forEach((post) => {
-  post.data.tags.forEach((tag: string) => {
+nodes.forEach((node) => {
+  node.data.tags?.forEach((tag: string) => {
     tags[tag] = (tags[tag] || 0) + 1;
   });
 });
 const tagNames = [
-  ...new Set(publishedPosts.map((post) => post.data.tags).flat()),
+  ...new Set(
+    nodes
+      .map((node) => node.data.tags)
+      .flat()
+      .filter((s) => typeof s !== "undefined")
+  ),
 ];
 const pageTitle = "Tags";
 ---
 
-<Base pageTitle={pageTitle} description="Browse posts by topic.">
+<Base pageTitle={pageTitle} description="Browse nodes by topic.">
   <h1 class="text-3xl font-bold mt-3 mb-2">Tags</h1>
-  <p class="mb-5">Browse posts by topic.</p>
+  <p class="mb-5">Browse nodes by topic.</p>
   <TagList client:load tags={tags} tagNames={tagNames} />
 </Base>

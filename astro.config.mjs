@@ -37,4 +37,10 @@ export default defineConfig({
     ],
     rehypePlugins: [rehypeKatex],
   },
+  redirects: {
+    "/rss.xml": { status: 301, destination: "/in/blog.xml" },
+    "/blog": { status: 301, destination: "/in/blog" },
+    "/p/[...slug]": { status: 301, destination: "/node/[...slug]" },
+    "/n/[...slug]": { status: 301, destination: "/node/[...slug]" },
+  },
 });

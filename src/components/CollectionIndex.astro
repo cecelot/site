@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+import Base from "../layouts/Base.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  items: any[];
+}
+
+const { title, description, items, slug } = Astro.props;
+---
+
+<Base pageTitle={title} description={description}>
+  <h1 class="text-3xl font-bold mb-2 flex flex-row flex-wrap gap-2">
+    <p>
+      <a href="/collections">../</a>
+      <p class="-ml-2">{slug}</p>
+    </p>
+    <a href={`/in/${title.toLowerCase()}.rss`}>
+      <Icon
+        name="mdi:rss"
+        class="text-4xl text-peach bg-mantle border-2 border-crust rounded-full p-2 hover:border-peach"
+      />
+    </a>
+  </h1>
+  <p class="mb-5">
+    {description}
+  </p>
+  {items.length === 0 && <p>Nothing here yet.</p>}
+  <slot />
+</Base>

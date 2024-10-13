@@ -1,50 +1,61 @@
 ---
-import Base from "../../layouts/Base.astro";
-import PostCard from "../../components/PostCard.astro";
+import PostCard from "../../components/NodeCard.astro";
 import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+interface Props {
+  nodes: any[];
+}
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
+  const allNodes = await getCollection("nodes");
   const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+    ...new Set(
+      allNodes
+        .map((node) => node.data.tags)
+        .flat()
+        .filter((s) => typeof s !== "undefined")
+    ),
   ];
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag)
+    const filteredNodes = allNodes.filter((node) =>
+      node.data.tags?.includes(tag)
     );
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { nodes: filteredNodes },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { nodes } = Astro.props;
+const sortedNodes = nodes
+  .sort((a, b) => (a.data.pubDate > b.data.pubDate ? 1 : -1))
+  .reverse();
+console.log(sortedNodes.map((node) => node.data.pubDate));
+console.log(sortedNodes.map((node) => node.data.title));
 ---
 
-<Base pageTitle={`#${tag}`} description={`Posts tagged with #${tag}`}>
+<Base pageTitle={`#${tag}`} description={`Nodes tagged with #${tag}`}>
   <h1 class="text-3xl font-bold mt-3 mb-2"><a href="/tags">Tags</a>/{tag}</h1>
   <p class="mb-5">
-    Posts tagged with <code>#{tag}</code>
+    Nodes tagged with <code>#{tag}</code>
   </p>
   <ul class="space-y-3">
     {
-      posts
-        .sort((a, b) => (a.data.pubDate > b.data.pubDate ? 1 : -1))
-        .reverse()
-        .map((post) => (
-          <li>
-            <PostCard
-              title={post.data.title}
-              description={post.data.description}
-              date={new Date(post.data.pubDate)}
-              url={`/p/${post.slug}`}
-              featured={post.data.featured}
-              draft={post.data.draft}
-            />
-          </li>
-        ))
+      sortedNodes.map((node) => (
+        <li>
+          <PostCard
+            title={node.data.title}
+            description={node.data.description}
+            date={node.data.pubDate ? new Date(node.data.pubDate) : undefined}
+            url={`/node/${node.slug}`}
+            featured={node.data.featured}
+            draft={node.data.draft}
+          />
+        </li>
+      ))
     }
   </ul>
 </Base>

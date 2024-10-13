@@ -33,9 +33,9 @@ const next = Math.min(images.length - 1, index + 1);
   description={`${width}x${height} digital image captured on ${date}`}
   image={quarterPercent}
 >
-  <div class="mb-3 flex flex-row justify-center gap-2">
+  <div class="mb-3 flex flex-row flex-wrap justify-center gap-x-2">
     <a href="/gallery">Gallery</a>
-    <p>/</p>
+    <p class="text-subtext0">/</p>
     <p>{name}</p>
   </div>
   <div

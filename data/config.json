@@ -16,5 +16,10 @@
   "webring": {
     "root": "https://ctp-webr.ing",
     "slug": "sydney"
+  },
+  "collections": {
+    "blog": "All my organized writings.",
+    "notes": "Miscellaneous thoughts and writings that don't have another home.",
+    "drafts": "As-yet unpublished writings and post ideas."
   }
 }

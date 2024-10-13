@@ -1,0 +1,18 @@
+---
+import Base from "./Base.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Base pageTitle={frontmatter.title} description={frontmatter.description}>
+  <div class="flex flex-wrap gap-x-2">
+    <a href="/in/notes">Notes</a>
+    <span class="text-subtext0">/</span>
+    <span>{frontmatter.title}</span>
+  </div>
+  <div class="border-t-2 border-t-lavender my-2"></div>
+  {frontmatter.description && <p class="my-2">{frontmatter.description}</p>}
+  <article class="prose lg:prose-lg leading-6 mt-4">
+    <slot />
+  </article>
+</Base>

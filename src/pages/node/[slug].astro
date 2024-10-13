@@ -1,0 +1,19 @@
+---
+import { getCollection, getEntry } from "astro:content";
+
+export const getStaticPaths = async () => {
+  const nodes = await getCollection("nodes");
+  return nodes.map((item) => ({
+    params: {
+      slug: item.slug,
+    },
+  }));
+};
+
+const { slug } = Astro.params;
+
+const res = await getEntry("nodes", slug);
+const { Content } = await res.render();
+---
+
+<Content />

@@ -2,13 +2,12 @@
 import profilePicture from "../images/profilePicture.jpeg";
 import { socials, fullName } from "../../data/config.json";
 import { format } from "date-format-parse";
-import type { Props } from "../types";
 import { Image } from "astro:assets";
 import Base from "./Base.astro";
 
 const { frontmatter } = Astro.props;
 
-let pathname = new URL(Astro.url).pathname.replace("/p/", "").trim();
+let pathname = new URL(Astro.url).pathname.replace("/node/", "").trim();
 if (pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
@@ -48,6 +47,7 @@ const editLink = `${socials.github}/forest/edit/drafts/src/content/blog/${pathna
   </article>
   <ul class="my-5 flex flex-wrap gap-y-5">
     {
+      //@ts-ignore
       frontmatter.tags.map((tag) => (
         <li>
           <span>

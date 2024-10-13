@@ -1,5 +1,5 @@
 ---
-import SimpleCard from "../../components/SimpleCard.astro";
+import NodeCard from "../../components/NodeCard.astro";
 import Base from "../../layouts/Base.astro";
 ---
 
@@ -12,20 +12,20 @@ import Base from "../../layouts/Base.astro";
   <div
     class="grid [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] gap-1"
   >
-    <SimpleCard
+    <NodeCard
       title="blog"
       description="All my organized writings."
-      url="/blog"
+      url="/in/blog"
     />
-    <SimpleCard
+    <NodeCard
       title="drafts"
       description="As-yet unpublished writings and post ideas."
-      url="/blog/drafts"
+      url="/in/drafts"
     />
-    <SimpleCard
+    <NodeCard
       title="notes"
       description="Miscellaneous thoughts and writings that don't have another home."
-      url="/notes"
+      url="/in/notes"
     />
   </div>
 </Base>

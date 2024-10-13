@@ -1,0 +1,44 @@
+---
+import CollectionIndex from "../../components/CollectionIndex.astro";
+import NodeCard from "../../components/NodeCard.astro";
+import { collections } from "../../../data/config.json";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = async () => {
+  return (["notes", "drafts", "blog"] as const).map((slug) => ({
+    params: { slug },
+  }));
+};
+
+const { slug } = Astro.params;
+const items = await getCollection("nodes");
+const filteredItems = items.filter((item) => item.data.collection === slug);
+const sortedFilteredItems = filteredItems[0]?.data.pubDate
+  ? filteredItems
+      .sort((a, b) => (a.data!!.pubDate!! > b.data!!.pubDate!! ? 1 : -1))
+      .reverse()
+  : filteredItems;
+---
+
+<CollectionIndex
+  title={slug[0].toUpperCase() + slug.slice(1)}
+  description={collections[slug]}
+  items={filteredItems}
+  slug={slug}
+>
+  <ul class="space-y-3">
+    {
+      sortedFilteredItems.map((item) => (
+        <li>
+          <NodeCard
+            title={item.data.title}
+            description={item.data.description}
+            date={item.data.pubDate ? new Date(item.data.pubDate) : undefined}
+            featured={item.data.featured}
+            url={`/node/${item.slug}`}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</CollectionIndex>
