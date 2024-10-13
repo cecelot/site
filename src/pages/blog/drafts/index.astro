@@ -10,12 +10,12 @@ const draftPosts = (await getCollection("blog")).filter(
 
 <Base
   pageTitle="Drafts"
-  description="A collection of (drafts of) all my organized writings."
+  description="As-yet unpublished writings and post ideas."
 >
   <h1 class="text-3xl font-bold mb-2">
     <a href="/collections">../</a><a href="/blog">blog/</a>drafts
   </h1>
-  <p class="mb-5">A collection of (drafts of) all my organized writings.</p>
+  <p class="mb-5">As-yet unpublished writings and post ideas.</p>
   {draftPosts.length === 0 && <p>Nothing here yet.</p>}
   <ul class="space-y-3">
     {
