@@ -1,19 +1,19 @@
 ---
+import { allImages, transformImage } from "../../image";
 import { Icon } from "astro-icon/components";
-import { getAllImages, transformImage } from "../../image";
 import Base from "../../layouts/Base.astro";
 
 const DEFAULT_WIDTH = 1920;
 const DEFAULT_HEIGHT = 1080;
 
 export const getStaticPaths = async () => {
-  const count = (await getAllImages()).length;
+  const count = (await allImages()).length;
   return Array.from({ length: count }).map((_, index) => ({
     params: { id: index },
   }));
 };
 
-const images = (await getAllImages()).sort((a, b) =>
+const images = (await allImages()).sort((a, b) =>
   new Date(a.date) < new Date(b.date) ? 1 : -1
 );
 

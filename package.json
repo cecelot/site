@@ -15,6 +15,7 @@
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.1",
+    "@aws-sdk/client-s3": "^3.670.0",
     "@fontsource/inclusive-sans": "^5.0.3",
     "@fontsource/recursive": "^5.0.18",
     "@headlessui/react": "^2.1.2",

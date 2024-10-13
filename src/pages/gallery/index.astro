@@ -1,9 +1,9 @@
 ---
 import GalleryView from "../../components/GalleryView.astro";
-import { getAllImages } from "../../image";
 import Base from "../../layouts/Base.astro";
+import { allImages } from "../../image";
 
-const images = await getAllImages();
+const images = await allImages();
 ---
 
 <Base
