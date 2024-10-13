@@ -9,6 +9,9 @@ featured: false
 draft: false
 ---
 
+import { Image } from 'astro:assets';
+import bandwidthStats from '../../images/online-gallery/stats.png';
+
 I've wanted to publish a self-hosted online photo gallery for a while now, but I could never decide what to use. From server solutions with way more functionality than I needed to minimal premade static galleries like [Sigal](http://sigal.saimon.org/en/latest/) or [the "Gallery" Hugo theme](https://themes.gohugo.io/themes/hugo-theme-gallery/), there are a plethora of options out there.
 
 They all fell _just a little short_: either in terms of functionality, UI, or a mix of both. After experimenting a bit with Sigal and briefly considering a couple other options, I decided to scrap the idea of using something that already existed and just build my own.
@@ -80,7 +83,7 @@ I've learned a few things in doing this, some of which seem obvious in retrospec
 
 ## Bandwidth Statistics
 
-![Raw stats for bandwith saved](/img/online-gallery/stats.png)
+<Image src={bandwidthStats} alt="Raw stats for bandwith saved"/>
 
 I'm also really excited to finally have my very own photography portfolio/gallery.
 

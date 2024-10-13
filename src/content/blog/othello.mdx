@@ -8,6 +8,9 @@ tags: ["websockets", "axum", "next.js", "game", "reflection"]
 featured: true
 ---
 
+import { Image } from 'astro:assets';
+import playScreen from '../../images/othello/play-screen.png';
+
 I've wanted to code a realtime two-player game for a couple of years now (mostly to become comfortable building and handling websockets... also they're cool), but I could never decide _what_ to build. At first, I thought Chess. Surely, it can't be _that_ complicated, right?
 
 ...right? Wrong.
@@ -258,7 +261,7 @@ The very first and most complex thing I worked on for the client was the play sc
 </section>
 ```
 
-![The Othello play screen UI](/img/othello/play-screen.png)
+<Image src={playScreen} alt="Othello play screen UI"/>
 
 Each item in that grid is a [`<Square/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
 

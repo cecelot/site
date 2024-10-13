@@ -8,11 +8,12 @@ import remarkMath from "remark-math";
 import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import icon from "astro-icon";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
   site: baseUrl,
-  integrations: [tailwind(), sitemap(), react(), icon()],
+  integrations: [tailwind(), sitemap(), react(), icon(), mdx()],
   markdown: {
     shikiConfig: {
       themes: {
