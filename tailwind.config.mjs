@@ -1,6 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 
-const accent = "text";
+const accent = "lavender";
 const linkColor = "blue";
 
 /** @type {import('tailwindcss').Config} */
