@@ -13,6 +13,7 @@ const { Content } = await note.render();
 
 <Base pageTitle={note.data.title} description={note.data.description}>
   <a href="/notes">back to notes</a>
+  <div class="border-t-2 border-t-lavender my-2"></div>
   {note.data.description && <p class="my-2">{note.data.description}</p>}
   <article class="prose lg:prose-lg leading-6 mt-4">
     <Content />
