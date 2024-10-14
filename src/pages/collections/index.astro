@@ -1,5 +1,6 @@
 ---
 import NodeCard from "../../components/NodeCard.astro";
+import { collections } from "../../../data/config.json";
 import Base from "../../layouts/Base.astro";
 ---
 
@@ -12,20 +13,14 @@ import Base from "../../layouts/Base.astro";
   <div
     class="grid [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] gap-1"
   >
-    <NodeCard
-      title="blog"
-      description="All my organized writings."
-      url="/in/blog"
-    />
-    <NodeCard
-      title="drafts"
-      description="As-yet unpublished writings and post ideas."
-      url="/in/drafts"
-    />
-    <NodeCard
-      title="notes"
-      description="Miscellaneous thoughts and writings that don't have another home."
-      url="/in/notes"
-    />
+    {
+      Object.keys(collections).map((key) => (
+        <NodeCard
+          title={key}
+          description={collections[key as "blog" | "notes" | "drafts"]}
+          url={`/in/${key}`}
+        />
+      ))
+    }
   </div>
 </Base>
