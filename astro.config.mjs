@@ -1,5 +1,4 @@
 import { remarkReadingTime } from "./src/readingTime";
-import vercel from "@astrojs/vercel/serverless";
 import { baseUrl } from "./data/config.json";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
@@ -13,8 +12,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: vercel(),
+  output: "static",
   site: baseUrl,
   integrations: [tailwind(), sitemap(), react(), icon(), mdx()],
   markdown: {
@@ -39,11 +37,5 @@ export default defineConfig({
       remarkReadingTime,
     ],
     rehypePlugins: [rehypeKatex],
-  },
-  redirects: {
-    "/rss.xml": { status: 301, destination: "/in/blog.xml" },
-    "/blog": { status: 301, destination: "/in/blog" },
-    "/p/[slug]": { status: 301, destination: "/node/[slug]" },
-    "/n/[slug]": { status: 301, destination: "/node/[slug]" },
   },
 });

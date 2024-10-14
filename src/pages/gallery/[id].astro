@@ -6,8 +6,6 @@ import Base from "../../layouts/Base.astro";
 const DEFAULT_WIDTH = 1920;
 const DEFAULT_HEIGHT = 1080;
 
-export const prerender = true;
-
 export const getStaticPaths = async () => {
   const count = (await allImages()).length;
   return Array.from({ length: count }).map((_, index) => ({
