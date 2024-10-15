@@ -18,11 +18,8 @@ const { title, description, items, slug } = Astro.props;
       <a href="/collections">../</a>
       <p class="-ml-2">{slug}</p>
     </p>
-    <a href={`/in/${title.toLowerCase()}.xml`}>
-      <Icon
-        name="mdi:rss"
-        class="text-4xl text-peach bg-mantle border-2 border-crust rounded-full p-2 hover:border-peach"
-      />
+    <a class="my-auto -ml-1" href={`/in/${title.toLowerCase()}.xml`}>
+      <Icon name="mdi:rss" class="text-3xl text-peach hover:text-maroon" />
     </a>
   </h1>
   <p class="mb-5">
