@@ -1,5 +1,5 @@
 ---
-import PostCard from "../../components/NodeCard.astro";
+import NodeCard from "../../components/NodeCard.astro";
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 
@@ -44,7 +44,7 @@ const sortedNodes = nodes
     {
       sortedNodes.map((node) => (
         <li>
-          <PostCard
+          <NodeCard
             title={node.data.title}
             description={node.data.description}
             date={node.data.pubDate ? new Date(node.data.pubDate) : undefined}

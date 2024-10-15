@@ -1,0 +1,24 @@
+---
+interface Props {
+  tags?: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<ul class="my-5 flex flex-wrap gap-y-5">
+  {
+    tags?.map((tag) => (
+      <li>
+        <span>
+          <a
+            class="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
+            href={`/tags/${tag}`}
+          >
+            #{tag}
+          </a>
+        </span>
+      </li>
+    ))
+  }
+</ul>

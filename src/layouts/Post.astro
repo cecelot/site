@@ -1,6 +1,7 @@
 ---
 import profilePicture from "../images/profilePicture.jpeg";
 import { socials, fullName } from "../../data/config.json";
+import TagArray from "../components/TagArray.astro";
 import { format } from "date-format-parse";
 import { Image } from "astro:assets";
 import Base from "./Base.astro";
@@ -45,23 +46,7 @@ const editLink = `${socials.github}/forest/edit/drafts/src/content/blog/${pathna
   <article class="prose lg:prose-lg leading-6">
     <slot />
   </article>
-  <ul class="my-5 flex flex-wrap gap-y-5">
-    {
-      //@ts-ignore
-      frontmatter.tags.map((tag) => (
-        <li>
-          <span>
-            <a
-              class="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
-              href={`/tags/${tag}`}
-            >
-              #{tag}
-            </a>
-          </span>
-        </li>
-      ))
-    }
-  </ul>
+  <TagArray tags={frontmatter.tags} />
   <a
     class="ignored-link text-xs text-subtext0 hover:text-subtext1 underline"
     href={editLink}

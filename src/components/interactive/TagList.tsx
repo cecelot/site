@@ -6,7 +6,7 @@ interface TagListProps {
   tags: Record<string, number>;
 }
 
-export default function TagList({ tagNames, tags }: TagListProps) {
+export default function TagList({ tagNames }: TagListProps) {
   const [query, setQuery] = useState("");
   const [filtered, setFiltered] = useState<string[]>(tagNames);
 
