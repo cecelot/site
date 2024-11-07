@@ -10,8 +10,8 @@
     "websiteId": "5ba07c82-f9f0-4d43-8288-d2f81b8242b7"
   },
   "banner": {
-    "text": "Make your voice heard. **[Vote](https://iwillvote.com)**.",
-    "border": "border-t-red border-b-blue border-x-crust dark:border-x-text"
+    "text": "",
+    "border": ""
   },
   "webring": {
     "root": "https://ctp-webr.ing",
