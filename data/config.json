@@ -3,7 +3,6 @@
   "domain": "sydneyn.dev",
   "baseUrl": "https://sydneyn.dev",
   "socials": {
-    "mastodon": "https://mastodon.social/@cecelot",
     "github": "https://github.com/cecelot"
   },
   "analytics": {
