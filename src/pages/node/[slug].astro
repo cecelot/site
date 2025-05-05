@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
 
 const { slug } = Astro.params;
 
-const res = await getEntry("nodes", slug);
+const res = await getEntry("nodes", slug)!;
 const { Content } = await res.render();
 ---
 

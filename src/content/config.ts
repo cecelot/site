@@ -25,7 +25,12 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const miscCollection = defineCollection({
+  type: "content",
+});
+
 export const collections = {
   nodes: nodeCollection,
   projects: projectsCollection,
+  misc: miscCollection,
 };
