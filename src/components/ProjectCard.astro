@@ -32,13 +32,17 @@ const { title, description, repo, post, homepage } = Astro.props;
         </li>
       )
     }
-    <li>
-      <a class="ignored-link" href={repo} rel="noopener noreferrer">
-        <Icon
-          name="carbon:logo-github"
-          class="mr-2 text-4xl p-1 border-2 rounded-full border-mantle hover:border-blue"
-        />
-      </a>
-    </li>
+    {
+      repo && (
+        <li>
+          <a class="ignored-link" href={repo} rel="noopener noreferrer">
+            <Icon
+              name="carbon:logo-github"
+              class="mr-2 text-4xl p-1 border-2 rounded-full border-mantle hover:border-blue"
+            />
+          </a>
+        </li>
+      )
+    }
   </ul>
 </li>

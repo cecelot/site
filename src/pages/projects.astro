@@ -16,9 +16,7 @@ const projects = await getCollection("projects");
   <ul class="space-y-5">
     {
       projects
-        // @ts-ignore
         .sort((a, b) => (a.data.position < b.data.position ? 1 : -1))
-        // @ts-ignore
         .map((project) => {
           return (
             <ProjectCard
