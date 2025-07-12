@@ -22,12 +22,17 @@ import { Image } from "astro:assets";
     <div class="flex flex-col gap-3">
       <h1 class="text-xl font-semibold">Hi, I'm Sydney!</h1>
       <ShortBio />
-      <ul class="flex flex-row flex-wrap gap-y-2">
-        <li class="mr-2">
+      <ul class="">
+        <li class="mr-2 flex flex-row gap-x-2">
           <Social
             label="Sydney Newmark's GitHub"
             icon="carbon:logo-github"
             link={socials.github}
+          />
+          <Social
+            label="Sydney Newmark's Mastodon"
+            icon="fa6-brands:mastodon"
+            link={socials.mastodon}
           />
         </li>
       </ul>

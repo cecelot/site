@@ -22,6 +22,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "@iconify-json/carbon": "^1.1.36",
+    "@iconify-json/fa6-brands": "^1.2.5",
     "@iconify-json/mdi": "^1.1.67",
     "astro": "^5.7.10",
     "astro-icon": "^1.1.0",

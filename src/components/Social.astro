@@ -11,13 +11,13 @@ const { icon, link, label } = Astro.props;
 ---
 
 <a
-  class="ignored-link bg-mantle"
+  class="ignored-link text-4xl"
   href={link}
   rel="noopener noreferrer"
   aria-label={label}
 >
   <Icon
     name={icon}
-    class="text-4xl p-1 border-2 rounded-full border-mantle hover:border-blue"
+    class="p-1 w-8 h-8 border-2 rounded-full border-mantle hover:border-blue"
   />
 </a>

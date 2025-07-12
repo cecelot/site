@@ -3,7 +3,8 @@
   "domain": "sydneyn.dev",
   "baseUrl": "https://sydneyn.dev",
   "socials": {
-    "github": "https://github.com/cecelot"
+    "github": "https://github.com/cecelot",
+    "mastodon": "https://mstdn.social/@sydrinea"
   },
   "analytics": {
     "websiteId": "5ba07c82-f9f0-4d43-8288-d2f81b8242b7"
