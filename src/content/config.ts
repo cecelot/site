@@ -9,7 +9,6 @@ const nodeCollection = defineCollection({
     pubDate: z.string(),
     tags: z.optional(z.array(z.string())),
     featured: z.optional(z.boolean()),
-    draft: z.optional(z.boolean()),
   }),
 });
 

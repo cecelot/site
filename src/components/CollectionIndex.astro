@@ -13,11 +13,16 @@ const { title, description, items, slug } = Astro.props;
 ---
 
 <Base pageTitle={title} description={description}>
-  <h1 class="text-3xl font-bold mb-2 flex flex-row flex-wrap gap-2">
-    <p>
-      <a href="/collections">../</a>
-      <p class="-ml-2">{slug}</p>
+  <div>
+    <p class="text-subtext0">
+      <a href="/collections">collections</a>
+      <Icon name="carbon:chevron-right" class="inline m-1" />
+      {slug}
     </p>
+  </div>
+  <div class="border-t-2 border-t-lavender my-2"></div>
+  <h1 class="text-3xl font-bold mb-2 flex flex-row flex-wrap gap-2">
+    {slug}
     <a class="my-auto -ml-1" href={`/in/${title.toLowerCase()}.xml`}>
       <Icon name="mdi:rss" class="text-3xl text-peach hover:text-maroon" />
     </a>

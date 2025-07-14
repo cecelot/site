@@ -14,12 +14,12 @@ export async function getStaticPaths() {
       allNodes
         .map((node) => node.data.tags)
         .flat()
-        .filter((s) => typeof s !== "undefined")
+        .filter((s) => typeof s !== "undefined"),
     ),
   ];
   return uniqueTags.map((tag) => {
     const filteredNodes = allNodes.filter((node) =>
-      node.data.tags?.includes(tag)
+      node.data.tags?.includes(tag),
     );
     return {
       params: { tag },
@@ -50,7 +50,6 @@ const sortedNodes = nodes
             date={node.data.pubDate ? new Date(node.data.pubDate) : undefined}
             url={`/node/${node.slug}`}
             featured={node.data.featured}
-            draft={node.data.draft}
           />
         </li>
       ))

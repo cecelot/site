@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import TagArray from "../components/TagArray.astro";
 import Base from "./Base.astro";
 
@@ -6,10 +7,14 @@ const { frontmatter } = Astro.props;
 ---
 
 <Base pageTitle={frontmatter.title} description={frontmatter.description}>
-  <div class="flex flex-wrap gap-x-2">
-    <a href="/in/notes">Notes</a>
-    <span class="text-lavender">/</span>
-    <span>{frontmatter.title}</span>
+  <div>
+    <p class="text-subtext0">
+      <a href="/collections">collections</a>
+      <Icon name="carbon:chevron-right" class="inline m-1" />
+      <a href={`/in/${frontmatter.collection}`}>{frontmatter.collection}</a>
+      <Icon name="carbon:chevron-right" class="inline m-1" />
+      {frontmatter.title}
+    </p>
   </div>
   <div class="border-t-2 border-t-lavender my-2"></div>
   {frontmatter.description && <p class="my-2">{frontmatter.description}</p>}

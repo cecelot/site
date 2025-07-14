@@ -35,7 +35,6 @@ const sortedFilteredItems = filteredItems[0]?.data.pubDate
             description={item.data.description}
             date={item.data.pubDate ? new Date(item.data.pubDate) : undefined}
             featured={item.data.featured}
-            draft={item.data.draft}
             url={`/node/${item.slug}`}
           />
         </li>
