@@ -4,7 +4,8 @@
   "baseUrl": "https://sydneyn.dev",
   "socials": {
     "github": "https://github.com/cecelot",
-    "mastodon": "https://mstdn.social/@sydrinea"
+    "mastodon": "https://mstdn.social/@sydrinea",
+    "bluesky": "https://bsky.app/profile/sydneyn.dev"
   },
   "analytics": {
     "websiteId": "5ba07c82-f9f0-4d43-8288-d2f81b8242b7"
