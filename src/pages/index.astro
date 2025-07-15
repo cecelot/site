@@ -1,24 +1,15 @@
 ---
 import { Content as ShortBio } from "../content/misc/short-bio.mdx";
-import profilePicture from "../images/profilePicture.jpeg";
 import { socials } from "../../data/config.json";
 import Social from "../components/Social.astro";
 import Base from "../layouts/Base.astro";
-import { Image } from "astro:assets";
 ---
 
 <Base
   pageTitle="Sydney Newmark"
   description="My personal corner of the internet, where I write about my projects and experiences in tech and elsewhere."
 >
-  <section class="flex flex-col gap-3 pt-5">
-    <Image
-      src={profilePicture}
-      alt="A tinted purple rose"
-      width="96"
-      height="96"
-      class="rounded-full h-24 w-24 motion-safe:hover:animate-spin"
-    />
+  <section class="flex flex-col gap-3">
     <div class="flex flex-col gap-3">
       <h1 class="text-xl font-semibold">Hi, I'm Sydney!</h1>
       <ShortBio />

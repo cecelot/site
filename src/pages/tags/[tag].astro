@@ -2,6 +2,7 @@
 import NodeCard from "../../components/NodeCard.astro";
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   nodes: any[];
@@ -36,10 +37,14 @@ const sortedNodes = nodes
 ---
 
 <Base pageTitle={`#${tag}`} description={`Nodes tagged with #${tag}`}>
-  <h1 class="text-3xl font-bold mt-3 mb-2"><a href="/tags">Tags</a>/{tag}</h1>
-  <p class="mb-5">
-    Nodes tagged with <code>#{tag}</code>
-  </p>
+  <div>
+    <p class="text-subtext0">
+      <a href="/tags">Tags</a>
+      <Icon name="carbon:chevron-right" class="inline m-1" />
+      {tag}
+    </p>
+  </div>
+  <div class="border-t-2 border-t-lavender my-2"></div>
   <ul class="space-y-3">
     {
       sortedNodes.map((node) => (
