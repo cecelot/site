@@ -15,14 +15,14 @@ const tagNames = [
     nodes
       .map((node) => node.data.tags)
       .flat()
-      .filter((s) => typeof s !== "undefined")
+      .filter((s) => typeof s !== "undefined"),
   ),
 ];
 const pageTitle = "Tags";
 ---
 
 <Base pageTitle={pageTitle} description="Browse nodes by topic.">
-  <h1 class="text-3xl font-bold mt-3 mb-2">Tags</h1>
+  <h1 class="text-3xl font-bold mt-3 mb-2 font-serif">Tags</h1>
   <p class="mb-5">Browse nodes by topic.</p>
   <TagList client:load tags={tags} tagNames={tagNames} />
 </Base>
