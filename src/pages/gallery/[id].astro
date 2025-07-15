@@ -14,7 +14,7 @@ export const getStaticPaths = async () => {
 };
 
 const images = (await allImages()).sort((a, b) =>
-  new Date(a.date) < new Date(b.date) ? 1 : -1
+  new Date(a.date) < new Date(b.date) ? 1 : -1,
 );
 
 const index = Number(Astro.params.id);
@@ -33,11 +33,14 @@ const next = Math.min(images.length - 1, index + 1);
   description={`${width}x${height} digital image captured on ${date}`}
   image={quarterPercent}
 >
-  <div class="mb-3 flex flex-row flex-wrap justify-center gap-x-2">
-    <a href="/gallery">Gallery</a>
-    <p class="text-lavender">/</p>
-    <p>{name}</p>
+  <div>
+    <p class="text-subtext0">
+      <a href="/gallery">Gallery</a>
+      <Icon name="carbon:chevron-right" class="inline m-1" />
+      {name}
+    </p>
   </div>
+  <div class="border-t-2 border-t-lavender my-2"></div>
   <div
     class="flex flex-col sm:flex-row flex-wrap justify-between mt-4 mb-5 gap-4"
   >

@@ -21,6 +21,7 @@
   "collections": {
     "blog": "Organized, fleshed-out writings on a myriad of topics.",
     "drafts": "Messy ideas that aren't ready for the limelight yet.",
-    "notes": "Miscellaneous thoughts and writings that don't have another home."
+    "notes": "Miscellaneous thoughts and writings that don't have another home.",
+    "archive": "Retired from the spotlight for one reason or another."
   }
 }

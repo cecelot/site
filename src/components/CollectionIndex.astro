@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
+import titleCase from "../titleCase";
 
 interface Props {
   title: string;
@@ -15,9 +16,9 @@ const { title, description, items, slug } = Astro.props;
 <Base pageTitle={title} description={description}>
   <div>
     <p class="text-subtext0">
-      <a href="/collections">collections</a>
+      <a href="/collections">Collections</a>
       <Icon name="carbon:chevron-right" class="inline m-1" />
-      {slug}
+      {titleCase(slug)}
     </p>
   </div>
   <div class="border-t-2 border-t-lavender my-2"></div>

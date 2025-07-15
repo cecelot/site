@@ -3,9 +3,10 @@ import CollectionIndex from "../../components/CollectionIndex.astro";
 import NodeCard from "../../components/NodeCard.astro";
 import { collections } from "../../../data/config.json";
 import { getCollection } from "astro:content";
+import titleCase from "../../titleCase";
 
 export const getStaticPaths = async () => {
-  return (["notes", "drafts", "blog"] as const).map((slug) => ({
+  return (["notes", "drafts", "blog", "archive"] as const).map((slug) => ({
     params: { slug },
   }));
 };
@@ -21,7 +22,7 @@ const sortedFilteredItems = filteredItems[0]?.data.pubDate
 ---
 
 <CollectionIndex
-  title={slug[0].toUpperCase() + slug.slice(1)}
+  title={titleCase(slug)}
   description={collections[slug]}
   items={filteredItems}
   slug={slug}

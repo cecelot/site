@@ -6,6 +6,7 @@ import { format } from "date-format-parse";
 import { Image } from "astro:assets";
 import Base from "./Base.astro";
 import { Icon } from "astro-icon/components";
+import titleCase from "../titleCase";
 
 const { frontmatter } = Astro.props;
 
@@ -21,9 +22,11 @@ const editLink = `${socials.github}/forest/edit/main/src/content/nodes/${pathnam
   <section class="space-y-2 mb-4">
     <div>
       <p class="text-subtext0">
-        <a href="/collections">collections</a>
+        <a href="/collections">Collections</a>
         <Icon name="carbon:chevron-right" class="inline m-1" />
-        <a href={`/in/${frontmatter.collection}`}>{frontmatter.collection}</a>
+        <a href={`/in/${frontmatter.collection}`}
+          >{titleCase(frontmatter.collection)}</a
+        >
         <Icon name="carbon:chevron-right" class="inline m-1" />
         {frontmatter.title}
       </p>
