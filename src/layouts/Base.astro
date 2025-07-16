@@ -1,6 +1,5 @@
 ---
 import { baseUrl, domain, analytics, fullName } from "../../data/config.json";
-import CssNakedDay from "../components/CssNakedDay.astro";
 import Navigation from "../components/Navigation.astro";
 import OpenGraph from "../components/OpenGraph.astro";
 import { ClientRouter } from "astro:transitions";
@@ -54,7 +53,6 @@ const { pageTitle, description, image } = Astro.props;
   <body
     class="latte dark:mocha bg-base text-text max-w-screen-md mt-8 mx-auto p-5 pl-6"
   >
-    <CssNakedDay />
     <Navigation />
     <main>
       <slot />
