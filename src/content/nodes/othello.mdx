@@ -80,7 +80,7 @@ Using the rules laid out above, I implemented these three essential features:
 - an algorithm to validate disk placements
 - an algorithm that, for each of those placements, determines all disk flips
 
-This was straightforward, and while I won't get into it here for brevity, [`board.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/board.rs) contains all of the relevant code for this component. It was pretty standard two-dimensional array traversal, and I even ended up using some of the minor utilities I've written for solving certain [Advent of Code](https://adventofcode.com) challenges.
+This was straightforward, and while I won't get into it here for brevity, [`board.rs`](https://github.com/sydrinea/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/board.rs) contains all of the relevant code for this component. It was pretty standard two-dimensional array traversal, and I even ended up using some of the minor utilities I've written for solving certain [Advent of Code](https://adventofcode.com) challenges.
 
 ### Game
 
@@ -93,7 +93,7 @@ After completing my board representation, the next item of business was the game
 
 Scoring is not only useful for determining the winner. Since Othello is a [zero-sum game](https://en.wikipedia.org/wiki/Zero-sum_game), the scores can be used by a [minimax](https://en.wikipedia.org/wiki/Minimax) algorithm for [computer Othello](https://en.wikipedia.org/wiki/Computer_Othello) purposes.
 
-relevant code: [`game.rs`](https://github.com/cecelot/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/game.rs)
+relevant code: [`game.rs`](https://github.com/sydrinea/olly/blob/2359a62e32587c3cdfc657ff1cd0c53889d43814/src/game.rs)
 
 # Server
 
@@ -141,7 +141,7 @@ match Session::find()
 }
 ```
 
-_from [src/server/helpers.rs](https://github.com/cecelot/olly/blob/efe1c9bf92bf52d9754b8e013bbe2b947dd3ced8/src/server/helpers.rs#L63)_
+_from [src/server/helpers.rs](https://github.com/sydrinea/olly/blob/efe1c9bf92bf52d9754b8e013bbe2b947dd3ced8/src/server/helpers.rs#L63)_
 
 ## Authentication
 
@@ -184,7 +184,7 @@ where
 }
 ```
 
-_from [src/server/extractors/mod.rs](https://github.com/cecelot/olly/blob/efe1c9b/src/server/extractors/mod.rs)_
+_from [src/server/extractors/mod.rs](https://github.com/sydrinea/olly/blob/efe1c9b/src/server/extractors/mod.rs)_
 
 This extractor makes it very easy to protect a route which requires authentication. All a route handler function needs to do is include `User` in the extractor list as a parameter, like so:
 
@@ -263,7 +263,7 @@ The very first and most complex thing I worked on for the client was the play sc
 
 <Image src={playScreen} alt="Othello play screen UI" />
 
-Each item in that grid is a [`<Square/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/cecelot/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
+Each item in that grid is a [`<Square/>`](https://github.com/sydrinea/olly/blob/6dc52bc/client/src/components/board/Square.tsx), and within each of those squares is a [`<Circle/>`](https://github.com/sydrinea/olly/blob/6dc52bc/client/src/components/board/Circle.tsx), which handle a few notable UI states:
 
 - whether there's currently a preview happening (which occurs whenever the user hovers over any square)
 - whether the disk is currently white or black
@@ -306,7 +306,7 @@ sendJsonMessage({
 
 Since I'm using [enums](https://www.typescriptlang.org/docs/handbook/enums.html) for pieces, I need to convert them to strings so that the backend can properly deserialize the JSON to the associated Rust enum, which is why `stringifyPiece` exists. Another (de)serialization quirk is `type: "Place"` in the `d` field, which just exists to make [serde](https://serde.rs) happy. Finally, there's the `id` field, which tells the server which game it needs to update, and the `x` and `y` fields, which tell the server where on the board the `piece` was placed.
 
-And with that, I've covered all of the core code that makes it possible for people to play the game! Of course, there's a lot more code involved putting all of these pieces together, so feel free to explore [the GitHub repository](https://github.com/cecelot/olly) to discover more.
+And with that, I've covered all of the core code that makes it possible for people to play the game! Of course, there's a lot more code involved putting all of these pieces together, so feel free to explore [the GitHub repository](https://github.com/sydrinea/olly) to discover more.
 
 # Persistence
 
@@ -409,7 +409,7 @@ Instead of always creating a _new_ `Game` object, I first check to see if Redis 
 
 This was a lot to write, and I know I've only _barely_ scratched the surface. Putting together all of the pieces here felt really good, and it was fun to try out a new web framework, even though I didn't end up going with it.
 
-Currently, I don't have any plans to host this project anywhere for financial reasons, but it is runnable locally following [the instructions in the README](https://github.com/cecelot/olly?tab=readme-ov-file#develop) for the repository. Feel free to poke around and explore!
+Currently, I don't have any plans to host this project anywhere for financial reasons, but it is runnable locally following [the instructions in the README](https://github.com/sydrinea/olly?tab=readme-ov-file#develop) for the repository. Feel free to poke around and explore!
 
 -- Sydney
 

@@ -1,5 +1,5 @@
 title: '"Improving Transparency and Mitigating Hallucinations in LLMs."'
 description: "A survey of semantic uncertainty, MixCL, and methods for mitigating hallucinations & a proposal integrating those techniques into a cohesive framework for modifying LLM training structure"
-repo: "https://github.com/cecelot/transparency-mitigating-hallucinations-llms"
+repo: "https://github.com/sydrinea/transparency-mitigating-hallucinations-llms"
 homepage: "https://tmhl.sydneyn.dev"
 position: 1

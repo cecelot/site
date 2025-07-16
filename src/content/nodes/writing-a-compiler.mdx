@@ -90,7 +90,7 @@ Switching my efforts to the Rust compiler probably happened at the most opportun
 
 I didn't really know what each of these meant when I started, which made for some frustrating moments where I didn't really understand why something was being done at a particular time.
 
-For example, activation records (implemented in Kyanite [here](https://github.com/cecelot/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Here's a snippet of the interface:
+For example, activation records (implemented in Kyanite [here](https://github.com/sydrinea/kyanite/blob/a96b7ae330a6e0bd9e1edecfb07d540e1b7d83e2/crates/kyac/src/backend/kyir/arch/armv8a/mod.rs)) are first because the assembly I would be writing later centers around functions. In particular, they center around [frames](https://en.wikipedia.org/wiki/Call_stack#STACK-FRAME), which are responsible for managing all state in a program, even if that state is only stored in registers. Without getting too deep into the weeds, what I'll call the "activation record abstraction" is responsible for allocating data and ensuring registers' data remains stable across function calls. Here's a snippet of the interface:
 
 ```rust
 pub trait Frame<I: ArchInstr> {
@@ -187,7 +187,7 @@ There are several things I'm definitely going to take away from this experience:
 
 In general, I'm pretty happy with where I ended up with this foray into compiler design after eight months, and I learned a lot from the experience. In the future, I'm looking forward to taking more formal compiler design courses, particularly on theory and optimizations, things I didn't cover as extensively in my practical-focused study.
 
-For the curious looking to take a peek at the code and/or run the compiler themselves, the GitHub repository is [here](https://github.com/cecelot/kyanite).
+For the curious looking to take a peek at the code and/or run the compiler themselves, the GitHub repository is [here](https://github.com/sydrinea/kyanite).
 
 I also have some preliminary (incomplete) documentation about it up [here](https://kyanite.sydneyn.dev), which I plan to update some point this summer with everything I had done since my last edit to the docs.
 
