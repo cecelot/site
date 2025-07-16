@@ -31,7 +31,7 @@ export default function LicenseList({ licenses }: LicenseProps) {
                       open && "rotate-180",
                     )}
                   />
-                  <h1 className="font-semibold text-sm md:text-xl lg:text-2xl">
+                  <h1 className="font-mono text-sm md:text-xl lg:text-2xl">
                     {name}
                   </h1>
                 </DisclosureButton>
