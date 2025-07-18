@@ -50,11 +50,9 @@ const { pageTitle, description, image } = Astro.props;
     />
     <ClientRouter transition:animate="fade" />
   </head>
-  <body
-    class="latte dark:mocha bg-base text-text max-w-screen-md mt-8 mx-auto p-5 pl-6"
-  >
+  <body class="latte dark:mocha bg-base text-text">
     <Navigation />
-    <main>
+    <main class="max-w-screen-md mx-auto px-6">
       <slot />
     </main>
     <Footer />
