@@ -31,31 +31,14 @@ const editLink = `${socials.github}/site/edit/main/src/content/nodes/${pathname}
         {frontmatter.title}
       </p>
     </div>
-    <h1 class="text-4xl font-serif lg:text-5xl font-bold">
-      {frontmatter.title}
-    </h1>
     <h2 class="text-lg lg:text-xl font-medium text-subtext1">
       {frontmatter.description}
     </h2>
-    <span class="flex flex-wrap font-light text-subtext0 gap-2">
-      <Image
-        class="inline w-10 h-10 rounded-full my-auto"
-        width="64"
-        height="64"
-        src={profilePicture}
-        alt="Sydney Newmark profile shot"
-      />
-      <span>
-        <p>{fullName}</p>
-        <div class="space-x-[2px]">
-          <span>
-            {format(new Date(frontmatter.pubDate), "DD MMM YYYY")}
-          </span>
-          <span>•</span>
-          <span>{frontmatter.minutesRead}</span>
-        </div>
-      </span>
-    </span>
+    <p class="font-light text-subtext0">
+      {format(new Date(frontmatter.pubDate), "DD MMM YYYY")}
+      —
+      {frontmatter.minutesRead}
+    </p>
   </section>
   <article class="prose lg:prose-lg leading-6">
     <slot />

@@ -12,8 +12,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inclusive Sans", ...defaultTheme.fontFamily.sans],
-        serif: ["Domine", ...defaultTheme.fontFamily.serif],
+        sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
+        serif: ["Lora", ...defaultTheme.fontFamily.serif],
         mono: ["Recursive Mono", ...defaultTheme.fontFamily.mono],
       },
       typography: (theme) => ({
@@ -23,7 +23,7 @@ export default {
               textDecoration: "none",
             },
             'h1,h2,h3,h4,h5,h6': {
-              fontFamily: 'Domine, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif'
+              fontFamily: 'Lora, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif'
             },
             "--tw-prose-body": theme("colors.text.DEFAULT"),
             "--tw-prose-headings": theme(`colors.${accent}.DEFAULT`),
