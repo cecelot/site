@@ -2,9 +2,12 @@
 import { baseUrl, domain, analytics, fullName } from "../../data/config.json";
 import Navigation from "../components/Navigation.astro";
 import OpenGraph from "../components/OpenGraph.astro";
+import { banner } from "../../data/config.json";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Styles from "../components/Styles.astro";
+import mdToHtml from "../mdToHtml";
+import clsx from "clsx";
 import "@fontsource/inclusive-sans";
 import "@fontsource/recursive";
 
@@ -51,6 +54,17 @@ const { pageTitle, description, image } = Astro.props;
     <ClientRouter transition:animate="fade" />
   </head>
   <body class="latte dark:mocha bg-base text-text">
+    {
+      banner.text && (
+        <div
+          class={clsx(
+            "border-2 rounded-lg m-2 p-1 bg-mantle text-center",
+            banner.border,
+          )}
+          set:html={mdToHtml(banner.text)}
+        />
+      )
+    }
     <Navigation />
     <main class="max-w-screen-md mx-auto px-6">
       <slot />

@@ -1,24 +1,10 @@
 ---
 import profilePicture from "../images/profilePicture.jpeg";
-import { banner } from "../../data/config.json";
-import mdToHtml from "../mdToHtml";
 import { Image } from "astro:assets";
-import clsx from "clsx";
 import { Icon } from "astro-icon/components";
 ---
 
 <header class="px-5">
-  {
-    banner.text && (
-      <section
-        class={clsx(
-          "rounded-md py-1 border-2 border-mantle bg-mantle w-full text-center",
-          banner.border,
-        )}
-        set:html={mdToHtml(banner.text)}
-      />
-    )
-  }
   <nav class="my-5 flex justify-between font-mono text-xl">
     <div class="flex flex-row space-x-4">
       <span>
