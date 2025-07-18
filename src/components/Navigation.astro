@@ -20,25 +20,33 @@ import { Icon } from "astro-icon/components";
     </div>
     <ul class="flex flex-row space-x-3 sm:space-x-10">
       <li>
-        <a class="navbar-link ignored-link" href="/">
+        <a class="navbar-link ignored-link" href="/" aria-label="About">
           <p class="hidden sm:block">/about</p>
           <Icon name="mdi:home" class="navbar-icon" />
         </a>
       </li>
       <li>
-        <a class="navbar-link ignored-link" href="/in/blog">
+        <a class="navbar-link ignored-link" href="/in/blog" aria-label="Blog">
           <p class="hidden sm:block">/blog</p>
           <Icon name="mdi:pencil-box-multiple-outline" class="navbar-icon" />
         </a>
       </li>
       <li>
-        <a class="navbar-link ignored-link" href="/projects">
+        <a
+          class="navbar-link ignored-link"
+          href="/projects"
+          aria-label="Projects"
+        >
           <p class="hidden sm:block">/projects</p>
           <Icon name="carbon:tool-box" class="navbar-icon" />
         </a>
       </li>
       <li>
-        <a class="navbar-link ignored-link" href="/gallery">
+        <a
+          class="navbar-link ignored-link"
+          href="/gallery"
+          aria-label="Gallery"
+        >
           <p class="hidden sm:block">/gallery</p>
           <Icon name="carbon:image-copy" class="navbar-icon" />
         </a>
