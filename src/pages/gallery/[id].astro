@@ -18,7 +18,7 @@ const images = (await allImages()).sort((a, b) =>
 );
 
 const index = Number(Astro.params.id);
-const { name, width, height, date } = images[index];
+const { name, width, height, date, lens } = images[index];
 const quarterPercent = transformImage(name, {
   width: (width || DEFAULT_WIDTH) * 0.25,
   height: (height || DEFAULT_HEIGHT) * 0.25,
@@ -61,8 +61,8 @@ const next = Math.min(images.length - 1, index + 1);
     <div
       class="border-2 text-center flex-grow border-mantle bg-mantle rounded-lg p-3"
     >
-      <p>{width}x{height}</p>
-      <p>{date}</p>
+      <p>{lens} @ {width}x{height}</p>
+      <p class="text-subtext0">{date}</p>
       <a
         href={transformImage(name, {
           width: width || DEFAULT_WIDTH,

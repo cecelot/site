@@ -65,6 +65,7 @@ const getAllImages = async () => {
       date,
       width: exifData["Image Width"]?.value,
       height: exifData["Image Height"]?.value,
+      lens: exifData["LensModel"]?.description ?? "Unknown camera"
     };
   });
 };
