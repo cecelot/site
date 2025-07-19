@@ -43,24 +43,15 @@ const next = Math.min(images.length - 1, index + 1);
   <div
     class="flex flex-col sm:flex-row flex-wrap justify-between mt-4 mb-5 gap-4"
   >
-    <p
-      class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
+    <a
+      id="previous"
+      aria-label="Previous image"
+      class="ignored-link text-lavender border-2 border-mantle p-1 rounded-lg hover:border-lavender grid place-items-center"
+      href={`/gallery/${previous}`}
     >
-      <a
-        id="previous"
-        aria-label="Previous image"
-        class="ignored-link webring-link"
-        href={`/gallery/${previous}`}
-      >
-        <Icon
-          name="mdi:keyboard-arrow-left"
-          class="p-1 text-2xl block m-auto"
-        />
-      </a>
-    </p>
-    <div
-      class="border-2 text-center flex-grow border-mantle bg-mantle rounded-lg p-3"
-    >
+      <Icon name="mdi:keyboard-arrow-left" class="p-1 text-2xl" />
+    </a>
+    <div class="border-2 text-center flex-grow border-mantle rounded-lg p-3">
       <p>{lens} @ {width}x{height}</p>
       <p class="text-subtext0">{date}</p>
       <a
@@ -72,24 +63,17 @@ const next = Math.min(images.length - 1, index + 1);
         target="_blank">View Original</a
       >
     </div>
-    <p
-      class="text-mauve h-fit my-auto bg-mantle border-2 border-crust p-1 rounded-full hover:border-mauve"
+    <a
+      id="next"
+      aria-label="Next image"
+      class="ignored-link text-lavender border-2 border-mantle p-1 rounded-lg hover:border-lavender grid place-items-center"
+      href={`/gallery/${next}`}
     >
-      <a
-        id="next"
-        aria-label="Next image"
-        class="ignored-link webring-link"
-        href={`/gallery/${next}`}
-      >
-        <Icon
-          name="mdi:keyboard-arrow-right"
-          class="p-1 text-2xl block m-auto"
-        />
-      </a>
-    </p>
+      <Icon name="mdi:keyboard-arrow-right" class="p-1 text-2xl" />
+    </a>
   </div>
   <img
-    class="rounded-lg my-2 mx-auto"
+    class="rounded-md my-2 mx-auto"
     src={quarterPercent}
     alt={name}
     width={(width || DEFAULT_WIDTH) * 0.25}
