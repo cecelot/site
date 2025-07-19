@@ -13,7 +13,7 @@ const { title, description, date, url, featured } = Astro.props;
 
 <a
   href={url}
-  class={`flex flex-col ignored-link p-3 rounded-lg ${clsx(featured && "hover:border-mauve", !featured && "hover:border-blue")} border-2 border-crust`}
+  class={`flex flex-col ignored-link p-3 rounded-lg ${clsx(featured && "hover:border-mauve", !featured && "hover:border-blue")} border-2 border-mantle`}
 >
   {featured && <span class="text-mauve">featured</span>}
   <h2 class="font-bold font-serif">{title}</h2>
