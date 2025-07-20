@@ -9,14 +9,14 @@ import { Icon } from "astro-icon/components";
     <div class="flex flex-row space-x-4">
       <span>
         <Image
-          class="absolute inline w-8 h-8 rounded-full my-auto hover:animate-spin sm:-top-[3.3px]"
+          class="absolute inline w-8 h-8 rounded-full my-auto hover:animate-spin sm:-top-0.5"
           width="64"
           height="64"
           src={profilePicture}
           alt="Sydney Newmark profile shot"
         />
       </span>
-      <p class="hidden md:block text-subtext1 pl-7">sydneyn.dev</p>
+      <p class="hidden md:block text-green pl-7">sydneyn.dev</p>
     </div>
     <ul class="flex flex-row space-x-3">
       <li class="link-wrapper">
@@ -65,6 +65,6 @@ import { Icon } from "astro-icon/components";
   }
 
   .navbar-icon {
-    @apply p-1.5 w-8 h-8 rounded-md border-mantle block sm:hidden;
+    @apply p-1.5 w-8 h-8 rounded-md sm:hidden;
   }
 </style>
