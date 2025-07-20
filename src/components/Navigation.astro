@@ -5,20 +5,22 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header class="px-5">
-  <nav class="my-5 flex justify-between font-mono text-xl relative">
-    <div class="flex flex-row space-x-4">
+  <nav
+    class="my-5 flex justify-between font-mono text-xl relative border-2 border-red"
+  >
+    <div class="flex flex-row space-x-4 items-center">
       <span>
         <Image
-          class="absolute inline w-8 h-8 rounded-full my-auto hover:animate-spin sm:-top-0.5"
+          class="inline w-8 h-8 rounded-full my-auto hover:animate-spin"
           width="64"
           height="64"
           src={profilePicture}
           alt="Sydney Newmark profile shot"
         />
       </span>
-      <p class="hidden md:block text-green pl-7">sydneyn.dev</p>
+      <p class="hidden md:block text-green">sydneyn.dev</p>
     </div>
-    <ul class="flex flex-row space-x-3">
+    <ul class="flex flex-row space-x-3 items-center">
       <li class="link-wrapper">
         <a class="navbar-link ignored-link" href="/" aria-label="About">
           <p class="hidden sm:block">about</p>
