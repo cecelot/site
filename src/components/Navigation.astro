@@ -5,49 +5,49 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header class="px-5">
-  <nav class="my-5 flex justify-between font-mono text-xl">
+  <nav class="my-5 flex justify-between font-mono text-xl relative">
     <div class="flex flex-row space-x-4">
       <span>
         <Image
-          class="inline w-8 h-8 rounded-full my-auto hover:animate-spin"
+          class="absolute inline w-8 h-8 rounded-full my-auto hover:animate-spin sm:-top-[3.3px]"
           width="64"
           height="64"
           src={profilePicture}
           alt="Sydney Newmark profile shot"
         />
       </span>
-      <p class="hidden md:block text-subtext1">sydneyn.dev</p>
+      <p class="hidden md:block text-subtext1 pl-7">sydneyn.dev</p>
     </div>
-    <ul class="flex flex-row space-x-3 sm:space-x-10">
-      <li>
+    <ul class="flex flex-row space-x-3">
+      <li class="link-wrapper">
         <a class="navbar-link ignored-link" href="/" aria-label="About">
-          <p class="hidden sm:block">/about</p>
+          <p class="hidden sm:block">about</p>
           <Icon name="mdi:home" class="navbar-icon" />
         </a>
       </li>
-      <li>
+      <li class="link-wrapper">
         <a class="navbar-link ignored-link" href="/in/blog" aria-label="Blog">
-          <p class="hidden sm:block">/blog</p>
+          <p class="hidden sm:block">blog</p>
           <Icon name="mdi:pencil-box-multiple-outline" class="navbar-icon" />
         </a>
       </li>
-      <li>
+      <li class="link-wrapper">
         <a
           class="navbar-link ignored-link"
           href="/projects"
           aria-label="Projects"
         >
-          <p class="hidden sm:block">/projects</p>
+          <p class="hidden sm:block">projects</p>
           <Icon name="carbon:tool-box" class="navbar-icon" />
         </a>
       </li>
-      <li>
+      <li class="link-wrapper">
         <a
           class="navbar-link ignored-link"
           href="/gallery"
           aria-label="Gallery"
         >
-          <p class="hidden sm:block">/gallery</p>
+          <p class="hidden sm:block">gallery</p>
           <Icon name="carbon:image-copy" class="navbar-icon" />
         </a>
       </li>
@@ -56,11 +56,15 @@ import { Icon } from "astro-icon/components";
 </header>
 
 <style>
+  .link-wrapper {
+    @apply bg-mantle rounded-md px-1 hover:bg-crust;
+  }
+
   .navbar-link {
-    @apply text-subtext1 hover:underline;
+    @apply text-subtext1;
   }
 
   .navbar-icon {
-    @apply border-2 p-1 w-8 h-8 rounded-md border-mantle hover:border-subtext1 block sm:hidden;
+    @apply p-1.5 w-8 h-8 rounded-md border-mantle block sm:hidden;
   }
 </style>
